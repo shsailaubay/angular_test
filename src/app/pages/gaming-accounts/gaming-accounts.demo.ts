@@ -1,0 +1,35 @@
+export const GAMING_ACCOUNTS_DEMO_DATA = [
+  {
+    'id': 1,
+    'name': 'Вячеслав',
+    'social_link': '/facebook.com/vyacheslav_009',
+    'email': null,
+    'exp_points': 3680,
+    'silver': 19220,
+    'gold': 12000,
+    'player_status': 'Legend',
+    'last_visit': '04.05.2019',
+  },
+  {
+    'id': 2,
+    'name': 'Денис',
+    'social_link': '/facebook.com/denis_009',
+    'email': null,
+    'exp_points': 3680,
+    'silver': 19220,
+    'gold': 12000,
+    'player_status': 'Legend',
+    'last_visit': '04.05.2019',
+  },
+  {
+    'id': 3,
+    'name': 'Alexey',
+    'social_link': '/facebook.com/zakevich_a',
+    'email': null,
+    'exp_points': 3680,
+    'silver': 19220,
+    'gold': 12000,
+    'player_status': 'Legend',
+    'last_visit': '04.05.2019',
+  }
+];
