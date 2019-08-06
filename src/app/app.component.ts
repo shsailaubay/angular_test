@@ -42,7 +42,7 @@ export class AppComponent {
       {
         name: 'Игровые аккаунты',
         routeOrFunction: '/gaming-accounts',
-        icon: 'dashboard',
+        icon: 'account_circle',
         position: 5
       },
       // {

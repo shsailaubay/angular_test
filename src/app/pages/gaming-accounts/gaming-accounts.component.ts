@@ -1,4 +1,5 @@
 import {AfterViewInit, Component, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Router} from '@angular/router';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
@@ -43,7 +44,9 @@ export class GamingAccountsComponent implements OnInit, AfterViewInit, OnDestroy
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   pageSize = 10;
 
-  constructor() {
+  constructor(
+    private router: Router
+  ) {
   }
 
   get visibleColumns() {
@@ -84,5 +87,10 @@ export class GamingAccountsComponent implements OnInit, AfterViewInit, OnDestroy
   }
 
   ngOnDestroy() {
+  }
+
+  gotoGamingAccount(id) {
+    console.log();
+    this.router.navigate(['gaming-accounts/gaming-account', id]);
   }
 }

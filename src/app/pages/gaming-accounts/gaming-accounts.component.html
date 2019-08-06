@@ -44,7 +44,7 @@
       <table [dataSource]="dataSource" mat-table matSort>
 
         <tr *matHeaderRowDef="visibleColumns" mat-header-row></tr>
-        <tr *matRowDef="let row; columns: visibleColumns;" class="clickable route-animations-elements" mat-row></tr>
+        <tr *matRowDef="let row; columns: visibleColumns;" class="clickable route-animations-elements" mat-row (click)="gotoGamingAccount(row.id)"></tr>
 
         <ng-container matColumnDef="checkbox">
           <th *matHeaderCellDef class="actions-cell" mat-header-cell>
@@ -58,9 +58,7 @@
         <ng-container *ngFor="let column of columns">
           <ng-container *ngIf="column.isModelProperty" [matColumnDef]="column.property">
             <th *matHeaderCellDef mat-header-cell mat-sort-header> {{ column.name }}</th>
-            <td *matCellDef="let row" mat-cell>
-              {{ row[column.property] }}
-            </td>
+            <td *matCellDef="let row" mat-cell>{{ row[column.property] }}</td>
           </ng-container>
         </ng-container>
 
