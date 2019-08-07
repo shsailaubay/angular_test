@@ -2,12 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/internal/operators';
 import { Observable } from 'rxjs';
-import { PARAM_HOST_NAME } from './app-settings';
 
 @Injectable()
 
 export class BaseApi {
-  protected baseUrl = PARAM_HOST_NAME + '/api';
+  protected baseUrl = 'https://api.braimon.pre.luxystech.com';
 
   constructor(public http: HttpClient) {
   }
