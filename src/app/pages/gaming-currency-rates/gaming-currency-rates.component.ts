@@ -5,7 +5,6 @@ import {Observable, of, ReplaySubject} from 'rxjs';
 import {filter} from 'rxjs/operators';
 import {GamingCurrencyRate} from '../../shared/models/gaming-currency-rate.model';
 import {GAMING_CURRENCY_RATES_DEMO_DATA} from '../../../assets/gaming-currency-rates.demo';
-import {CashReleaseRequestDeclineComponent} from '../cash-release-requests/cash-release-requests.component';
 
 @Component({
   selector: 'fury-gaming-currency-rates',

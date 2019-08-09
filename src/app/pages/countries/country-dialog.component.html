@@ -1,0 +1,17 @@
+<div mat-dialog-title fxLayout="row" fxLayoutAlign="space-between center">
+  <div>Добавить страну</div>
+  <button type="button" mat-icon-button (click)="close('No answer')" tabindex="-1">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<mat-dialog-content>
+  <mat-form-field appearance="standard" style="width: 100%">
+    <mat-label>Введите название:</mat-label>
+    <input type="text" matInput>
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions align="center">
+  <button mat-raised-button color="primary" (click)="close('Yes')">Сохранить</button>
+</mat-dialog-actions>

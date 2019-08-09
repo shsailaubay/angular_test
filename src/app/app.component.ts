@@ -53,6 +53,11 @@ export class AppComponent {
         name: 'Курсы игровых валют',
         routeOrFunction: '/gaming-currency-rates',
         icon: 'attach_money'
+      },
+      {
+        name: 'Страны',
+        routeOrFunction: '/countries',
+        icon: 'flag'
       }
       // {
       //   name: 'Dashboard',

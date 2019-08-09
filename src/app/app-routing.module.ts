@@ -41,6 +41,10 @@ const routes: Routes = [
         loadChildren: './pages/gaming-currency-rates/gaming-currency-rates.module#GamingCurrencyRatesModule',
       },
       {
+        path: 'countries',
+        loadChildren: './pages/countries/countries.module#CountriesModule',
+      },
+      {
         path: 'apps/inbox',
         loadChildren: './pages/apps/inbox/inbox.module#InboxModule',
       },
