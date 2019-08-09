@@ -45,6 +45,10 @@ const routes: Routes = [
         loadChildren: './pages/countries/countries.module#CountriesModule',
       },
       {
+        path: 'users',
+        loadChildren: './pages/users/users.module#UsersModule',
+      },
+      {
         path: 'apps/inbox',
         loadChildren: './pages/apps/inbox/inbox.module#InboxModule',
       },

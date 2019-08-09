@@ -40,9 +40,15 @@ export class AppComponent {
 
     this.sidenavService.addItems([
       {
+        name: 'Dashboard',
+        routeOrFunction: '/',
+        icon: 'dashboard',
+        pathMatchExact: true
+      },
+      {
         name: 'Игровые аккаунты',
         routeOrFunction: '/gaming-accounts',
-        icon: 'account_circle'
+        icon: 'videogame_asset'
       },
       {
         name: 'Заявки на вывод денежных средств',
@@ -58,14 +64,37 @@ export class AppComponent {
         name: 'Страны',
         routeOrFunction: '/countries',
         icon: 'flag'
+      },
+      {
+        name: 'Акции',
+        routeOrFunction: '/a',
+        icon: 'brightness_auto'
+      },
+      {
+        name: 'push уведомления',
+        routeOrFunction: '/a',
+        icon: 'wb_iridescent'
+      },
+      {
+        name: 'Логи',
+        routeOrFunction: '/a',
+        icon: 'history'
+      },
+      {
+        name: 'Настройки',
+        routeOrFunction: '/a',
+        icon: 'settings'
+      },
+      {
+        name: 'Управление темами',
+        routeOrFunction: '/a',
+        icon: 'color_lens'
+      },
+      {
+        name: 'Пользователи',
+        routeOrFunction: '/users',
+        icon: 'account_circle'
       }
-      // {
-      //   name: 'Dashboard',
-      //   routeOrFunction: '/',
-      //   icon: 'dashboard',
-      //   position: 10,
-      //   pathMatchExact: true
-      // },
       // {
       //   name: 'All-In-One Table',
       //   routeOrFunction: '/tables/all-in-one-table',
