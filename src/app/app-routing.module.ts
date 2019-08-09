@@ -37,6 +37,10 @@ const routes: Routes = [
         loadChildren: './pages/cash-release-requests/cash-release-requests.module#CashReleaseRequestsModule',
       },
       {
+        path: 'gaming-currency-rates',
+        loadChildren: './pages/gaming-currency-rates/gaming-currency-rates.module#GamingCurrencyRatesModule',
+      },
+      {
         path: 'apps/inbox',
         loadChildren: './pages/apps/inbox/inbox.module#InboxModule',
       },

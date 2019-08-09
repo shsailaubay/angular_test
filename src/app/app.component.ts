@@ -47,7 +47,12 @@ export class AppComponent {
       {
         name: 'Заявки на вывод денежных средств',
         routeOrFunction: '/cash-release-requests',
-        icon: 'account_circle'
+        icon: 'local_atm'
+      },
+      {
+        name: 'Курсы игровых валют',
+        routeOrFunction: '/gaming-currency-rates',
+        icon: 'attach_money'
       }
       // {
       //   name: 'Dashboard',
