@@ -1,0 +1,64 @@
+[{
+    "url": "/counties",
+    "model": {
+        "_id": "String",
+        "name": {
+            "ru": "String",
+            "en": "String"
+        },
+        "code": "String"
+    },
+    "method": {
+        "GET": "list",
+        "POST": "create",
+        "DELETE": {
+            "url": "+/:_id",
+            "action": "remove"
+        },
+        "PUT": {
+            "url": "+/:_id",
+            "action": "update"
+        }
+    }
+    
+},
+{
+    "url": "/games",
+    "model": {
+        "_id": "String",
+        "name": {
+            "ru": "String",
+            "en": "String"
+        },
+        "link": "String",
+        "image": "String"
+    },
+    "method": {
+        "GET": "list",
+        "POST": "create",
+        "POST": {
+            "url": "+/:_id",
+            "action": "upload image",
+            "params": {
+                "image": "File"
+            }
+        },
+        "DELETE": {
+            "url": "+/:_id",
+            "action": "remove"
+        },
+        "PUT": {
+            "url": "+/:_id",
+            "action": "update"
+        }
+    }
+},
+{
+    "url": "users/:_id",
+    "method": "PUT",
+    "params": {
+        "country": "country_id"
+    },
+    "action": "Update user country"
+}
+]

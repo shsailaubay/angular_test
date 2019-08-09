@@ -1,5 +1,5 @@
 export class GamingAccount {
-  id: number;
+  id: string;
   name: string;
   social_link: string;
   email: string;

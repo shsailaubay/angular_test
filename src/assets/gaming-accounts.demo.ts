@@ -1,6 +1,6 @@
 export const GAMING_ACCOUNTS_DEMO_DATA = [
   {
-    'id': 1,
+    'id': '5d4a64366b02cd1e4ef63b1d',
     'name': 'Вячеслав',
     'social_link': '/facebook.com/vyacheslav_009',
     'email': null,
@@ -11,7 +11,7 @@ export const GAMING_ACCOUNTS_DEMO_DATA = [
     'last_visit': '04.05.2019',
   },
   {
-    'id': 2,
+    'id': '5d4a64366b02cd1e4ef63b1d',
     'name': 'Денис',
     'social_link': '/facebook.com/denis_009',
     'email': null,
@@ -22,7 +22,7 @@ export const GAMING_ACCOUNTS_DEMO_DATA = [
     'last_visit': '04.05.2019',
   },
   {
-    'id': 3,
+    'id': '5d4a64366b02cd1e4ef63b1d',
     'name': 'Alexey',
     'social_link': '/facebook.com/zakevich_a',
     'email': null,

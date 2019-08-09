@@ -2,7 +2,7 @@
 <fury-page-layout>
 
   <fury-page-layout-header>
-    <fury-breadcrumbs [crumbs]="['Игровые аккаунты']" current="Аккаунт ID0000001"></fury-breadcrumbs>
+    <fury-breadcrumbs [crumbs]="['Игровые аккаунты']" current="Аккаунт {{gamingAccountId}}"></fury-breadcrumbs>
   </fury-page-layout-header>
 
   <fury-page-layout-content class="padding-0">
@@ -20,11 +20,11 @@
               <table class="definitions-table">
                 <tr>
                   <th>ID</th>
-                  <td>0000001</td>
+                  <td>{{gamingAccountId}}</td>
                 </tr>
                 <tr>
                   <th>name</th>
-                  <td>Вячеслав</td>
+                  <td>{{gamingAccount.name}}</td>
                 </tr>
                 <tr>
                   <th>authorized</th>
@@ -32,35 +32,35 @@
                 </tr>
                 <tr>
                   <th>social_link</th>
-                  <td>/facebook.com/vyacheslav_009</td>
+                  <td>{{gamingAccount.socialLink}}</td>
                 </tr>
                 <tr>
                   <th>email</th>
-                  <td>vyacheslav_009@kdfjskf.com</td>
+                  <td>{{gamingAccount.email}}</td>
                 </tr>
                 <tr>
                   <th>exp points</th>
-                  <td>3680</td>
+                  <td>{{gamingAccount.expPoints}}</td>
                 </tr>
                 <tr>
                   <th>silver</th>
-                  <td>545450</td>
+                  <td>{{gamingAccount.silver}}</td>
                 </tr>
                 <tr>
                   <th>gold</th>
-                  <td>24540</td>
+                  <td>{{gamingAccount.gold}}</td>
                 </tr>
                 <tr>
                   <th>player status</th>
-                  <td>Legend</td>
+                  <td>{{gamingAccount.gold}}</td>
                 </tr>
                 <tr>
                   <th>Last visit</th>
-                  <td>04.05.2019</td>
+                  <td>{{gamingAccount.lastVisit}}</td>
                 </tr>
                 <tr>
                   <th>Last game</th>
-                  <td>04.05.2019</td>
+                  <td>{{gamingAccount.lastVisit}}</td>
                 </tr>
               </table>
             </div>
@@ -70,141 +70,19 @@
 
       <mat-tab label="Рейтинг">
         <div class="padding">
-          <h3>Общий рейтинг</h3>
-          <table class="definitions-table">
-            <tr>
-              <th>exp points</th>
-              <td>3680</td>
-            </tr>
-            <tr>
-              <th>место</th>
-              <td>18</td>
-            </tr>
-            <tr>
-              <th>сыграно игр</th>
-              <td>214</td>
-            </tr>
-            <tr>
-              <th>поражений</th>
-              <td>70</td>
-            </tr>
-            <tr>
-              <th>побед</th>
-              <td>144</td>
-            </tr>
-          </table>
-          <div gdColumns="repeat(4, 1fr)" gdGap="24px">
-            <div>
-              <h3>Общий рейтинг</h3>
-              <table class="definitions-table">
-                <tr>
-                  <th>exp points</th>
-                  <td>3680</td>
-                </tr>
-                <tr>
-                  <th>место</th>
-                  <td>18</td>
-                </tr>
-                <tr>
-                  <th>сыграно игр</th>
-                  <td>214</td>
-                </tr>
-                <tr>
-                  <th>поражений</th>
-                  <td>70</td>
-                </tr>
-                <tr>
-                  <th>побед</th>
-                  <td>144</td>
-                </tr>
-              </table>
-            </div>
-            <div>
-              <h3>Общий рейтинг</h3>
-              <table class="definitions-table">
-                <tr>
-                  <th>exp points</th>
-                  <td>3680</td>
-                </tr>
-                <tr>
-                  <th>место</th>
-                  <td>18</td>
-                </tr>
-                <tr>
-                  <th>сыграно игр</th>
-                  <td>214</td>
-                </tr>
-                <tr>
-                  <th>поражений</th>
-                  <td>70</td>
-                </tr>
-                <tr>
-                  <th>побед</th>
-                  <td>144</td>
-                </tr>
-              </table>
-            </div>
-            <div>
-              <h3>Общий рейтинг</h3>
-              <table class="definitions-table">
-                <tr>
-                  <th>exp points</th>
-                  <td>3680</td>
-                </tr>
-                <tr>
-                  <th>место</th>
-                  <td>18</td>
-                </tr>
-                <tr>
-                  <th>сыграно игр</th>
-                  <td>214</td>
-                </tr>
-                <tr>
-                  <th>поражений</th>
-                  <td>70</td>
-                </tr>
-                <tr>
-                  <th>побед</th>
-                  <td>144</td>
-                </tr>
-              </table>
-            </div>
-            <div>
-              <h3>Общий рейтинг</h3>
-              <table class="definitions-table">
-                <tr>
-                  <th>exp points</th>
-                  <td>3680</td>
-                </tr>
-                <tr>
-                  <th>место</th>
-                  <td>18</td>
-                </tr>
-                <tr>
-                  <th>сыграно игр</th>
-                  <td>214</td>
-                </tr>
-                <tr>
-                  <th>поражений</th>
-                  <td>70</td>
-                </tr>
-                <tr>
-                  <th>побед</th>
-                  <td>144</td>
-                </tr>
-              </table>
-            </div>
-          </div>
+          <fury-gaming-account-ratings></fury-gaming-account-ratings>
         </div>
       </mat-tab>
 
       <mat-tab label="Финансы">
         <div class="padding">
+          <fury-gaming-account-financials-operations></fury-gaming-account-financials-operations>
         </div>
       </mat-tab>
 
       <mat-tab label="Игры">
         <div class="padding">
+          <fury-gaming-account-games-history></fury-gaming-account-games-history>
         </div>
       </mat-tab>
 

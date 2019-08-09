@@ -42,9 +42,13 @@ export class AppComponent {
       {
         name: 'Игровые аккаунты',
         routeOrFunction: '/gaming-accounts',
-        icon: 'account_circle',
-        position: 5
+        icon: 'account_circle'
       },
+      {
+        name: 'Заявки на вывод денежных средств',
+        routeOrFunction: '/cash-release-requests',
+        icon: 'account_circle'
+      }
       // {
       //   name: 'Dashboard',
       //   routeOrFunction: '/',

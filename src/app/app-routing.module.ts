@@ -29,6 +29,14 @@ const routes: Routes = [
         pathMatch: 'full'
       },
       {
+        path: 'gaming-accounts',
+        loadChildren: './pages/gaming-accounts/gaming-accounts.module#GamingAccountsModule',
+      },
+      {
+        path: 'cash-release-requests',
+        loadChildren: './pages/cash-release-requests/cash-release-requests.module#CashReleaseRequestsModule',
+      },
+      {
         path: 'apps/inbox',
         loadChildren: './pages/apps/inbox/inbox.module#InboxModule',
       },
@@ -83,10 +91,6 @@ const routes: Routes = [
       {
         path: 'level1/level2/level3/level4/level5',
         loadChildren: './pages/level5/level5.module#Level5Module',
-      },
-      {
-        path: 'gaming-accounts',
-        loadChildren: './pages/gaming-accounts/gaming-accounts.module#GamingAccountsModule',
       },
     ]
   }

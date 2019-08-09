@@ -1,0 +1,25 @@
+<div mat-dialog-title fxLayout="row" fxLayoutAlign="space-between center">
+  <div>Отказать в выплате</div>
+  <button type="button" mat-icon-button (click)="close('No answer')" tabindex="-1">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<mat-dialog-content>
+  <mat-form-field appearance="standard" style="width: 100%">
+    <mat-label>Укажите причину отказа:</mat-label>
+    <mat-select>
+      <mat-option value="Legend">Технические работы. Выплата будет сделана в течение 24 часов</mat-option>
+      <mat-option value="Legend">Технические работы. Выплата будет сделана в течение 24 часов</mat-option>
+      <mat-option value="Legend">Технические работы. Выплата будет сделана в течение 24 часов</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="standard" style="width: 100%">
+    <mat-label>Укажите причину отказа:</mat-label>
+    <textarea rows="3" matInput type="search"></textarea>
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions align="center">
+  <button mat-raised-button color="primary" (click)="close('Yes')">Отправить</button>
+</mat-dialog-actions>

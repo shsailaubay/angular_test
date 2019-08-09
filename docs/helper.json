@@ -1,0 +1,62 @@
+{
+  "headers": {
+    "x-api-token": "JWT"
+  },
+  "USER OBJ": {
+    "email":{
+      "type": "String",
+      "required": true,
+      "unique": true
+    },
+    "name": {
+      "type": "String",
+      "required": true,
+      "unique": true
+    },
+    "avatar": {
+      "type": "String"
+    },
+    "role": {
+      "type": "String",
+      "required": true,
+      "default": "player",
+      "enum": ["player", "admin"]
+    },
+    "password": {
+      "type": "String",
+      "trim": true,
+      "required": true
+    },
+    "balance": {
+      "type": "Number",
+      "default": 0
+    },
+    "rate": {
+      "type": "Number",
+      "default": 0
+    },
+    "friends": [{"User"}]
+  },
+  "CHAIR OBJ": {
+    "players": [{'User'}],
+    "game": {'game'},
+    "createdAt": {
+      "type": "Date"
+    },
+    "forLevel": {
+      "type": "Number",
+      "default": 1
+    },
+    "maxGamers": {
+      "type": "Number",
+      "default": 2
+    },
+    "status": {
+      "type": "Number",
+      "enum": [1, 2, 3],
+      "default": 1,
+      "required": true
+    }
+  }
+}
+

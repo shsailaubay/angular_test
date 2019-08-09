@@ -1,0 +1,125 @@
+{
+  "/users": {
+    "": {
+      "method": "GET",
+      "response": "Список пользователей"
+    },
+    "/login": {
+      "method": "POST",
+      "params": {
+        "email": "string",
+        "password": "string"
+      },
+      "response": {
+        "status": "success",
+        "user": "user OBJ",
+        "token": "JWT"
+      }
+    },
+    "/signin": {
+      "method": "POST",
+      "params": {
+        "name": "string",
+        "email": "string",
+        "password": "string"
+      },
+      "response": "User OBJ"
+    },
+    "/me": {
+      "method": "GET",
+      "response": "User OBJ"
+    },
+    "/:_id/add_balance": {
+      "method": "POST",
+      "params": {
+        "GET": {
+          "_id": "User id"
+        },
+        "POST": {
+          "balance": "integer (Сумма плюсуется к текущему балансу)"
+        }
+      },
+      "response": "User OBJ"
+    },
+    "/:_id": {
+      "method": {
+        "GET": {
+          "response": "Retrieve User OBJ"
+        },
+        "PUT": {
+          "params": {
+            "password": "string",
+            "name": "string"
+          },
+          "response": "Updated User Obj"
+        }
+      }
+    },
+    "/me/friend": {
+      "method": "POST",
+      "params": {
+        "act": "'remove' || 'add' || 'clear'",
+        "friend": "User id // удаляет, добавляет в друзья или удаляет всех друзей"
+      },
+      "response": "http status 200"
+    },
+    "/upload_image": {
+      "method": "POST",
+      "params": {
+        "image": "File"
+      },
+      "response": {
+        "name": "url to image"
+      }
+    }
+  },
+  "/games": {
+    "/": {
+      "methods": {
+        "GET": {
+          "response": "List of games"
+        },
+        "POST": {
+          "request": {
+            "name": "string"
+          },
+          "permission": "admin",
+          "response": "Game OBJ"
+        }
+      }
+    },
+    "/:gameId/chairs": {
+      "method": "GET",
+      "params": {
+        "gameId": "Game id"
+      },
+      "response": "Paginated List of chairs"
+    }
+  },
+  "/chairs": {
+    "/": {
+      "methods": {
+        "GET": {
+          "response": "Paginated List of chairs"
+        },
+        "POST": {
+          "params": {
+            "game": "Game id",
+            "forLevel": "Number"
+          },
+          "response": "Game Chair OBJ"
+        }
+      }
+    },
+    ":_id": {
+      "methods": {
+        "DELETE": {
+          "response": "http status 200"
+        },
+        "GET": {
+          "response": "retrieve Game Chair OBJ"
+        }
+      }
+    }
+  }
+}

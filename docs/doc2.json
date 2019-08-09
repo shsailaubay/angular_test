@@ -1,0 +1,40 @@
+[
+    {
+        "url": "/counties/:_id",
+        "method": "POST",
+        "data": {
+            "image": "FILE"
+        },
+        "responce": {"file": "link"}
+    },
+    {
+        "url": "/games/:_id/image",
+        "method": "POST",
+        "data": {
+            "image": "FILE"
+        },
+        "responce": {"file": "link"}
+    },
+    {
+        "url": "/games/:_id/icon",
+        "method": "POST",
+        "data": {
+            "image": "FILE"
+        },
+        "responce": {"file": "link"}
+    },
+    {
+        "url": "/users/me",
+        "method": "GET",
+        "responce": "User data retirieved with populate counntry and friends"
+    },
+    {
+        "url": "users/me/friends",
+        "method": "POST",
+        "data": {
+            "act": "remove | add | clear",
+            "friend": "user _id"
+        },
+        "responce": "http status 200"
+    }
+]

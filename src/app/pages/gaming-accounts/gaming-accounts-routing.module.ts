@@ -10,7 +10,7 @@ const routes: Routes = [
     component: GamingAccountsComponent
   },
   {
-    path: 'gaming-account/:id',
+    path: ':id',
     component: GamingAccountComponent
   }
 ];
