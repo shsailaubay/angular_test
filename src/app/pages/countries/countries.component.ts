@@ -31,7 +31,8 @@ export class CountriesComponent implements OnInit, AfterViewInit {
 
   constructor(
     private dialog: MatDialog
-  ) { }
+  ) {
+  }
 
   get visibleColumns() {
     return this.columns.filter(column => column.visible).map(column => column.property);

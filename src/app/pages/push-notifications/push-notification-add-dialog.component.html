@@ -1,0 +1,71 @@
+<div mat-dialog-title fxLayout="row" fxLayoutAlign="space-between center">
+  <div>Добавить уведомление</div>
+  <button type="button" mat-icon-button (click)="close('No answer')" tabindex="-1">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<mat-dialog-content>
+  <mat-form-field appearance="standard" style="width: 100%">
+    <mat-label>Текст уведомления:</mat-label>
+    <input matInput type="text">
+  </mat-form-field>
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="24px">
+    <div fxFlex="50%">
+      <mat-form-field appearance="standard" style="width: 100%">
+        <mat-label>Выберите регион</mat-label>
+        <mat-select>
+          <mat-option value="Legend">Europe</mat-option>
+          <mat-option value="Legend">Europe</mat-option>
+          <mat-option value="Legend">Europe</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div fxFlex="50%">
+      <mat-form-field appearance="standard" style="width: 100%">
+        <mat-label>Выберите страну</mat-label>
+        <mat-select>
+          <mat-option value="Legend">ALL</mat-option>
+          <mat-option value="Legend">ALL</mat-option>
+          <mat-option value="Legend">ALL</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="24px">
+    <div>
+      <mat-form-field appearance="standard">
+        <mat-label>Тип устройств:</mat-label>
+        <mat-select>
+          <mat-option value="Legend">Europe</mat-option>
+          <mat-option value="Legend">Europe</mat-option>
+          <mat-option value="Legend">Europe</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="standard">
+        <mat-label>Рейтинг:</mat-label>
+        <mat-select>
+          <mat-option value="Legend">ALL</mat-option>
+          <mat-option value="Legend">ALL</mat-option>
+          <mat-option value="Legend">ALL</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="standard">
+        <mat-label>Статус:</mat-label>
+        <mat-select>
+          <mat-option value="Legend">ALL</mat-option>
+          <mat-option value="Legend">ALL</mat-option>
+          <mat-option value="Legend">ALL</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="center">
+  <button mat-raised-button color="primary" (click)="close('Yes')">Сохранить</button>
+</mat-dialog-actions>

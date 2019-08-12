@@ -1,5 +1,5 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {MatDialog, MatDialogRef, MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {ListColumn} from '../../../@fury/shared/list/list-column.model';
 
 import {Observable, of, ReplaySubject} from 'rxjs';
@@ -7,6 +7,7 @@ import {filter} from 'rxjs/operators';
 
 import {PushNotification} from '../../shared/models/push-notification.model';
 import {PUSH_NOTIFICATIONS_DEMO_DATA} from '../../../assets/push-notifications.demo';
+import {CountryDialogComponent} from '../countries/countries.component';
 
 @Component({
   selector: 'fury-push-notifications',
@@ -36,7 +37,9 @@ export class PushNotificationsComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   pageSize = 10;
 
-  constructor() {
+  constructor(
+    private dialog: MatDialog
+  ) {
   }
 
   get visibleColumns() {
@@ -74,4 +77,23 @@ export class PushNotificationsComponent implements OnInit {
     this.dataSource.filter = value;
   }
 
+  openDialog() {
+    this.dialog.open(PushNotificationAddDialogComponent, {
+      disableClose: false,
+      width: '640px'
+    });
+  }
+}
+
+@Component({
+  selector: 'fury-push-notification-add-dialog-component',
+  templateUrl: './push-notification-add-dialog.component.html',
+})
+export class PushNotificationAddDialogComponent {
+  constructor(private dialogRef: MatDialogRef<PushNotificationAddDialogComponent>) {
+  }
+
+  close(answer: string) {
+    this.dialogRef.close(answer);
+  }
 }
