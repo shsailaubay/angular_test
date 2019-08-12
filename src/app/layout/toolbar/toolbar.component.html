@@ -1,14 +1,20 @@
 <div class="toolbar" fxLayout="row" fxLayoutAlign="space-between">
   <div fxLayout="row" fxLayoutAlign="start center">
     <fury-toolbar-sidenav-mobile-toggle (openSidenav)="openSidenav.emit()"></fury-toolbar-sidenav-mobile-toggle>
-
-    <div [fxShow.gt-sm]="topNavigation$ | async" [fxShow.xs]="false" [routerLink]="['/']" class="toolbar-logo" fxShow>
-      Braimon
-    </div>
-
   </div>
 
-  <div fxLayout="row">
+  <div fxLayout="row" fxLayoutGap="24px">
+    <div fxLayout="row" fxLayoutAlign="flex-end center" fxLayoutGap="24px">
+      <div>
+        Gold: 120 839 330
+      </div>
+      <div>
+        $: 251 254 450
+      </div>
+      <div>
+        rate: 1 gold = 1,5$
+      </div>
+    </div>
     <fury-toolbar-user class="toolbar-button"></fury-toolbar-user>
   </div>
 </div>

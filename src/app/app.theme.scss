@@ -22,7 +22,6 @@ $theme-warn: mat-palette($mat-red, $theme-warn-hue);
   background: $theme-background;
   color: $theme-text;
 
-  @import "./layout/config-panel/config-panel.component.theme";
 }
 
 .fury-light {
@@ -34,7 +33,6 @@ $theme-warn: mat-palette($mat-red, $theme-warn-hue);
   background: $theme-background;
   color: $theme-text;
 
-  @import "./layout/config-panel/config-panel.component.theme";
 }
 
 .fury-dark {
@@ -46,7 +44,6 @@ $theme-warn: mat-palette($mat-red, $theme-warn-hue);
   background: $theme-background;
   color: $theme-text;
 
-  @import "./layout/config-panel/config-panel.component.theme";
 }
 
 .fury-flat {
@@ -58,5 +55,4 @@ $theme-warn: mat-palette($mat-red, $theme-warn-hue);
   background: $theme-background;
   color: $theme-text;
 
-  @import "./layout/config-panel/config-panel.component.theme";
 }

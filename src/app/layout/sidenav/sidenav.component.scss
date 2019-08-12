@@ -16,10 +16,7 @@
 }
 
 .sidenav-toolbar {
-  padding: 0 $spacing/1.333 0 $spacing;
-  height: $sidenav-toolbar-height;
-  min-height: $sidenav-toolbar-height;
-  max-height: $sidenav-toolbar-height;
+  padding: 12px $spacing/1.333 0 $spacing;
   overflow: hidden;
 
   .sidenav-toolbar-icon {
@@ -33,12 +30,10 @@
   .sidenav-toolbar-logo {
     cursor: pointer;
     outline: none;
-    margin-left: $sidenav-item-padding-left;
-    margin-bottom: -5px;
 
     svg {
-      height: 30px;
-      width: 60px;
+      width: 100%;
+      height: 40px;
     }
   }
 }

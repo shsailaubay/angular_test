@@ -51,7 +51,7 @@ export class AppComponent {
         icon: 'videogame_asset'
       },
       {
-        name: 'Заявки на вывод денежных средств',
+        name: 'Заявки на вывод денег',
         routeOrFunction: '/cash-release-requests',
         icon: 'local_atm'
       },
