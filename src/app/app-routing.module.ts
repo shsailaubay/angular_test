@@ -45,6 +45,10 @@ const routes: Routes = [
         loadChildren: './pages/actions/actions.module#ActionsModule',
       },
       {
+        path: 'push-notifications',
+        loadChildren: './pages/push-notifications/push-notifications.module#PushNotificationsModule',
+      },
+      {
         path: 'users',
         loadChildren: './pages/users/users.module#UsersModule',
       }

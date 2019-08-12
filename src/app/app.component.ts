@@ -72,7 +72,7 @@ export class AppComponent {
       },
       {
         name: 'push уведомления',
-        routeOrFunction: '/a',
+        routeOrFunction: '/push-notifications',
         icon: 'wb_iridescent'
       },
       // {
