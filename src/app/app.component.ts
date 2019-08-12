@@ -75,21 +75,21 @@ export class AppComponent {
         routeOrFunction: '/a',
         icon: 'wb_iridescent'
       },
-      {
-        name: 'Логи',
-        routeOrFunction: '/a',
-        icon: 'history'
-      },
-      {
-        name: 'Настройки',
-        routeOrFunction: '/a',
-        icon: 'settings'
-      },
-      {
-        name: 'Управление темами',
-        routeOrFunction: '/a',
-        icon: 'color_lens'
-      },
+      // {
+      //   name: 'Логи',
+      //   routeOrFunction: '/a',
+      //   icon: 'history'
+      // },
+      // {
+      //   name: 'Настройки',
+      //   routeOrFunction: '/a',
+      //   icon: 'settings'
+      // },
+      // {
+      //   name: 'Управление темами',
+      //   routeOrFunction: '/a',
+      //   icon: 'color_lens'
+      // },
       {
         name: 'Пользователи',
         routeOrFunction: '/users',
