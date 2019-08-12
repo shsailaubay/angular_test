@@ -10,61 +10,66 @@
 
       <mat-tab label="Общая информация">
         <div class="padding">
-          <div fxLayout="row" fxLayoutGap="24px">
-            <div>
-              <div class="user-image">
-                <img src="" alt="">
+          <fury-card>
+            <fury-card-content>
+              <div fxLayout="row" fxLayoutGap="24px">
+                <div>
+                  <div class="user-image">
+                    <mat-icon>account_circle</mat-icon>
+                    <img src="" alt="">
+                  </div>
+                </div>
+                <div>
+                  <table class="definitions-table">
+                    <tr>
+                      <th>ID</th>
+                      <td>{{gamingAccountId}}</td>
+                    </tr>
+                    <tr>
+                      <th>name</th>
+                      <td>{{gamingAccount.name}}</td>
+                    </tr>
+                    <tr>
+                      <th>authorized</th>
+                      <td>facebook</td>
+                    </tr>
+                    <tr>
+                      <th>social_link</th>
+                      <td>{{gamingAccount.socialLink}}</td>
+                    </tr>
+                    <tr>
+                      <th>email</th>
+                      <td>{{gamingAccount.email}}</td>
+                    </tr>
+                    <tr>
+                      <th>exp points</th>
+                      <td>{{gamingAccount.expPoints}}</td>
+                    </tr>
+                    <tr>
+                      <th>silver</th>
+                      <td>{{gamingAccount.silver}}</td>
+                    </tr>
+                    <tr>
+                      <th>gold</th>
+                      <td>{{gamingAccount.gold}}</td>
+                    </tr>
+                    <tr>
+                      <th>player status</th>
+                      <td>{{gamingAccount.gold}}</td>
+                    </tr>
+                    <tr>
+                      <th>Last visit</th>
+                      <td>{{gamingAccount.lastVisit}}</td>
+                    </tr>
+                    <tr>
+                      <th>Last game</th>
+                      <td>{{gamingAccount.lastVisit}}</td>
+                    </tr>
+                  </table>
+                </div>
               </div>
-            </div>
-            <div>
-              <table class="definitions-table">
-                <tr>
-                  <th>ID</th>
-                  <td>{{gamingAccountId}}</td>
-                </tr>
-                <tr>
-                  <th>name</th>
-                  <td>{{gamingAccount.name}}</td>
-                </tr>
-                <tr>
-                  <th>authorized</th>
-                  <td>facebook</td>
-                </tr>
-                <tr>
-                  <th>social_link</th>
-                  <td>{{gamingAccount.socialLink}}</td>
-                </tr>
-                <tr>
-                  <th>email</th>
-                  <td>{{gamingAccount.email}}</td>
-                </tr>
-                <tr>
-                  <th>exp points</th>
-                  <td>{{gamingAccount.expPoints}}</td>
-                </tr>
-                <tr>
-                  <th>silver</th>
-                  <td>{{gamingAccount.silver}}</td>
-                </tr>
-                <tr>
-                  <th>gold</th>
-                  <td>{{gamingAccount.gold}}</td>
-                </tr>
-                <tr>
-                  <th>player status</th>
-                  <td>{{gamingAccount.gold}}</td>
-                </tr>
-                <tr>
-                  <th>Last visit</th>
-                  <td>{{gamingAccount.lastVisit}}</td>
-                </tr>
-                <tr>
-                  <th>Last game</th>
-                  <td>{{gamingAccount.lastVisit}}</td>
-                </tr>
-              </table>
-            </div>
-          </div>
+            </fury-card-content>
+          </fury-card>
         </div>
       </mat-tab>
 

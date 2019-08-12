@@ -9,3 +9,14 @@ fury-card-content {
 fury-card-header + fury-card-content {
   padding-top: 0 !important;
 }
+
+.definitions-table {
+  width: auto;
+  th {
+    text-align: right;
+    padding-right: 8px;
+  }
+  td {
+    padding-left: 8px;
+  }
+}

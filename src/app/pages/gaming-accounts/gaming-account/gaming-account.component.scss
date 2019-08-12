@@ -1,16 +1,17 @@
 .user-image {
-  background-color: #fff;
-  border-radius: 50%;
   width: 200px;
   height: 200px;
-}
-
-.definitions-table {
-  th {
-    text-align: right;
-    padding-right: 8px;
-  }
-  td {
-    padding-left: 8px;
+  border-radius: 50%;
+  background-color: whitesmoke;
+  position: relative;
+  mat-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 100px;
+    font-size: 100px;
+    color: #e0e0e0;
   }
 }
