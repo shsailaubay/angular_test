@@ -67,7 +67,7 @@ export class AppComponent {
       },
       {
         name: 'Акции',
-        routeOrFunction: '/a',
+        routeOrFunction: '/actions',
         icon: 'brightness_auto'
       },
       {

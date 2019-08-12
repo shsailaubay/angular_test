@@ -1,0 +1,17 @@
+.image-holder {
+  margin-bottom: 16px;
+  padding-top: 100%;
+  border-radius: 8px;
+  background-color: whitesmoke;
+  position: relative;
+  mat-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 128px;
+    height: 128px;
+    font-size: 128px;
+    color: #e0e0e0;
+  }
+}

@@ -1,3 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import "./@fury/styles/core";
 @import "./app/app.theme";
+
+fury-card-content {
+  padding-top: 24px !important;
+}
+
+fury-card-header + fury-card-content {
+  padding-top: 0 !important;
+}

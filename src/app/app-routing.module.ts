@@ -41,6 +41,10 @@ const routes: Routes = [
         loadChildren: './pages/countries/countries.module#CountriesModule',
       },
       {
+        path: 'actions',
+        loadChildren: './pages/actions/actions.module#ActionsModule',
+      },
+      {
         path: 'users',
         loadChildren: './pages/users/users.module#UsersModule',
       }
