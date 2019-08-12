@@ -56,25 +56,10 @@ export class GamingAccountsComponent implements OnInit, AfterViewInit, OnDestroy
     return this.columns.filter(column => column.visible).map(column => column.property);
   }
 
-  getData() {
-    return of(GAMING_ACCOUNTS_DEMO_DATA.map(gamingAccounts => new GamingAccount(gamingAccounts)));
-    // let a;
-    // this.gamingAccountsService.getGamingAccounts().subscribe((response: any) => {
-    //   a = response.docs.map(gamingAccounts => new GamingAccount(gamingAccounts));
-    // });
-    // console.log(a);
-    // return a;
-  }
-
   ngOnInit() {
 
-    // this.gamingAccountsService.getGamingAccounts().subscribe((response: any) => {
-    //   console.log(response);
-    //   // this.data = response;
-    // });
-
-    this.getData().subscribe(gamingAccounts => {
-      this.subject$.next(gamingAccounts);
+    this.gamingAccountsService.getGamingAccounts().subscribe((page: any) => {
+      this.subject$.next(page.docs.map(gamingAccounts => new GamingAccount(gamingAccounts)));
     });
 
     this.dataSource = new MatTableDataSource();
