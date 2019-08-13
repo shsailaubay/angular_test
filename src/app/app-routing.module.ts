@@ -1,19 +1,19 @@
-import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { LayoutComponent } from './layout/layout.component';
+import {NgModule} from '@angular/core';
+import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
+import {LayoutComponent} from './layout/layout.component';
 
 const routes: Routes = [
   {
     path: 'login',
-    loadChildren: './pages/authentication/login/login.module#LoginModule',
+    loadChildren: './authentication/login/login.module#LoginModule',
   },
   {
     path: 'register',
-    loadChildren: './pages/authentication/register/register.module#RegisterModule',
+    loadChildren: './authentication/register/register.module#RegisterModule',
   },
   {
     path: 'forgot-password',
-    loadChildren: './pages/authentication/forgot-password/forgot-password.module#ForgotPasswordModule',
+    loadChildren: './authentication/forgot-password/forgot-password.module#ForgotPasswordModule',
   },
   {
     path: '',
@@ -21,36 +21,36 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: './pages/dashboard/dashboard.module#DashboardModule',
+        loadChildren: './dashboard/dashboard.module#DashboardModule',
         pathMatch: 'full'
       },
       {
         path: 'gaming-accounts',
-        loadChildren: './pages/gaming-accounts/gaming-accounts.module#GamingAccountsModule',
+        loadChildren: './gaming-accounts/gaming-accounts.module#GamingAccountsModule',
       },
       {
         path: 'cash-release-requests',
-        loadChildren: './pages/cash-release-requests/cash-release-requests.module#CashReleaseRequestsModule',
+        loadChildren: './cash-release-requests/cash-release-requests.module#CashReleaseRequestsModule',
       },
       {
         path: 'gaming-currency-rates',
-        loadChildren: './pages/gaming-currency-rates/gaming-currency-rates.module#GamingCurrencyRatesModule',
+        loadChildren: './gaming-currency-rates/gaming-currency-rates.module#GamingCurrencyRatesModule',
       },
       {
         path: 'countries',
-        loadChildren: './pages/countries/countries.module#CountriesModule',
+        loadChildren: './countries/countries.module#CountriesModule',
       },
       {
         path: 'actions',
-        loadChildren: './pages/actions/actions.module#ActionsModule',
+        loadChildren: './actions/actions.module#ActionsModule',
       },
       {
         path: 'push-notifications',
-        loadChildren: './pages/push-notifications/push-notifications.module#PushNotificationsModule',
+        loadChildren: './push-notifications/push-notifications.module#PushNotificationsModule',
       },
       {
         path: 'users',
-        loadChildren: './pages/users/users.module#UsersModule',
+        loadChildren: './users/users.module#UsersModule',
       }
     ]
   }
@@ -65,6 +65,5 @@ const routes: Routes = [
   })],
   exports: [RouterModule]
 })
-
 export class AppRoutingModule {
 }

@@ -1,17 +1,16 @@
-import { DOCUMENT } from '@angular/common';
-import { Component, Inject, Renderer2 } from '@angular/core';
-import { MatIconRegistry } from '@angular/material/icon';
-import { SidenavService } from './layout/sidenav/sidenav.service';
-import { ThemeService } from '../@fury/services/theme.service';
-import { ActivatedRoute } from '@angular/router';
-import { filter } from 'rxjs/operators';
-import { Platform } from '@angular/cdk/platform';
+import {Component, Inject, Renderer2} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {DOCUMENT} from '@angular/common';
+import {Platform} from '@angular/cdk/platform';
+import {MatIconRegistry} from '@angular/material/icon';
+import {filter} from 'rxjs/operators';
+import {ThemeService} from '../@fury/services/theme.service';
+import {SidenavService} from './layout/sidenav/sidenav.service';
 
 @Component({
   selector: 'fury-root',
   templateUrl: './app.component.html'
 })
-
 export class AppComponent {
 
   constructor(private sidenavService: SidenavService,

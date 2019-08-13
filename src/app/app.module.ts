@@ -1,24 +1,25 @@
-import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {NgModule} from '@angular/core';
+import {HttpClientModule} from '@angular/common/http';
+import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldDefaultOptions} from '@angular/material/form-field';
+import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarConfig} from '@angular/material/snack-bar';
+import {PendingInterceptorModule} from '../@fury/shared/loading-indicator/pending-interceptor.module';
 
+import {AgmCoreModule} from '@agm/core';
+import {environment} from '../environments/environment';
 import 'hammerjs'; // Needed for Touch functionality of Material Components
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { LayoutModule } from './layout/layout.module';
-import { AgmCoreModule } from '@agm/core';
-import { environment } from '../environments/environment';
-import { PendingInterceptorModule } from '../@fury/shared/loading-indicator/pending-interceptor.module';
-import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldDefaultOptions } from '@angular/material/form-field';
-import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarConfig } from '@angular/material/snack-bar';
+
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {LayoutModule} from './layout/layout.module';
 
 @NgModule({
   imports: [
     // Angular Core Module // Don't remove!
+    HttpClientModule,
     BrowserModule,
     BrowserAnimationsModule,
-    HttpClientModule,
 
     // Fury Core Modules
     AppRoutingModule,
