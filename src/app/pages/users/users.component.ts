@@ -1,8 +1,10 @@
 import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
-import {MatDialog, MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {MatDialog, MatDialogRef, MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {ListColumn} from '../../../@fury/shared/list/list-column.model';
+
 import {Observable, of, ReplaySubject} from 'rxjs';
 import {filter} from 'rxjs/operators';
+
 import {User} from '../../shared/models/user.model';
 import {USERS_DEMO_DATA} from '../../../assets/users.demo';
 
@@ -76,4 +78,23 @@ export class UsersComponent implements OnInit, AfterViewInit {
     this.dataSource.filter = value;
   }
 
+  openDialog() {
+    this.dialog.open(UserAddDialogComponent, {
+      disableClose: false,
+      width: '640px'
+    });
+  }
+}
+
+@Component({
+  selector: 'fury-user-add-dialog-component',
+  templateUrl: './user-add-dialog.component.html',
+})
+export class UserAddDialogComponent {
+  constructor(private dialogRef: MatDialogRef<UserAddDialogComponent>) {
+  }
+
+  close(answer: string) {
+    this.dialogRef.close(answer);
+  }
 }

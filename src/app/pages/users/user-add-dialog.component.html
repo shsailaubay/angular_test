@@ -1,0 +1,51 @@
+<div mat-dialog-title fxLayout="row" fxLayoutAlign="space-between center">
+  <div>Добавить пользователя</div>
+  <button type="button" mat-icon-button (click)="close('No answer')" tabindex="-1">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<mat-dialog-content>
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="24px">
+    <div fxFlex="50%">
+      <mat-form-field appearance="standard" style="width: 100%">
+        <mat-label>ФИО</mat-label>
+        <input matInput type="text">
+      </mat-form-field>
+    </div>
+    <div fxFlex="50%">
+      <mat-form-field appearance="standard" style="width: 100%">
+        <mat-label>Роль</mat-label>
+        <mat-select>
+          <mat-option value="Legend">Модератор</mat-option>
+          <mat-option value="Legend">Модератор</mat-option>
+          <mat-option value="Legend">Модератор</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="24px">
+    <div fxFlex="1 1 auto">
+      <mat-form-field appearance="standard" style="width: 100%">
+        <mat-label>email</mat-label>
+        <input matInput type="text">
+      </mat-form-field>
+    </div>
+    <div fxFlex="1 1 auto">
+      <mat-form-field appearance="standard" style="width: 100%">
+        <mat-label>phone</mat-label>
+        <input matInput type="text">
+      </mat-form-field>
+    </div>
+    <div fxFlex="1 1 auto">
+      <mat-form-field appearance="standard" style="width: 100%">
+        <mat-label>Пароль</mat-label>
+        <input matInput type="text">
+      </mat-form-field>
+    </div>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="center">
+  <button mat-raised-button color="primary" (click)="close('Yes')">Сохранить</button>
+</mat-dialog-actions>
