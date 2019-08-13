@@ -1,17 +1,19 @@
-import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {MatDialog, MatDialogRef, MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {ListColumn} from '../../@fury/shared/list/list-column.model';
-import {Observable, of, ReplaySubject} from 'rxjs';
+
+import {Observable, ReplaySubject} from 'rxjs';
 import {filter} from 'rxjs/operators';
+
+import {CountriesService} from './countries.service';
 import {Country} from './country.model';
-import {COUNTRIES_DEMO_DATA} from './countries.demo';
 
 @Component({
   selector: 'fury-countries',
   templateUrl: './countries.component.html',
   styleUrls: ['./countries.component.scss']
 })
-export class CountriesComponent implements OnInit, AfterViewInit {
+export class CountriesComponent implements OnInit {
 
   subject$: ReplaySubject<Country[]> = new ReplaySubject<Country[]>(1);
   data$: Observable<Country[]> = this.subject$.asObservable();
@@ -30,6 +32,7 @@ export class CountriesComponent implements OnInit, AfterViewInit {
   pageSize = 10;
 
   constructor(
+    private countriesService: CountriesService,
     private dialog: MatDialog
   ) {
   }
@@ -38,29 +41,19 @@ export class CountriesComponent implements OnInit, AfterViewInit {
     return this.columns.filter(column => column.visible).map(column => column.property);
   }
 
-  getData() {
-    return of(COUNTRIES_DEMO_DATA.map(c => new Country(c)));
-  }
-
   ngOnInit() {
-
-    this.getData().subscribe(c => {
-      this.subject$.next(c);
+    this.countriesService.getCountries().subscribe((page: any) => {
+      this.subject$.next(page.map(countries => new Country(countries)));
+      this.dataSource = new MatTableDataSource();
+      this.data$.pipe(
+        filter(Boolean)
+      ).subscribe((countries) => {
+        this.countries = countries;
+        this.dataSource.data = countries;
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+      });
     });
-
-    this.dataSource = new MatTableDataSource();
-
-    this.data$.pipe(
-      filter(Boolean)
-    ).subscribe((c) => {
-      this.countries = c;
-      this.dataSource.data = c;
-    });
-  }
-
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
   }
 
   onFilterChange(value) {

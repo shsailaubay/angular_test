@@ -1,22 +1,32 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
-import {UsersRoutingModule} from './users-routing.module';
-import {UserAddDialogComponent, UsersComponent} from './users.component';
 import {FurySharedModule} from '../../@fury/fury-shared.module';
 import {MaterialModule} from '../../@fury/shared/material-components.module';
 import {ListModule} from '../../@fury/shared/list/list.module';
 
+import {UsersRoutingModule} from './users-routing.module';
+import {UsersService} from './users.service';
+import {UsersComponent, UserAddDialogComponent} from './users.component';
+
 @NgModule({
-  declarations: [UsersComponent, UserAddDialogComponent],
   imports: [
     CommonModule,
-    UsersRoutingModule,
     FurySharedModule,
     MaterialModule,
-    ListModule
+    ListModule,
+    UsersRoutingModule
   ],
-  entryComponents: [UserAddDialogComponent]
+  providers: [
+    UsersService
+  ],
+  declarations: [
+    UsersComponent,
+    UserAddDialogComponent
+  ],
+  entryComponents: [
+    UserAddDialogComponent
+  ]
 })
 export class UsersModule {
 }

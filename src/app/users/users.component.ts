@@ -1,19 +1,19 @@
-import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {MatDialog, MatDialogRef, MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {ListColumn} from '../../@fury/shared/list/list-column.model';
 
 import {Observable, of, ReplaySubject} from 'rxjs';
 import {filter} from 'rxjs/operators';
 
+import {UsersService} from './users.service';
 import {User} from './user.model';
-import {USERS_DEMO_DATA} from './users.demo';
 
 @Component({
   selector: 'fury-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss']
 })
-export class UsersComponent implements OnInit, AfterViewInit {
+export class UsersComponent implements OnInit {
 
   subject$: ReplaySubject<User[]> = new ReplaySubject<User[]>(1);
   data$: Observable<User[]> = this.subject$.asObservable();
@@ -37,6 +37,7 @@ export class UsersComponent implements OnInit, AfterViewInit {
   pageSize = 10;
 
   constructor(
+    private usersService: UsersService,
     private dialog: MatDialog
   ) { }
 
@@ -44,29 +45,19 @@ export class UsersComponent implements OnInit, AfterViewInit {
     return this.columns.filter(column => column.visible).map(column => column.property);
   }
 
-  getData() {
-    return of(USERS_DEMO_DATA.map(u => new User(u)));
-  }
-
   ngOnInit() {
-
-    this.getData().subscribe(u => {
-      this.subject$.next(u);
+    this.usersService.getUsers().subscribe((page: any) => {
+      this.subject$.next(page.docs.map(users => new User(users)));
+      this.dataSource = new MatTableDataSource();
+      this.data$.pipe(
+        filter(Boolean)
+      ).subscribe((users) => {
+        this.users = users;
+        this.dataSource.data = users;
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+      });
     });
-
-    this.dataSource = new MatTableDataSource();
-
-    this.data$.pipe(
-      filter(Boolean)
-    ).subscribe((u) => {
-      this.users = u;
-      this.dataSource.data = u;
-    });
-  }
-
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
   }
 
   onFilterChange(value) {
