@@ -20,6 +20,7 @@ export class BaseApi {
     return this.http.get(this.getUrl(url), {params: options})
       .pipe(map((response: Response) => response));
   }
+
   public getWithHeadersAndParams(url: string = '', headers: any = {}, options: any = {}): Observable<any> {
     return this.http.get(this.getUrl(url), { headers: headers, params: options})
       .pipe(map((response: Response) => response));
@@ -42,6 +43,16 @@ export class BaseApi {
 
   public put(url: string = '', data: any = {}): Observable<any> {
     return this.http.put(this.getUrl(url), data)
+      .pipe(map((response: Response) => response));
+  }
+
+  public delete(url: string = ''): Observable<any> {
+    return this.http.delete(this.getUrl(url))
+      .pipe(map((response: Response) => response));
+  }
+
+  public deleteWithHeadersAndParams(url: string = '', headers: any = {}, options: any = {}): Observable<any> {
+    return this.http.delete(this.getUrl(url), { headers: headers, params: options})
       .pipe(map((response: Response) => response));
   }
 
