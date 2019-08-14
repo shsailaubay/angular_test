@@ -1,4 +1,5 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatDialog, MatDialogRef, MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {ListColumn} from '../../@fury/shared/list/list-column.model';
 
@@ -23,7 +24,9 @@ export class CountriesComponent implements OnInit {
 
   @Input()
   columns: ListColumn[] = [
+    {name: 'flag', property: 'flag', visible: true, isModelProperty: true},
     {name: 'Name', property: 'name', visible: true, isModelProperty: true},
+    {name: 'code', property: 'code', visible: true, isModelProperty: true},
     {name: 'Actions', property: 'actions', visible: true},
   ] as ListColumn[];
 
@@ -77,11 +80,28 @@ export class CountriesComponent implements OnInit {
   selector: 'fury-country-dialog-component',
   templateUrl: './country-dialog.component.html',
 })
-export class CountryDialogComponent {
-  constructor(private dialogRef: MatDialogRef<CountryDialogComponent>) {
+export class CountryDialogComponent implements OnInit {
+  form: FormGroup;
+
+  constructor(
+    private dialogRef: MatDialogRef<CountryDialogComponent>,
+    private formBuilder: FormBuilder
+  ) {
+  }
+
+  ngOnInit() {
+    this.form = this.formBuilder.group({
+      'name': this.formBuilder.group({
+        'ru': ['', Validators.required],
+        'en': ['', Validators.required]
+      }),
+      'flag': [''],
+      'code': ['']
+    });
   }
 
   close(answer: string) {
-    this.dialogRef.close(answer);
+    this.form.reset();
+    this.dialogRef.close();
   }
 }

@@ -1,4 +1,4 @@
-export class GameHistory {
+export class FinancialOperation {
   date: string;
   type: number;
   amount: number;

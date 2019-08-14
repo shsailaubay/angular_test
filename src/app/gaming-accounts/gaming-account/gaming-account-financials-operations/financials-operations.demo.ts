@@ -1,4 +1,4 @@
-export const GAMES_HISTORY_DEMO_DATA = [
+export const FINANCIAL_OPERATIONS_DEMO_DATA = [
   {
     'date': '04.05.2019',
     'type': 1,

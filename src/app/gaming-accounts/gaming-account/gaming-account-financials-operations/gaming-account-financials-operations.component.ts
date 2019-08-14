@@ -1,12 +1,12 @@
 import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
-import {MatTableDataSource} from '@angular/material/table';
-import {MatSort} from '@angular/material/sort';
-import {MatPaginator} from '@angular/material/paginator';
+import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {ListColumn} from '../../../../@fury/shared/list/list-column.model';
+
 import {Observable, of, ReplaySubject} from 'rxjs';
-import {GameHistory} from './financial-operation.model';
-import {GAMES_HISTORY_DEMO_DATA} from './financials-operations.demo';
 import {filter} from 'rxjs/operators';
+
+import {FinancialOperation} from './financial-operation.model';
+import {FINANCIAL_OPERATIONS_DEMO_DATA} from './financials-operations.demo';
 
 @Component({
   selector: 'fury-gaming-account-financials-operations',
@@ -16,11 +16,11 @@ import {filter} from 'rxjs/operators';
 
 export class GamingAccountFinancialsOperationsComponent implements OnInit, AfterViewInit {
 
-  subject$: ReplaySubject<GameHistory[]> = new ReplaySubject<GameHistory[]>(1);
-  data$: Observable<GameHistory[]> = this.subject$.asObservable();
-  financialOperations: GameHistory[];
+  subject$: ReplaySubject<FinancialOperation[]> = new ReplaySubject<FinancialOperation[]>(1);
+  data$: Observable<FinancialOperation[]> = this.subject$.asObservable();
+  financialOperations: FinancialOperation[];
 
-  dataSource: MatTableDataSource<GameHistory> | null;
+  dataSource: MatTableDataSource<FinancialOperation> | null;
 
   @Input()
   columns: ListColumn[] = [
@@ -43,7 +43,7 @@ export class GamingAccountFinancialsOperationsComponent implements OnInit, After
   }
 
   getData() {
-    return of(GAMES_HISTORY_DEMO_DATA.map(fo => new GameHistory(fo)));
+    return of(FINANCIAL_OPERATIONS_DEMO_DATA.map(fo => new FinancialOperation(fo)));
   }
 
   ngOnInit() {
