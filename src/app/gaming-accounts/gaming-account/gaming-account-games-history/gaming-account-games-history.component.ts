@@ -1,4 +1,5 @@
-import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 
 import {Observable, of, ReplaySubject} from 'rxjs';
@@ -7,7 +8,7 @@ import {filter} from 'rxjs/operators';
 import {ListColumn} from '../../../../@fury/shared/list/list-column.model';
 
 import {GameHistory} from './game-history.model';
-import {GAMES_HISTORY_DEMO_DATA} from './games-history.demo';
+import {GamingAccountsService} from '../../gaming-accounts.service';
 
 @Component({
   selector: 'fury-gaming-account-games-history',
@@ -15,7 +16,8 @@ import {GAMES_HISTORY_DEMO_DATA} from './games-history.demo';
   styleUrls: ['./gaming-account-games-history.component.scss']
 })
 
-export class GamingAccountGamesHistoryComponent implements OnInit, AfterViewInit {
+export class GamingAccountGamesHistoryComponent implements OnInit {
+  gamingAccountId = this.route.snapshot.params['id'];
 
   subject$: ReplaySubject<GameHistory[]> = new ReplaySubject<GameHistory[]>(1);
   data$: Observable<GameHistory[]> = this.subject$.asObservable();
@@ -39,34 +41,28 @@ export class GamingAccountGamesHistoryComponent implements OnInit, AfterViewInit
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   pageSize = 10;
 
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute,
+    private gamingAccountsService: GamingAccountsService
+  ) { }
 
   get visibleColumns() {
     return this.columns.filter(column => column.visible).map(column => column.property);
   }
 
-  getData() {
-    return of(GAMES_HISTORY_DEMO_DATA.map(fo => new GameHistory(fo)));
-  }
-
   ngOnInit() {
-    this.getData().subscribe(fo => {
-      this.subject$.next(fo);
+    this.gamingAccountsService.getGamingAccountGamesHistory(this.gamingAccountId).subscribe((page: any) => {
+      this.subject$.next(page.docs.map(gamesHistory => new GameHistory(gamesHistory)));
+      this.dataSource = new MatTableDataSource();
+      this.data$.pipe(
+        filter(Boolean)
+      ).subscribe((gamesHistory) => {
+        this.gamesHistory = gamesHistory;
+        this.dataSource.data = gamesHistory;
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+      });
     });
-
-    this.dataSource = new MatTableDataSource();
-
-    this.data$.pipe(
-      filter(Boolean)
-    ).subscribe((fo) => {
-      this.gamesHistory = fo;
-      this.dataSource.data = fo;
-    });
-  }
-
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
   }
 
   onFilterChange(value) {
