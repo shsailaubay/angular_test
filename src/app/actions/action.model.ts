@@ -14,11 +14,12 @@ export class Action {
     this.region = gameHistory.region;
     this.country = gameHistory.country;
     this.game = gameHistory.game;
-    this.dateTo = gameHistory.dateTo;
+    this.name = gameHistory.title.ru;
+    this.dateTo = gameHistory.endDate;
     this.type = gameHistory.type;
     this.conditions = gameHistory.conditions;
     this.image = gameHistory.image;
-    this.reward = gameHistory.reward;
+    this.reward = gameHistory.freeSilvers;
     this.status = gameHistory.status;
   }
 }

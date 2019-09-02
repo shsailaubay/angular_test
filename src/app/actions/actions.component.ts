@@ -1,20 +1,20 @@
-import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {ListColumn} from '../../@fury/shared/list/list-column.model';
 
-import {Observable, of, ReplaySubject} from 'rxjs';
+import {Observable, ReplaySubject} from 'rxjs';
 import {filter} from 'rxjs/operators';
 
 import {Action} from './action.model';
-import {ACTIONS_DEMO_DATA} from './actions.demo';
+import {ActionsService} from './actions.service';
 
 @Component({
   selector: 'fury-actions',
   templateUrl: './actions.component.html',
   styleUrls: ['./actions.component.scss']
 })
-export class ActionsComponent implements OnInit, AfterViewInit {
+export class ActionsComponent implements OnInit {
 
   subject$: ReplaySubject<Action[]> = new ReplaySubject<Action[]>(1);
   data$: Observable<Action[]> = this.subject$.asObservable();
@@ -41,7 +41,8 @@ export class ActionsComponent implements OnInit, AfterViewInit {
   pageSize = 10;
 
   constructor(
-    private router: Router
+    private router: Router,
+    private actionsService: ActionsService
   ) {
   }
 
@@ -49,29 +50,19 @@ export class ActionsComponent implements OnInit, AfterViewInit {
     return this.columns.filter(column => column.visible).map(column => column.property);
   }
 
-  getData() {
-    return of(ACTIONS_DEMO_DATA.map(c => new Action(c)));
-  }
-
   ngOnInit() {
-
-    this.getData().subscribe(c => {
-      this.subject$.next(c);
+    this.actionsService.getActions().subscribe((page: any) => {
+      this.subject$.next(page.docs.map(actions => new Action(actions)));
+      this.dataSource = new MatTableDataSource();
+      this.data$.pipe(
+        filter(Boolean)
+      ).subscribe((actions) => {
+        this.actions = actions;
+        this.dataSource.data = actions;
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+      });
     });
-
-    this.dataSource = new MatTableDataSource();
-
-    this.data$.pipe(
-      filter(Boolean)
-    ).subscribe((c) => {
-      this.actions = c;
-      this.dataSource.data = c;
-    });
-  }
-
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
   }
 
   onFilterChange(value) {
