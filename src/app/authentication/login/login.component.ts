@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -14,7 +14,7 @@ import {Subscription} from 'rxjs';
   styleUrls: ['./login.component.scss'],
   animations: [fadeInUpAnimation]
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginComponent implements OnInit {
 
   form: FormGroup;
   subscription: Subscription;
@@ -37,6 +37,9 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    if (this.sessionService.getItem('x-api-token')) {
+      this.router.navigate(['/']);
+    }
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
@@ -48,19 +51,14 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.loginError = false;
     this.subscription = this.loginService.postLogin(this.form.value).subscribe(response => {
       this.adminUser = new Login(response);
-      this.sessionService.setItem('adminUser', this.adminUser);
+      this.sessionService.setItem('x-api-token', this.adminUser._token);
+      this.sessionService.setItem('_id', this.adminUser._id);
+      this.sessionService.setItem('userName', this.adminUser.name);
       this.router.navigate(['/']);
     }, error => {
       this.loginError = error;
       this.form.enable();
     });
-    // this.router.navigate(['/']);
-  }
-
-  ngOnDestroy() {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
   }
 
   toggleVisibility() {

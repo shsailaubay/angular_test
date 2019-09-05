@@ -22,4 +22,8 @@ export class ToolbarUserComponent implements OnInit {
     this.isOpen = false;
   }
 
+  logout() {
+    window.sessionStorage.clear();
+  }
+
 }
