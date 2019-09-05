@@ -1,6 +1,6 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, Inject, Input, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {MatDialog, MatDialogRef, MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {ListColumn} from '../../@fury/shared/list/list-column.model';
 
 import {Observable, ReplaySubject} from 'rxjs';
@@ -26,7 +26,8 @@ export class CountriesComponent implements OnInit {
   columns: ListColumn[] = [
     {name: 'id', property: '_id', visible: false, isModelProperty: true},
     {name: 'flag', property: 'flag', visible: true, isModelProperty: true},
-    {name: 'Name', property: 'name', visible: true, isModelProperty: true},
+    {name: 'Name', property: 'name_ru', visible: true, isModelProperty: true},
+    {name: 'Name', property: 'name_en', visible: true, isModelProperty: true},
     {name: 'code', property: 'code', visible: true, isModelProperty: true},
     {name: 'Actions', property: 'actions', visible: true},
   ] as ListColumn[];
@@ -40,7 +41,7 @@ export class CountriesComponent implements OnInit {
     private dialog: MatDialog
   ) {
     dialog.afterAllClosed.subscribe(() => {
-      this.getData();
+      this.ngOnInit();
     });
   }
 
@@ -83,10 +84,11 @@ export class CountriesComponent implements OnInit {
     this.dataSource.filter = value;
   }
 
-  openDialog() {
+  openDialog(data = null) {
     this.dialog.open(CountryDialogComponent, {
       disableClose: false,
-      width: '450px'
+      width: '450px',
+      data: data
     });
   }
 
@@ -107,23 +109,31 @@ export class CountryDialogComponent implements OnInit {
   form: FormGroup;
   serverErrors = {};
   registerSuccess = false;
+  flag: File;
 
   constructor(
     private dialogRef: MatDialogRef<CountryDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
     private countriesService: CountriesService,
     private formBuilder: FormBuilder
   ) {
   }
 
   ngOnInit() {
+    console.log(this.data);
     this.form = this.formBuilder.group({
       'name': this.formBuilder.group({
-        'ru': ['', Validators.required],
-        'en': ['', Validators.required]
+        'ru': [this.data ? this.data.name_ru : '', Validators.required],
+        'en': [this.data ? this.data.name_en : '', Validators.required]
       }),
-      'flag': [''],
-      'code': ['']
+      'flag': [this.data ? this.data.flag : ''],
+      'code': [this.data ? this.data.code : '']
     });
+  }
+
+  onFileChanged(event) {
+    console.log(event.target.files[0]);
+    this.flag = event.target.files[0];
   }
 
   close() {
@@ -135,13 +145,36 @@ export class CountryDialogComponent implements OnInit {
     this.serverErrors = {};
     const formData = JSON.parse(JSON.stringify(this.form.value));
 
-    this.countriesService.postCountry(formData).subscribe((response: any) => {
-      this.registerSuccess = true;
-    }, (response: any) => {
-      Object.keys(response.error).forEach(prop => {
-        this.serverErrors[prop] = response.error[prop][0];
+    console.log(formData);
+
+    if (this.data) {
+      this.countriesService.editCountry(this.data._id, formData).subscribe((response: any) => {
+        this.registerSuccess = true;
+        console.log(response);
+        if (this.flag) {
+          this.countriesService.postFlag(response._id, this.flag).subscribe(res => {
+            console.log(res);
+          });
+        }
+      }, (response: any) => {
+        Object.keys(response.error).forEach(prop => {
+          this.serverErrors[prop] = response.error[prop][0];
+        });
       });
-    });
+    } else {
+      this.countriesService.postCountry(formData).subscribe((response: any) => {
+        this.registerSuccess = true;
+        if (this.flag) {
+          this.countriesService.postFlag(response._id, this.flag).subscribe(res => {
+            console.log(res);
+          });
+        }
+      }, (response: any) => {
+        Object.keys(response.error).forEach(prop => {
+          this.serverErrors[prop] = response.error[prop][0];
+        });
+      });
+    }
 
     this.form.reset();
     this.dialogRef.close();

@@ -36,6 +36,10 @@ export class BaseApi {
       .pipe(map((response: Response) => response));
   }
 
+  public postImage(url: string = '', data: any = {}, headers: any = {}, options: any = {}): Observable<any> {
+    return this.http.post(this.getUrl(url), data, { headers: headers, params: options});
+  }
+
   public postWithParams(url: string = '', data: any = {}, options: any = {}): Observable<any> {
     return this.http.post(this.getUrl(url), data, { params: options})
       .pipe(map((response: Response) => response));
@@ -43,6 +47,11 @@ export class BaseApi {
 
   public put(url: string = '', data: any = {}): Observable<any> {
     return this.http.put(this.getUrl(url), data)
+      .pipe(map((response: Response) => response));
+  }
+
+  public putWithHeadersAndParams(url: string = '', data: any = {}, headers: any = {}, options: any = {}): Observable<any> {
+    return this.http.put(this.getUrl(url), data, { headers: headers, params: options})
       .pipe(map((response: Response) => response));
   }
 

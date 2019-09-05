@@ -1,5 +1,5 @@
 <div mat-dialog-title fxLayout="row" fxLayoutAlign="space-between center">
-  <div>Добавить страну</div>
+  <div>{{data ? 'Изменить' : 'Добавить'}} страну</div>
   <button type="button" mat-icon-button (click)="close()" tabindex="-1">
     <mat-icon>close</mat-icon>
   </button>
@@ -22,12 +22,12 @@
         <button mat-raised-button color="primary" (click)="fileInput.click()">
           <mat-icon>add_photo_alternate</mat-icon>
           <span>Загрузить</span>
-          <input #fileInput type="file" style="display:none;" />
+          <input #fileInput type="file" accept="image/*" (change)="onFileChanged($event)" style="display:none;" />
         </button>
       </div>
       <mat-form-field appearance="standard" fxFlex="1 1 0">
         <mat-label>Код</mat-label>
-        <input type="text" matInput formControlName="code">
+        <input type="text" matInput formControlName="code" accept="image/*">
       </mat-form-field>
     </div>
   </form>

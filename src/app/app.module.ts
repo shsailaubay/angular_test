@@ -13,6 +13,8 @@ import 'hammerjs'; // Needed for Touch functionality of Material Components
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {LayoutModule} from './layout/layout.module';
+import {SessionService} from './session.service';
+
 
 @NgModule({
   imports: [
@@ -41,6 +43,7 @@ import {LayoutModule} from './layout/layout.module';
   declarations: [AppComponent],
   bootstrap: [AppComponent],
   providers: [
+    SessionService,
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
       useValue: {

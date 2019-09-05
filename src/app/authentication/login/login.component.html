@@ -9,6 +9,7 @@
     </div>
     <div class="padding" fxLayout="column" fxLayoutGap="16px" [formGroup]="form">
       <div fxFlex="auto" fxLayout="column">
+        <mat-error *ngIf="loginError && form.touched">{{loginError.error.message}}</mat-error>
         <mat-form-field fxFlex="grow">
           <mat-label>E-Mail</mat-label>
           <input matInput required formControlName="email">
@@ -21,7 +22,6 @@
             <mat-icon *ngIf="visible">visibility</mat-icon>
             <mat-icon *ngIf="!visible">visibility_off</mat-icon>
           </button>
-          <mat-hint>Click the eye to toggle visibility</mat-hint>
           <mat-error *ngIf="form.get('password').hasError('required')">We need a password to log you in</mat-error>
         </mat-form-field>
       </div>
@@ -30,7 +30,7 @@
         <mat-checkbox class="caption">Remember Me</mat-checkbox>
         <a class="caption" [routerLink]="['/forgot-password']">Forgot Password?</a>
       </div>
-      <button type="button" color="primary" mat-raised-button (click)="send()">
+      <button type="button" color="primary" mat-raised-button [disabled]="form.invalid || form.disabled" (click)="send()">
         SIGN IN
       </button>
       <p class="secondary-text text-center">
