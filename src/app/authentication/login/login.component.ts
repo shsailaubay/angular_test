@@ -54,6 +54,7 @@ export class LoginComponent implements OnInit {
       this.sessionService.setItem('x-api-token', this.adminUser._token);
       this.sessionService.setItem('_id', this.adminUser._id);
       this.sessionService.setItem('userName', this.adminUser.name);
+      this.sessionService.setItem('userEmail', this.adminUser.email);
       this.router.navigate(['/']);
     }, error => {
       this.loginError = error;

@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { SidenavItem } from './sidenav-item/sidenav-item.interface';
 import { SidenavService } from './sidenav.service';
 import { ThemeService } from '../../../@fury/services/theme.service';
+import {keyBy} from 'lodash-es';
 
 @Component({
   selector: 'fury-sidenav',
@@ -12,6 +13,8 @@ import { ThemeService } from '../../../@fury/services/theme.service';
   styleUrls: ['./sidenav.component.scss']
 })
 export class SidenavComponent implements OnInit, OnDestroy {
+  userName;
+  userEmail;
 
   sidenavUserVisible$ = this.themeService.config$.pipe(map(config => config.sidenavUserVisible));
 
@@ -34,6 +37,16 @@ export class SidenavComponent implements OnInit, OnDestroy {
     this.items$ = this.sidenavService.items$.pipe(
       map((items: SidenavItem[]) => this.sidenavService.sortRecursive(items, 'position'))
     );
+    this.setUserInfo();
+  }
+
+  setUserInfo() {
+    this.userName = JSON.parse(window.sessionStorage.getItem('userName'));
+    this.userEmail = JSON.parse(window.sessionStorage.getItem('userEmail'));
+  }
+
+  logout() {
+    window.sessionStorage.clear();
   }
 
   toggleCollapsed() {

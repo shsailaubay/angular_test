@@ -6,12 +6,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./toolbar-user.component.scss']
 })
 export class ToolbarUserComponent implements OnInit {
+  userName;
 
   isOpen: boolean;
 
   constructor() { }
 
   ngOnInit() {
+    this.setUserInfo();
+  }
+
+  setUserInfo() {
+    this.userName = JSON.parse(window.sessionStorage.getItem('userName'));
   }
 
   toggleDropdown() {

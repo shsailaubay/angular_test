@@ -9,11 +9,15 @@ $theme-primary-hue: 700;
 $theme-accent-hue: 500;
 $theme-warn-hue: 500;
 
-$theme-primary: mat-palette($mat-blue, $theme-primary-hue);
-$theme-accent: mat-palette($mat-teal, $theme-accent-hue);
+$theme-primary: mat-palette($mat-purple, $theme-primary-hue);
+$theme-accent: mat-palette($mat-light-green, $theme-accent-hue);
 $theme-warn: mat-palette($mat-red, $theme-warn-hue);
 
 .fury-default {
+
+  $sidenav-background: #492A54 !default;
+  $sidenav-toolbar-background: #2F1F33;
+
   $theme: mat-light-theme($theme-primary, $theme-accent, $theme-warn);
   @include angular-material-theme($theme);
 
@@ -21,6 +25,7 @@ $theme-warn: mat-palette($mat-red, $theme-warn-hue);
 
   background: $theme-background;
   color: $theme-text;
+
 
 }
 
