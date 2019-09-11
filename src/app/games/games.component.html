@@ -1,0 +1,63 @@
+<fury-page-layout>
+
+  <fury-page-layout-header>
+    <fury-breadcrumbs current="Игры"></fury-breadcrumbs>
+  </fury-page-layout-header>
+
+  <fury-page-layout-content>
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="24px" style="margin-bottom: 24px;">
+      <div>
+        <mat-form-field appearance="standard">
+          <mat-label>Поиск</mat-label>
+          <input matInput type="search">
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+      </div>
+      <div>
+        <button mat-raised-button color="accent" (click)="openDialog()">Добавить игру</button>
+      </div>
+    </div>
+
+    <fury-list hideHeader="true" [columns]="columns" (filterChange)="onFilterChange($event)">
+
+      <table [dataSource]="dataSource" mat-table matSort>
+
+        <tr *matHeaderRowDef="visibleColumns" mat-header-row></tr>
+        <tr *matRowDef="let row; columns: visibleColumns;" class="clickable route-animations-elements" mat-row></tr>
+
+        <ng-container *ngFor="let column of columns">
+          <ng-container *ngIf="column.isModelProperty" [matColumnDef]="column.property">
+            <th *matHeaderCellDef mat-header-cell mat-sort-header> {{ column.name }}</th>
+            <td *matCellDef="let row" mat-cell>
+              <img *ngIf="column.name == 'image'" src="https://api.braimon.pre.luxystech.com{{ row[column.property] }}" style="display: block; max-height: 24px" alt="">
+              <span *ngIf="column.name != 'image'">{{ row[column.property] }}</span>
+            </td>
+          </ng-container>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th *matHeaderCellDef class="actions-cell" mat-header-cell mat-sort-header></th>
+          <td *matCellDef="let row" class="actions-cell" mat-cell>
+            <button type="button" mat-icon-button [matMenuTriggerFor]="actionsMenu" (click)="$event.stopPropagation()">
+              <mat-icon>more_horiz</mat-icon>
+            </button>
+            <mat-menu #actionsMenu="matMenu" yPosition="below" xPosition="before">
+              <button mat-menu-item (click)="openDialog(row)">
+                <span>Изменить</span>
+              </button>
+              <button mat-menu-item (click)="deleteData(row._id)">
+                <span>Удалить</span>
+              </button>
+            </mat-menu>
+          </td>
+        </ng-container>
+
+      </table>
+
+      <mat-paginator class="paginator" [pageSize]="pageSize"></mat-paginator>
+
+    </fury-list>
+
+  </fury-page-layout-content>
+
+</fury-page-layout>

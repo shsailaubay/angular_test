@@ -1,0 +1,38 @@
+<div mat-dialog-title fxLayout="row" fxLayoutAlign="space-between center">
+  <div>{{data ? 'Изменить' : 'Добавить'}} игру</div>
+  <button type="button" mat-icon-button (click)="close()" tabindex="-1">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<mat-dialog-content>
+  <form [formGroup]="form">
+    <div formGroupName="name">
+      <mat-form-field appearance="standard" style="width: 100%">
+        <mat-label>Введите название на русском языке</mat-label>
+        <input type="text" matInput formControlName="ru">
+      </mat-form-field>
+      <mat-form-field appearance="standard" style="width: 100%">
+        <mat-label>Введите название на аглийском языке</mat-label>
+        <input type="text" matInput formControlName="en">
+      </mat-form-field>
+    </div>
+    <div fxLayout="row" fxLayoutGap="24px" fxLayoutAlign="start center">
+      <div>
+        <button mat-raised-button color="primary" (click)="fileInput.click()">
+          <mat-icon>add_photo_alternate</mat-icon>
+          <span>Загрузить</span>
+          <input #fileInput type="file" accept="image/*" (change)="onFileChanged($event)" style="display:none;" />
+        </button>
+      </div>
+      <mat-form-field appearance="standard" fxFlex="1 1 0">
+        <mat-label>Ссылка</mat-label>
+        <input type="text" matInput formControlName="link">
+      </mat-form-field>
+    </div>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="center">
+  <button mat-raised-button color="accent" type="submit" (click)="submit()" [disabled]="form.invalid">Сохранить</button>
+</mat-dialog-actions>

@@ -39,8 +39,20 @@ const routes: Routes = [
         loadChildren: './gaming-currency-rates/gaming-currency-rates.module#GamingCurrencyRatesModule',
       },
       {
+        path: 'games',
+        loadChildren: './games/games.module#GamesModule',
+      },
+      {
+        path: 'themes',
+        loadChildren: './themes/themes.module#ThemesModule',
+      },
+      {
         path: 'countries',
         loadChildren: './countries/countries.module#CountriesModule',
+      },
+      {
+        path: 'gamers-levels',
+        loadChildren: './gamers-levels/gamers-levels.module#GamersLevelsModule',
       },
       {
         path: 'actions',

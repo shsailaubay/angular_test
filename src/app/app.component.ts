@@ -47,7 +47,7 @@ export class AppComponent {
       {
         name: 'Игровые аккаунты',
         routeOrFunction: '/gaming-accounts',
-        icon: 'videogame_asset'
+        icon: 'people'
       },
       {
         name: 'Заявки на вывод денег',
@@ -60,9 +60,24 @@ export class AppComponent {
         icon: 'attach_money'
       },
       {
+        name: 'Игры',
+        routeOrFunction: '/games',
+        icon: 'videogame_asset'
+      },
+      {
+        name: 'Темы',
+        routeOrFunction: '/themes',
+        icon: 'color_lens'
+      },
+      {
         name: 'Страны',
         routeOrFunction: '/countries',
         icon: 'flag'
+      },
+      {
+        name: 'Уровни игроков',
+        routeOrFunction: '/gamers-levels',
+        icon: 'star'
       },
       {
         name: 'Акции',
@@ -92,7 +107,7 @@ export class AppComponent {
       {
         name: 'Пользователи',
         routeOrFunction: '/users',
-        icon: 'account_circle'
+        icon: 'people'
       }
     ]);
   }
