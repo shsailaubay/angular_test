@@ -31,9 +31,13 @@
           <input #fileInput type="file" accept="image/*" (change)="onFileChanged($event)" style="display:none;" />
         </button>
       </div>
-      <mat-form-field appearance="standard" fxFlex="1 1 0">
+      <mat-form-field appearance="standard" fxFlex="1 1 0" style="width: auto;">
         <mat-label>Серебро</mat-label>
         <input type="number" matInput formControlName="silver">
+      </mat-form-field>
+      <mat-form-field appearance="standard" fxFlex="1 1 0" style="width: auto;">
+        <mat-label>Золото</mat-label>
+        <input type="number" matInput formControlName="gold">
       </mat-form-field>
     </div>
   </form>

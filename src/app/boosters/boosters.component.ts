@@ -33,6 +33,7 @@ export class BoostersComponent implements OnInit {
     {name: 'Game', property: 'game_name_ru', visible: true, isModelProperty: true},
     {name: 'Game', property: 'game_name_en', visible: true, isModelProperty: true},
     {name: 'silver', property: 'silver', visible: true, isModelProperty: true},
+    {name: 'gold', property: 'gold', visible: true, isModelProperty: true},
     {name: 'Actions', property: 'actions', visible: true},
   ] as ListColumn[];
 
@@ -97,7 +98,6 @@ export class BoostersComponent implements OnInit {
   openDialog(data = null) {
     this.dialog.open(BoosterDialogComponent, {
       disableClose: false,
-      width: '450px',
       data: data
     });
   }
@@ -146,6 +146,7 @@ export class BoosterDialogComponent implements OnInit {
       }),
       'game': [this.data ? this.data.game_id : ''],
       'silver': [this.data ? this.data.silver : ''],
+      'gold': [this.data ? this.data.gold : ''],
       'image': [this.data ? this.data.image : '']
     });
   }

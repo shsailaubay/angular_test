@@ -7,6 +7,7 @@ export class Booster {
   game_name_en: string;
   game_id: string;
   silver: number;
+  gold: number;
 
   constructor(c) {
     this._id = c._id;
@@ -17,5 +18,6 @@ export class Booster {
     this.game_name_en = c.game.name.en;
     this.game_id = c.game._id;
     this.silver = c.silver;
+    this.gold = c.gold;
   }
 }
