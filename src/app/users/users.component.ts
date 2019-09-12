@@ -124,7 +124,7 @@ export class UserAddDialogComponent implements OnInit {
     this.form = this.formBuilder.group({
       'name': [this.data ? this.data.name : '', Validators.required],
       'role': [this.data ? this.data.role : '', Validators.required],
-      'email': [this.data ? this.data.email : '', Validators.required],
+      'email': [this.data ? this.data.email : '', [Validators.required, Validators.email]],
       'phone': [this.data ? this.data.phone : ''],
     });
   }
