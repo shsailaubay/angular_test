@@ -27,8 +27,9 @@ export class ActionsComponent implements OnInit {
     {name: 'Region', property: 'region', visible: true, isModelProperty: true},
     {name: 'country', property: 'country', visible: true, isModelProperty: true},
     {name: 'game', property: 'game', visible: true, isModelProperty: true},
-    {name: 'name', property: 'name', visible: true, isModelProperty: true},
-    {name: 'dateTo', property: 'dateTo', visible: true, isModelProperty: true},
+    {name: 'name', property: 'name_ru', visible: true, isModelProperty: true},
+    {name: 'name', property: 'name_en', visible: true, isModelProperty: true},
+    {name: 'Date to', property: 'dateTo', visible: true, isModelProperty: true},
     {name: 'type', property: 'type', visible: true, isModelProperty: true},
     {name: 'conditions', property: 'conditions', visible: true, isModelProperty: true},
     {name: 'image', property: 'image', visible: true, isModelProperty: true},
@@ -51,14 +52,25 @@ export class ActionsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getData();
+  }
+
+  getData() {
+
+    this.subject$ = new ReplaySubject<Action[]>(1);
+    this.data$ = this.subject$.asObservable();
+    this.actions = [];
+
+    this.dataSource = null;
+
     this.actionsService.getActions().subscribe((page: any) => {
-      this.subject$.next(page.docs.map(actions => new Action(actions)));
+      this.subject$.next(page.map(data => new Action(data)));
       this.dataSource = new MatTableDataSource();
       this.data$.pipe(
         filter(Boolean)
-      ).subscribe((actions) => {
-        this.actions = actions;
-        this.dataSource.data = actions;
+      ).subscribe((data) => {
+        this.actions = data;
+        this.dataSource.data = data;
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
       });

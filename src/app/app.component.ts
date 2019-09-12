@@ -65,6 +65,11 @@ export class AppComponent {
         icon: 'videogame_asset'
       },
       {
+        name: 'Бустеры',
+        routeOrFunction: '/boosters',
+        icon: 'flash_on'
+      },
+      {
         name: 'Темы',
         routeOrFunction: '/themes',
         icon: 'color_lens'

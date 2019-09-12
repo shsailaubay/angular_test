@@ -1,71 +1,89 @@
 <div mat-dialog-title fxLayout="row" fxLayoutAlign="space-between center">
   <div>Добавить уведомление</div>
-  <button type="button" mat-icon-button (click)="close('No answer')" tabindex="-1">
+  <button type="button" mat-icon-button (click)="close()" tabindex="-1">
     <mat-icon>close</mat-icon>
   </button>
 </div>
 
 <mat-dialog-content>
-  <mat-form-field appearance="standard" style="width: 100%">
-    <mat-label>Текст уведомления:</mat-label>
-    <input matInput type="text">
-  </mat-form-field>
-  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="24px">
-    <div fxFlex="50%">
+  <form [formGroup]="form">
+    <div formGroupName="theme">
       <mat-form-field appearance="standard" style="width: 100%">
-        <mat-label>Выберите регион</mat-label>
-        <mat-select>
-          <mat-option value="Legend">Europe</mat-option>
-          <mat-option value="Legend">Europe</mat-option>
-          <mat-option value="Legend">Europe</mat-option>
-        </mat-select>
+        <mat-label>Тема уведомления на русском языке:</mat-label>
+        <input matInput type="text" formControlName="ru">
       </mat-form-field>
-    </div>
-    <div fxFlex="50%">
       <mat-form-field appearance="standard" style="width: 100%">
-        <mat-label>Выберите страну</mat-label>
-        <mat-select>
-          <mat-option value="Legend">ALL</mat-option>
-          <mat-option value="Legend">ALL</mat-option>
-          <mat-option value="Legend">ALL</mat-option>
-        </mat-select>
+        <mat-label>Тема уведомления на английском языке:</mat-label>
+        <input matInput type="text" formControlName="en">
       </mat-form-field>
     </div>
-  </div>
-  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="24px">
-    <div>
-      <mat-form-field appearance="standard">
-        <mat-label>Тип устройств:</mat-label>
-        <mat-select>
-          <mat-option value="Legend">Europe</mat-option>
-          <mat-option value="Legend">Europe</mat-option>
-          <mat-option value="Legend">Europe</mat-option>
-        </mat-select>
+    <div formGroupName="body">
+      <mat-form-field appearance="standard" style="width: 100%">
+        <mat-label>Текст уведомления на русском языке:</mat-label>
+        <input matInput type="text" formControlName="ru">
+      </mat-form-field>
+      <mat-form-field appearance="standard" style="width: 100%">
+        <mat-label>Текст уведомления на английском языке:</mat-label>
+        <input matInput type="text" formControlName="en">
       </mat-form-field>
     </div>
-    <div>
-      <mat-form-field appearance="standard">
-        <mat-label>Рейтинг:</mat-label>
-        <mat-select>
-          <mat-option value="Legend">ALL</mat-option>
-          <mat-option value="Legend">ALL</mat-option>
-          <mat-option value="Legend">ALL</mat-option>
-        </mat-select>
-      </mat-form-field>
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="24px">
+      <div fxFlex="50%">
+        <mat-form-field appearance="standard" style="width: 100%">
+          <mat-label>Выберите регион</mat-label>
+          <mat-select>
+            <mat-option value="Legend">Europe</mat-option>
+            <mat-option value="Legend">Europe</mat-option>
+            <mat-option value="Legend">Europe</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div fxFlex="50%">
+        <mat-form-field appearance="standard" style="width: 100%">
+          <mat-label>Выберите страну</mat-label>
+          <mat-select>
+            <mat-option value="Legend">ALL</mat-option>
+            <mat-option value="Legend">ALL</mat-option>
+            <mat-option value="Legend">ALL</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
     </div>
-    <div>
-      <mat-form-field appearance="standard">
-        <mat-label>Статус:</mat-label>
-        <mat-select>
-          <mat-option value="Legend">ALL</mat-option>
-          <mat-option value="Legend">ALL</mat-option>
-          <mat-option value="Legend">ALL</mat-option>
-        </mat-select>
-      </mat-form-field>
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="24px">
+      <div>
+        <mat-form-field appearance="standard">
+          <mat-label>Тип устройств:</mat-label>
+          <mat-select formControlName="devices">
+            <mat-option value="1">Все</mat-option>
+            <mat-option value="2">Android</mat-option>
+            <mat-option value="3">IOS</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="standard">
+          <mat-label>Рейтинг:</mat-label>
+          <mat-select>
+            <mat-option value="Legend">ALL</mat-option>
+            <mat-option value="Legend">ALL</mat-option>
+            <mat-option value="Legend">ALL</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="standard">
+          <mat-label>Статус:</mat-label>
+          <mat-select>
+            <mat-option value="Legend">ALL</mat-option>
+            <mat-option value="Legend">ALL</mat-option>
+            <mat-option value="Legend">ALL</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
     </div>
-  </div>
+  </form>
 </mat-dialog-content>
 
 <mat-dialog-actions align="center">
-  <button mat-raised-button color="primary" (click)="close('Yes')">Сохранить</button>
+  <button mat-raised-button color="accent" type="submit" (click)="submit()" [disabled]="form.invalid">Сохранить</button>
 </mat-dialog-actions>

@@ -43,6 +43,10 @@ const routes: Routes = [
         loadChildren: './games/games.module#GamesModule',
       },
       {
+        path: 'boosters',
+        loadChildren: './boosters/boosters.module#BoostersModule',
+      },
+      {
         path: 'themes',
         loadChildren: './themes/themes.module#ThemesModule',
       },
