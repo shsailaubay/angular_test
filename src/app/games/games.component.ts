@@ -25,6 +25,7 @@ export class GamesComponent implements OnInit {
   @Input()
   columns: ListColumn[] = [
     {name: 'id', property: '_id', visible: false, isModelProperty: true},
+    {name: 'icon', property: 'icon', visible: true, isModelProperty: true},
     {name: 'image', property: 'image', visible: true, isModelProperty: true},
     {name: 'Name', property: 'name_ru', visible: true, isModelProperty: true},
     {name: 'Name', property: 'name_en', visible: true, isModelProperty: true},
@@ -110,6 +111,7 @@ export class GameDialogComponent implements OnInit {
   serverErrors = {};
   registerSuccess = false;
   image: File;
+  icon: File;
 
   constructor(
     private dialogRef: MatDialogRef<GameDialogComponent>,
@@ -126,12 +128,17 @@ export class GameDialogComponent implements OnInit {
         'en': [this.data ? this.data.name_en : '', Validators.required]
       }),
       'link': [this.data ? this.data['link'] : ''],
+      'icon': [this.data ? this.data.icon : ''],
       'image': [this.data ? this.data.image : '']
     });
   }
 
   onFileChanged(event) {
     this.image = event.target.files[0];
+  }
+
+  onFileChanged2(event) {
+    this.icon = event.target.files[0];
   }
 
   close() {
@@ -151,6 +158,11 @@ export class GameDialogComponent implements OnInit {
             console.log(res);
           });
         }
+        if (this.icon) {
+          this.gamesService.postIcon(response._id, this.icon).subscribe(res => {
+            console.log(res);
+          });
+        }
       }, (response: any) => {
         Object.keys(response.error).forEach(prop => {
           this.serverErrors[prop] = response.error[prop][0];
@@ -161,6 +173,11 @@ export class GameDialogComponent implements OnInit {
         this.registerSuccess = true;
         if (this.image) {
           this.gamesService.postImg(response._id, this.image).subscribe(res => {
+            console.log(res);
+          });
+        }
+        if (this.icon) {
+          this.gamesService.postIcon(response._id, this.icon).subscribe(res => {
             console.log(res);
           });
         }

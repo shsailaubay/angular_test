@@ -17,18 +17,25 @@
         <input type="text" matInput formControlName="en">
       </mat-form-field>
     </div>
+    <mat-form-field appearance="standard" style="width: 100%">
+      <mat-label>Ссылка</mat-label>
+      <input type="text" matInput formControlName="link">
+    </mat-form-field>
     <div fxLayout="row" fxLayoutGap="24px" fxLayoutAlign="start center">
       <div>
         <button mat-raised-button color="primary" (click)="fileInput.click()">
           <mat-icon>add_photo_alternate</mat-icon>
-          <span>Загрузить</span>
+          <span>Загрузить картинку</span>
           <input #fileInput type="file" accept="image/*" (change)="onFileChanged($event)" style="display:none;" />
         </button>
       </div>
-      <mat-form-field appearance="standard" fxFlex="1 1 0">
-        <mat-label>Ссылка</mat-label>
-        <input type="text" matInput formControlName="link">
-      </mat-form-field>
+      <div>
+        <button mat-raised-button color="primary" (click)="fileInput2.click()">
+          <mat-icon>add_photo_alternate</mat-icon>
+          <span>Загрузить иконку</span>
+          <input #fileInput2 type="file" accept="image/*" (change)="onFileChanged2($event)" style="display:none;" />
+        </button>
+      </div>
     </div>
   </form>
 </mat-dialog-content>

@@ -10,6 +10,7 @@ fury-sidenav {
   }
 
   .sidenav-toolbar {
+    flex-shrink: 0;
     background: $sidenav-toolbar-background;
 
     .sidenav-toolbar-logo,
