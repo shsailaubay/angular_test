@@ -3,7 +3,7 @@ export class User {
   name: string;
   email: string;
   phone: string;
-  role: number;
+  role: string;
 
   constructor(user) {
     this.id = user.id;

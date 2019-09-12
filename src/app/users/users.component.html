@@ -64,10 +64,10 @@
               <mat-icon>more_horiz</mat-icon>
             </button>
             <mat-menu #actionsMenu="matMenu" yPosition="below" xPosition="before">
-              <button mat-menu-item>
+              <button mat-menu-item (click)="openDialog(row)">
                 <span>Изменить</span>
               </button>
-              <button mat-menu-item>
+              <button mat-menu-item (click)="deleteData(row.id)">
                 <span>Удалить</span>
               </button>
             </mat-menu>

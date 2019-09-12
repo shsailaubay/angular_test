@@ -8,6 +8,7 @@ import {ListModule} from '../../@fury/shared/list/list.module';
 import {UsersRoutingModule} from './users-routing.module';
 import {UsersService} from './users.service';
 import {UsersComponent, UserAddDialogComponent} from './users.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import {UsersComponent, UserAddDialogComponent} from './users.component';
     FurySharedModule,
     MaterialModule,
     ListModule,
-    UsersRoutingModule
+    UsersRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [
     UsersService
