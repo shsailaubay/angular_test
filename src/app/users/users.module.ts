@@ -9,6 +9,7 @@ import {UsersRoutingModule} from './users-routing.module';
 import {UsersService} from './users.service';
 import {UsersComponent, UserAddDialogComponent} from './users.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import { UserRolePipe } from './user-role.pipe';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import {ReactiveFormsModule} from '@angular/forms';
   ],
   declarations: [
     UsersComponent,
-    UserAddDialogComponent
+    UserAddDialogComponent,
+    UserRolePipe
   ],
   entryComponents: [
     UserAddDialogComponent
