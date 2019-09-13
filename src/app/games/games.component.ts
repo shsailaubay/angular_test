@@ -43,7 +43,6 @@ export class GamesComponent implements OnInit {
     private dialog: MatDialog
   ) {
     dialog.afterAllClosed.subscribe(() => {
-      console.log(dialog);
       if (this.isWasOpened) {
         this.ngOnInit();
         this.isWasOpened = false;
