@@ -65,6 +65,11 @@ export class AppComponent {
         icon: 'videogame_asset'
       },
       {
+        name: 'Игровые режимы',
+        routeOrFunction: '/gaming-modes',
+        icon: 'games'
+      },
+      {
         name: 'Бустеры',
         routeOrFunction: '/boosters',
         icon: 'flash_on'

@@ -43,6 +43,10 @@ const routes: Routes = [
         loadChildren: './games/games.module#GamesModule',
       },
       {
+        path: 'gaming-modes',
+        loadChildren: './gaming-modes/gaming-modes.module#GamingModesModule',
+      },
+      {
         path: 'boosters',
         loadChildren: './boosters/boosters.module#BoostersModule',
       },
