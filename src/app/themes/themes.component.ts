@@ -151,7 +151,6 @@ export class ThemeDialogComponent implements OnInit {
         this.registerSuccess = true;
         if (this.image) {
           this.themesService.postImg(response._id, this.image).subscribe(res => {
-            console.log(res);
           });
         }
       }, (response: any) => {
@@ -164,7 +163,6 @@ export class ThemeDialogComponent implements OnInit {
         this.registerSuccess = true;
         if (this.image) {
           this.themesService.postImg(response._id, this.image).subscribe(res => {
-            console.log(res);
           });
         }
       }, (response: any) => {

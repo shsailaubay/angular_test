@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {SessionService} from '../../../session.service';
 
 @Component({
   selector: 'fury-toolbar-user',
@@ -10,14 +11,17 @@ export class ToolbarUserComponent implements OnInit {
 
   isOpen: boolean;
 
-  constructor() { }
+  constructor(
+    private sessionService: SessionService
+  ) {
+  }
 
   ngOnInit() {
     this.setUserInfo();
   }
 
   setUserInfo() {
-    this.userName = JSON.parse(window.sessionStorage.getItem('userName'));
+    this.userName = this.sessionService.getItem('userName');
   }
 
   toggleDropdown() {

@@ -137,7 +137,6 @@ export class BoosterDialogComponent implements OnInit {
       });
     });
 
-    console.log(this.data);
 
     this.form = this.formBuilder.group({
       'name': this.formBuilder.group({
@@ -164,7 +163,6 @@ export class BoosterDialogComponent implements OnInit {
         this.registerSuccess = true;
         if (this.image) {
           this.boostersService.postImg(response._id, this.image).subscribe(res => {
-            console.log(res);
           });
         }
       }, (response: any) => {
@@ -177,7 +175,6 @@ export class BoosterDialogComponent implements OnInit {
         this.registerSuccess = true;
         if (this.image) {
           this.boostersService.postImg(response._id, this.image).subscribe(res => {
-            console.log(res);
           });
         }
       }, (response: any) => {

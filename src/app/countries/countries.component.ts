@@ -120,7 +120,6 @@ export class CountryDialogComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.data);
     this.form = this.formBuilder.group({
       'name': this.formBuilder.group({
         'ru': [this.data ? this.data.name_ru : '', Validators.required],
@@ -132,7 +131,6 @@ export class CountryDialogComponent implements OnInit {
   }
 
   onFileChanged(event) {
-    console.log(event.target.files[0]);
     this.flag = event.target.files[0];
   }
 
@@ -145,15 +143,11 @@ export class CountryDialogComponent implements OnInit {
     this.serverErrors = {};
     const formData = JSON.parse(JSON.stringify(this.form.value));
 
-    console.log(formData);
-
     if (this.data) {
       this.countriesService.editCountry(this.data._id, formData).subscribe((response: any) => {
         this.registerSuccess = true;
-        console.log(response);
         if (this.flag) {
           this.countriesService.postFlag(response._id, this.flag).subscribe(res => {
-            console.log(res);
           });
         }
       }, (response: any) => {
@@ -166,7 +160,6 @@ export class CountryDialogComponent implements OnInit {
         this.registerSuccess = true;
         if (this.flag) {
           this.countriesService.postFlag(response._id, this.flag).subscribe(res => {
-            console.log(res);
           });
         }
       }, (response: any) => {

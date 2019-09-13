@@ -37,7 +37,8 @@ export class BaseApi {
   }
 
   public postImage(url: string = '', data: any = {}, headers: any = {}, options: any = {}): Observable<any> {
-    return this.http.post(this.getUrl(url), data, { headers: headers, params: options});
+    return this.http.post(this.getUrl(url), data, { headers: headers, params: options})
+      .pipe(map((response: Response) => response));
   }
 
   public postWithParams(url: string = '', data: any = {}, options: any = {}): Observable<any> {

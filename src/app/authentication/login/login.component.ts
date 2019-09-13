@@ -52,7 +52,6 @@ export class LoginComponent implements OnInit {
     this.subscription = this.loginService.postLogin(this.form.value).subscribe(response => {
       this.adminUser = new Login(response);
       this.sessionService.setItem('x-api-token', this.adminUser._token);
-      this.sessionService.setItem('_id', this.adminUser._id);
       this.sessionService.setItem('userName', this.adminUser.name);
       this.sessionService.setItem('userEmail', this.adminUser.email);
       this.router.navigate(['/']);

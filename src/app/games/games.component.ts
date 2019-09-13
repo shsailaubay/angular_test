@@ -19,6 +19,7 @@ export class GamesComponent implements OnInit {
   subject$: ReplaySubject<Game[]> = new ReplaySubject<Game[]>(1);
   data$: Observable<Game[]> = this.subject$.asObservable();
   data: Game[];
+  isWasOpened = false;
 
   dataSource: MatTableDataSource<Game> | null;
 
@@ -42,7 +43,11 @@ export class GamesComponent implements OnInit {
     private dialog: MatDialog
   ) {
     dialog.afterAllClosed.subscribe(() => {
-      this.ngOnInit();
+      console.log(dialog);
+      if (this.isWasOpened) {
+        this.ngOnInit();
+        this.isWasOpened = false;
+      }
     });
   }
 
@@ -91,6 +96,7 @@ export class GamesComponent implements OnInit {
       width: '450px',
       data: data
     });
+    this.isWasOpened = true;
   }
 
   deleteData(id) {
@@ -155,12 +161,10 @@ export class GameDialogComponent implements OnInit {
         this.registerSuccess = true;
         if (this.image) {
           this.gamesService.postImg(response._id, this.image).subscribe(res => {
-            console.log(res);
           });
         }
         if (this.icon) {
           this.gamesService.postIcon(response._id, this.icon).subscribe(res => {
-            console.log(res);
           });
         }
       }, (response: any) => {
@@ -173,12 +177,10 @@ export class GameDialogComponent implements OnInit {
         this.registerSuccess = true;
         if (this.image) {
           this.gamesService.postImg(response._id, this.image).subscribe(res => {
-            console.log(res);
           });
         }
         if (this.icon) {
           this.gamesService.postIcon(response._id, this.icon).subscribe(res => {
-            console.log(res);
           });
         }
       }, (response: any) => {

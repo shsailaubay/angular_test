@@ -1,11 +1,12 @@
-import { Component, HostBinding, HostListener, Input, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { SidenavItem } from './sidenav-item/sidenav-item.interface';
-import { SidenavService } from './sidenav.service';
-import { ThemeService } from '../../../@fury/services/theme.service';
+import {Component, HostBinding, HostListener, Input, OnDestroy, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
+import {SidenavItem} from './sidenav-item/sidenav-item.interface';
+import {SidenavService} from './sidenav.service';
+import {ThemeService} from '../../../@fury/services/theme.service';
 import {keyBy} from 'lodash-es';
+import {SessionService} from '../../session.service';
 
 @Component({
   selector: 'fury-sidenav',
@@ -28,9 +29,12 @@ export class SidenavComponent implements OnInit, OnDestroy {
 
   items$: Observable<SidenavItem[]>;
 
-  constructor(private router: Router,
-              private sidenavService: SidenavService,
-              private themeService: ThemeService) {
+  constructor(
+    private router: Router,
+    private sidenavService: SidenavService,
+    private themeService: ThemeService,
+    private sessionService: SessionService
+  ) {
   }
 
   ngOnInit() {
@@ -41,8 +45,8 @@ export class SidenavComponent implements OnInit, OnDestroy {
   }
 
   setUserInfo() {
-    this.userName = JSON.parse(window.sessionStorage.getItem('userName'));
-    this.userEmail = JSON.parse(window.sessionStorage.getItem('userEmail'));
+    this.userName = this.sessionService.getItem('userName');
+    this.userEmail = this.sessionService.getItem('userEmail');
   }
 
   logout() {

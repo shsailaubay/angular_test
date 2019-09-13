@@ -9,7 +9,7 @@ import {UsersRoutingModule} from './users-routing.module';
 import {UsersService} from './users.service';
 import {UsersComponent, UserAddDialogComponent} from './users.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import { UserRolePipe } from './user-role.pipe';
+import {UserRolePipe} from './user-role.pipe';
 
 @NgModule({
   imports: [

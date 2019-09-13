@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 
 import {FurySharedModule} from '../../@fury/fury-shared.module';
@@ -20,7 +19,6 @@ import {GamingAccountGamesHistoryComponent} from './gaming-account/gaming-accoun
 @NgModule({
   imports: [
     CommonModule,
-    HttpClientModule,
     FormsModule,
     FurySharedModule,
     MaterialModule,
