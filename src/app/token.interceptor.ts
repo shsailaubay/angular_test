@@ -11,7 +11,6 @@ export class TokenInterceptor implements HttpInterceptor {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log(666);
     if (this.sessionService.getItem('x-api-token')) {
       req = req.clone({
         setHeaders: {

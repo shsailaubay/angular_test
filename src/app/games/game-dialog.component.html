@@ -37,6 +37,13 @@
         </button>
       </div>
     </div>
+
+    <mat-form-field appearance="standard" style="width: 100%">
+      <mat-label>Выберите игровые режимы</mat-label>
+      <mat-select formControlName="allowedOptions" multiple>
+        <mat-option *ngFor="let game of gamingModes" value="{{game._id}}">{{game.name_ru}}</mat-option>
+      </mat-select>
+    </mat-form-field>
   </form>
 </mat-dialog-content>
 

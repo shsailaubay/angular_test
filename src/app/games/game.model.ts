@@ -5,6 +5,7 @@ export class Game {
   link: string;
   image: string;
   icon: string;
+  allowedOptions: [];
 
   constructor(c) {
     this._id = c._id;
@@ -13,5 +14,6 @@ export class Game {
     this.link = c['link'];
     this.image = c.image;
     this.icon = c.icon;
+    this.allowedOptions = c.allowedOptions;
   }
 }

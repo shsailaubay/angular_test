@@ -8,6 +8,8 @@ import {filter} from 'rxjs/operators';
 
 import {GamesService} from './games.service';
 import {Game} from './game.model';
+import {GamingModesService} from '../gaming-modes/gaming-modes.service';
+import {GamingMode} from '../gaming-modes/gaming-mode.model';
 
 @Component({
   selector: 'fury-games',
@@ -31,6 +33,7 @@ export class GamesComponent implements OnInit {
     {name: 'Name', property: 'name_ru', visible: true, isModelProperty: true},
     {name: 'Name', property: 'name_en', visible: true, isModelProperty: true},
     {name: 'link', property: 'link', visible: true, isModelProperty: true},
+    {name: 'gaming_modes', property: 'allowedOptions', visible: true, isModelProperty: true},
     {name: 'Actions', property: 'actions', visible: true},
   ] as ListColumn[];
 
@@ -92,7 +95,7 @@ export class GamesComponent implements OnInit {
   openDialog(data = null) {
     this.dialog.open(GameDialogComponent, {
       disableClose: false,
-      width: '450px',
+      width: '465px',
       data: data
     });
     this.isWasOpened = true;
@@ -117,16 +120,38 @@ export class GameDialogComponent implements OnInit {
   registerSuccess = false;
   image: File;
   icon: File;
+  selectedOptions = [];
+
+  subject$: ReplaySubject<GamingMode[]> = new ReplaySubject<GamingMode[]>(1);
+  data$: Observable<GamingMode[]> = this.subject$.asObservable();
+  gamingModes: GamingMode[];
 
   constructor(
     private dialogRef: MatDialogRef<GameDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private gamesService: GamesService,
+    private gamingModesService: GamingModesService,
     private formBuilder: FormBuilder
   ) {
   }
 
   ngOnInit() {
+
+    this.gamingModesService.getData().subscribe((page: any) => {
+      this.subject$.next(page.map(data => new GamingMode(data)));
+      this.data$.pipe(
+        filter(Boolean)
+      ).subscribe((data) => {
+        this.gamingModes = data;
+      });
+    });
+
+    if (this.data) {
+      for (let i = 0; i < this.data.allowedOptions.length; i++) {
+        this.selectedOptions.push(this.data.allowedOptions[i]._id);
+      }
+    }
+
     this.form = this.formBuilder.group({
       'name': this.formBuilder.group({
         'ru': [this.data ? this.data.name_ru : '', Validators.required],
@@ -134,7 +159,8 @@ export class GameDialogComponent implements OnInit {
       }),
       'link': [this.data ? this.data['link'] : ''],
       'icon': [this.data ? this.data.icon : ''],
-      'image': [this.data ? this.data.image : '']
+      'image': [this.data ? this.data.image : ''],
+      'allowedOptions': [this.data ? this.selectedOptions : '']
     });
   }
 
