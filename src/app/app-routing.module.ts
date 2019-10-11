@@ -15,7 +15,7 @@ const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
-    canActivateChild: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [
       {
         path: '',
@@ -77,7 +77,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
     initialNavigation: 'enabled',
-    preloadingStrategy: PreloadAllModules,
     scrollPositionRestoration: 'enabled',
     anchorScrolling: 'enabled'
   })],
