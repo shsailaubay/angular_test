@@ -1,8 +1,7 @@
-
 <fury-page-layout>
 
   <fury-page-layout-header>
-    <fury-breadcrumbs [crumbs]="['Игровые аккаунты']" current="Аккаунт {{gamingAccountId}}"></fury-breadcrumbs>
+    <fury-breadcrumbs [crumbs]="[{url: '/gaming-accounts', caption: 'Игровые аккаунты'}]" current="Аккаунт {{gamingAccountId}}"></fury-breadcrumbs>
   </fury-page-layout-header>
 
   <fury-page-layout-content class="padding-0">
@@ -55,7 +54,7 @@
                     </tr>
                     <tr>
                       <th>player status</th>
-                      <td>{{gamingAccount.gold}}</td>
+                      <td>{{gamingAccount.expPointsDisplay}}</td>
                     </tr>
                     <tr>
                       <th>Last visit</th>

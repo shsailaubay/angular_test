@@ -17,7 +17,7 @@ export class GamingAccount {
     this.expPoints = customer.expPoints;
     this.silver = customer.silver;
     this.gold = customer.gold;
-    this.playerStatus = customer.playerStatus;
+    this.playerStatus = customer.expPointsDisplay;
     this.lastVisit = customer.lastVisit;
   }
 }

@@ -6,7 +6,6 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class LoginService extends BaseApi {
-  private token;
 
   constructor(
     public http: HttpClient,

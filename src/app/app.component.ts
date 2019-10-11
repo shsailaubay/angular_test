@@ -39,9 +39,9 @@ export class AppComponent {
 
     this.sidenavService.addItems([
       {
-        name: 'Dashboard',
+        name: 'Отчеты',
         routeOrFunction: '/',
-        icon: 'dashboard',
+        icon: 'assignment',
         pathMatchExact: true
       },
       {
@@ -99,21 +99,6 @@ export class AppComponent {
         routeOrFunction: '/push-notifications',
         icon: 'wb_iridescent'
       },
-      // {
-      //   name: 'Логи',
-      //   routeOrFunction: '/a',
-      //   icon: 'history'
-      // },
-      // {
-      //   name: 'Настройки',
-      //   routeOrFunction: '/a',
-      //   icon: 'settings'
-      // },
-      // {
-      //   name: 'Управление темами',
-      //   routeOrFunction: '/a',
-      //   icon: 'color_lens'
-      // },
       {
         name: 'Пользователи',
         routeOrFunction: '/users',

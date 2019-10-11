@@ -9,17 +9,13 @@ const routes: Routes = [
     loadChildren: './authentication/login/login.module#LoginModule',
   },
   {
-    path: 'register',
-    loadChildren: './authentication/register/register.module#RegisterModule',
-  },
-  {
     path: 'forgot-password',
     loadChildren: './authentication/forgot-password/forgot-password.module#ForgotPasswordModule',
   },
   {
     path: '',
     component: LayoutComponent,
-    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
     children: [
       {
         path: '',

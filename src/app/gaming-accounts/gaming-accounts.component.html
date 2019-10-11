@@ -5,6 +5,7 @@
   </fury-page-layout-header>
 
   <fury-page-layout-content>
+
     <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="24px" style="margin-bottom: 24px;">
       <div>
         <mat-form-field appearance="standard">
@@ -84,6 +85,26 @@
       <mat-paginator class="paginator" [pageSize]="pageSize"></mat-paginator>
 
     </fury-list>
+
+    <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="24px" style="margin-bottom: 24px;">
+
+      <div>
+        <mat-checkbox color="primary">Выбрать всех</mat-checkbox>
+      </div>
+      <div>
+        <mat-form-field appearance="standard">
+          <mat-label>Действия</mat-label>
+          <mat-select>
+            <mat-option value="Legend">Give 500 silver</mat-option>
+            <mat-option value="Legend">Give 500 silver</mat-option>
+            <mat-option value="Legend">Give 500 silver</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div>
+        <button mat-raised-button color="primary">Применить</button>
+      </div>
+    </div>
 
   </fury-page-layout-content>
 </fury-page-layout>

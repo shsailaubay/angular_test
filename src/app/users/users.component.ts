@@ -7,7 +7,6 @@ import {filter} from 'rxjs/operators';
 
 import {UsersService} from './users.service';
 import {User} from './user.model';
-import {Game} from '../games/game.model';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
