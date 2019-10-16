@@ -3,12 +3,22 @@ import {CommonModule} from '@angular/common';
 
 import {ReportsRoutingModule} from './reports-routing.module';
 import {ReportsComponent} from './reports.component';
+import {FurySharedModule} from '../../@fury/fury-shared.module';
+import {MaterialModule} from '../../@fury/shared/material-components.module';
+import {FuryCardModule} from '../../@fury/shared/card/card.module';
+import {ListModule} from '../../@fury/shared/list/list.module';
+import { ReportsCountriesComponent } from './reports-countries/reports-countries.component';
+import { FinancialStatisticComponent } from './financial-statistic/financial-statistic.component';
 
 @NgModule({
-  declarations: [ReportsComponent],
+  declarations: [ReportsComponent, ReportsCountriesComponent, FinancialStatisticComponent],
   imports: [
     CommonModule,
-    ReportsRoutingModule
+    ReportsRoutingModule,
+    FurySharedModule,
+    MaterialModule,
+    FuryCardModule,
+    ListModule
   ]
 })
 export class ReportsModule {

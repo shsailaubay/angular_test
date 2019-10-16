@@ -19,7 +19,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: './dashboard/dashboard.module#DashboardModule',
+        loadChildren: './reports/reports.module#ReportsModule',
         pathMatch: 'full'
       },
       {

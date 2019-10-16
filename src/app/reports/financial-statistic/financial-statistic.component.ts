@@ -1,18 +1,15 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
-import {ListColumn} from '../../@fury/shared/list/list-column.model';
-
 import {Observable, ReplaySubject} from 'rxjs';
-import {filter} from 'rxjs/operators';
-
-import {Report} from './report.model';
+import {Report} from '../report.model';
+import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {ListColumn} from '../../../@fury/shared/list/list-column.model';
 
 @Component({
-  selector: 'fury-reports',
-  templateUrl: './reports.component.html',
-  styleUrls: ['./reports.component.scss']
+  selector: 'fury-financial-statistic',
+  templateUrl: './financial-statistic.component.html',
+  styleUrls: ['./financial-statistic.component.scss']
 })
-export class ReportsComponent implements OnInit {
+export class FinancialStatisticComponent implements OnInit {
 
   subject$: ReplaySubject<Report[]> = new ReplaySubject<Report[]>(1);
   data$: Observable<Report[]> = this.subject$.asObservable();
