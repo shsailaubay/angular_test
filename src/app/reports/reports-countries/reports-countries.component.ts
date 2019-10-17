@@ -19,17 +19,16 @@ export class ReportsCountriesComponent implements OnInit {
 
   @Input()
   columns: ListColumn[] = [
-    {name: 'id', property: '_id', visible: false, isModelProperty: true},
     {name: 'region', property: 'region', visible: true, isModelProperty: true},
-    {name: 'new_users', property: 'new_users', visible: true, isModelProperty: true},
-    {name: 'tables_created', property: 'tables_created', visible: true, isModelProperty: true},
-    {name: 'games_played', property: 'games_played', visible: true, isModelProperty: true},
-    {name: 'themes_sold', property: 'themes_sold', visible: true, isModelProperty: true},
-    {name: 'themes_sold_amount', property: 'themes_sold_amount', visible: true, isModelProperty: true},
-    {name: 'balances_paid', property: 'balances_paid', visible: true, isModelProperty: true},
-    {name: 'balances_paid_amount', property: 'balances_paid_amount', visible: true, isModelProperty: true},
-    {name: 'money_exports', property: 'money_exports', visible: true, isModelProperty: true},
-    {name: 'money_exports_amount', property: 'money_exports_amount', visible: true, isModelProperty: true},
+    {name: 'newPlayersCount', property: 'newPlayersCount', visible: true, isModelProperty: true},
+    {name: 'newChairsCount', property: 'newChairsCount', visible: true, isModelProperty: true},
+    {name: 'playedGamesCount', property: 'playedGamesCount', visible: true, isModelProperty: true},
+    {name: 'themeSoldCount', property: 'themeSoldCount', visible: true, isModelProperty: true},
+    {name: 'themeSoldSum', property: 'themeSoldSum', visible: true, isModelProperty: true},
+    {name: 'replenishmentCount', property: 'replenishmentCount', visible: true, isModelProperty: true},
+    {name: 'replenishmentSum', property: 'replenishmentSum', visible: true, isModelProperty: true},
+    {name: 'withdrawCount', property: 'withdrawCount', visible: true, isModelProperty: true},
+    {name: 'withdrawCountSum', property: 'withdrawCountSum', visible: true, isModelProperty: true},
   ] as ListColumn[];
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
