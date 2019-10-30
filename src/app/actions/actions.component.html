@@ -80,7 +80,7 @@
     </div>
     <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="24px" style="margin-bottom: 24px;">
       <div>
-        <button mat-raised-button color="accent" (click)="addAction()">Добавить акцию</button>
+        <button mat-raised-button color="accent" (click)="openDialog()">Добавить акцию</button>
       </div>
     </div>
 
@@ -96,9 +96,26 @@
             <th *matHeaderCellDef mat-header-cell mat-sort-header> {{ column.name }}</th>
             <td *matCellDef="let row" mat-cell>
               <img *ngIf="column.name == 'image'" src="https://api.braimon.pre.luxystech.com{{ row[column.property] }}" style="display: block; max-height: 24px" alt="">
-              <span *ngIf="column.name != 'image'">{{ column.name == "Date to" ? (row[column.property] | date:"dd.MM.yyyy") : row[column.property] }}</span>
+              <span *ngIf="column.name != 'image'">{{ column.name == "startDate" || column.name == "endDate" ? (row[column.property] | date:"dd.MM.yyyy") : row[column.property] }}</span>
             </td>
           </ng-container>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th *matHeaderCellDef class="actions-cell" mat-header-cell mat-sort-header></th>
+          <td *matCellDef="let row" class="actions-cell" mat-cell>
+            <button type="button" mat-icon-button [matMenuTriggerFor]="actionsMenu" (click)="$event.stopPropagation()">
+              <mat-icon>more_horiz</mat-icon>
+            </button>
+            <mat-menu #actionsMenu="matMenu" yPosition="below" xPosition="before">
+              <button mat-menu-item (click)="openDialog(row)">
+                <span>Изменить</span>
+              </button>
+              <button mat-menu-item (click)="deleteAction(row._id)">
+                <span>Удалить</span>
+              </button>
+            </mat-menu>
+          </td>
         </ng-container>
 
       </table>

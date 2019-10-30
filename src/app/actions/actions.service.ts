@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 import {BaseApi} from '../base-api';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +15,26 @@ export class ActionsService extends BaseApi {
 
   getActions() {
     return this.get('/actions/actives');
+  }
+
+  postAction(data) {
+    return this.post(`/actions/`, data);
+  }
+
+  postActionImage(id, data) {
+    const formData = new FormData();
+    if (data) {
+      formData.append('image', data, data.name);
+    }
+    return this.postImage(`/actions/${id}`, formData);
+  }
+
+  editAction(id, data) {
+    return this.put(`/actions/${id}`, data);
+  }
+
+  deleteAction(id) {
+    return this.delete(`/actions/${id}`);
   }
 
 }

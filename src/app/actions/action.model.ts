@@ -1,27 +1,39 @@
 export class Action {
-  region: number;
-  country: number;
-  game: number;
+  _id: string;
+  // region: number;
+  country: string;
+  image: string;
   name_ru: string;
   name_en: string;
-  dateTo: string;
-  type: number;
-  conditions: string;
-  image: string;
-  reward: number;
-  status: number;
+  message_ru: string;
+  message_en: string;
+  startDate: string;
+  endDate: string;
+  // game: number;
+  // type: number;
+  // conditions: string;
+  freeSilvers: number;
+  freeGold: number;
+  actionPrice: number;
+  active: boolean;
 
   constructor(gameHistory) {
-    this.region = gameHistory.region;
+    this._id = gameHistory._id;
+    // this.region = gameHistory.region;
     this.country = gameHistory.country;
-    this.game = gameHistory.game;
+    // this.game = gameHistory.game;
     this.name_ru = gameHistory.title.ru;
     this.name_en = gameHistory.title.en;
-    this.dateTo = gameHistory.endDate;
-    this.type = gameHistory.type;
-    this.conditions = gameHistory.conditions;
+    this.message_ru = gameHistory.successMessage.ru;
+    this.message_en = gameHistory.successMessage.en;
+    this.startDate = gameHistory.startDate;
+    this.endDate = gameHistory.endDate;
+    // this.type = gameHistory.type;
+    // this.conditions = gameHistory.conditions;
     this.image = gameHistory.image;
-    this.reward = gameHistory.freeSilvers ? gameHistory.freeSilvers : gameHistory.freeGold;
-    this.status = gameHistory.status;
+    this.freeSilvers = gameHistory.freeSilvers;
+    this.freeGold = gameHistory.freeGold;
+    this.actionPrice = gameHistory.actionPrice;
+    this.active = gameHistory.active;
   }
 }

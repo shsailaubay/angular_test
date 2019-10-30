@@ -1,0 +1,96 @@
+<div mat-dialog-title fxLayout="row" fxLayoutAlign="space-between center">
+  <div>{{data ? 'Изменить' : 'Добавить'}} акцию</div>
+  <button type="button" mat-icon-button (click)="close()" tabindex="-1">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<mat-dialog-content>
+
+  <form action="" [formGroup]="form">
+
+    <div fxLayout="row" fxLayoutGap="24px" fxLayoutAlign="start center">
+      <div fxFlex="1 1 0">
+        <mat-form-field appearance="standard" style="width: 100%">
+          <mat-label>Период отбора от</mat-label>
+          <input formControlName="startDate" (click)="formDatepickerRef.open()" (focus)="formDatepickerRef.open()" [matDatepicker]="formDatepickerRef" matInput readonly>
+          <mat-datepicker-toggle [for]="formDatepickerRef" matSuffix></mat-datepicker-toggle>
+        </mat-form-field>
+        <mat-datepicker #formDatepickerRef></mat-datepicker>
+      </div>
+      <div fxFlex="1 1 0">
+        <mat-form-field appearance="standard" style="width: 100%">
+          <mat-label>Период отбора до</mat-label>
+          <input formControlName="endDate" (click)="formDatepickerRefb.open()" (focus)="formDatepickerRefb.open()" [matDatepicker]="formDatepickerRefb" matInput readonly>
+          <mat-datepicker-toggle [for]="formDatepickerRefb" matSuffix></mat-datepicker-toggle>
+        </mat-form-field>
+        <mat-datepicker #formDatepickerRefb></mat-datepicker>
+      </div>
+    </div>
+
+    <div formGroupName="title">
+      <mat-form-field appearance="standard" style="width: 100%">
+        <mat-label>Название на русском</mat-label>
+        <input formControlName="ru" matInput type="text">
+      </mat-form-field>
+
+      <mat-form-field appearance="standard" style="width: 100%">
+        <mat-label>Название на английском</mat-label>
+        <input formControlName="en" matInput type="text">
+      </mat-form-field>
+    </div>
+
+    <div formGroupName="successMessage">
+      <mat-form-field appearance="standard" style="width: 100%">
+        <mat-label>Сообщение на русском</mat-label>
+        <input formControlName="ru" matInput type="text">
+      </mat-form-field>
+
+      <mat-form-field appearance="standard" style="width: 100%">
+        <mat-label>Сообщение на английском</mat-label>
+        <input formControlName="en" matInput type="text">
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutGap="24px" fxLayoutAlign="start center">
+      <mat-form-field appearance="standard" fxFlex="0 0 calc(50% - 12px)">
+        <mat-label>Выберите страну</mat-label>
+        <mat-select formControlName="country">
+          <mat-option *ngFor="let country of countries" value="{{country._id}}">{{country.name.ru}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" (click)="fileInput.click()">
+        <mat-icon>add_photo_alternate</mat-icon>
+        <span>Загрузить картинку акции</span>
+        <input #fileInput type="file" accept="image/*" (change)="onFileChanged($event)" style="display:none;"/>
+      </button>
+    </div>
+
+    <div fxLayout="row" fxLayoutGap="24px" fxLayoutAlign="start center">
+      <mat-form-field appearance="standard" fxFlex="1 1 0">
+        <mat-label>Награда Серебра:</mat-label>
+        <input formControlName="freeSilvers" matInput type="number">
+      </mat-form-field>
+
+      <mat-form-field appearance="standard" fxFlex="1 1 0">
+        <mat-label>Награда Золота:</mat-label>
+        <input formControlName="freeGold" matInput type="number">
+      </mat-form-field>
+
+      <mat-form-field appearance="standard" fxFlex="1 1 0">
+        <mat-label>Стоимость акции:</mat-label>
+        <input formControlName="actionPrice" matInput type="number">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-checkbox formControlName="active">Активна</mat-checkbox>
+    </div>
+
+  </form>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="center">
+  <button mat-raised-button color="accent" type="submit" (click)="submit()" [disabled]="form.invalid">Сохранить</button>
+</mat-dialog-actions>
