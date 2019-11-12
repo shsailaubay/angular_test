@@ -17,4 +17,8 @@ export class LoginService extends BaseApi {
     return this.post(`/users/login/`, data);
   }
 
+  resetPassword(data) {
+    return this.post(`/users/reset_password/`, data);
+  }
+
 }

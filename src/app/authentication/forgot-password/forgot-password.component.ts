@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import { fadeInUpAnimation } from '../../../@fury/animations/fade-in-up.animation';
+import {LoginService} from '../login/login.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'fury-forgot-password',
@@ -11,19 +13,36 @@ import { fadeInUpAnimation } from '../../../@fury/animations/fade-in-up.animatio
 })
 export class ForgotPasswordComponent implements OnInit {
 
-  form = this.fb.group({
-    email: [null, Validators.required]
-  });
+  form: FormGroup;
+  subscription: Subscription;
+  loginError = false;
+  resetSuccess = false;
 
   constructor(
     private router: Router,
+    private loginService: LoginService,
     private fb: FormBuilder
   ) { }
 
   ngOnInit() {
+    this.form = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+    });
   }
 
   send() {
-    this.router.navigate(['/']);
+    this.form.disable();
+    this.loginError = false;
+    this.subscription = this.loginService.resetPassword(this.form.value).subscribe(response => {
+    }, error => {
+      console.log(error);
+      if (error.status === 201) {
+        this.resetSuccess = error;
+      } else if (error.status === 400) {
+        console.log(error);
+        this.loginError = error;
+        this.form.enable();
+      }
+    });
   }
 }
