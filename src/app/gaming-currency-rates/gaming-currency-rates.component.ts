@@ -4,7 +4,7 @@ import {ListColumn} from '../../@fury/shared/list/list-column.model';
 import {Observable, of, ReplaySubject} from 'rxjs';
 import {filter} from 'rxjs/operators';
 import {GamingCurrencyRate} from './gaming-currency-rate.model';
-import {GAMING_CURRENCY_RATES_DEMO_DATA} from './gaming-currency-rates.demo';
+import {GamingCurrencyRateService} from './gaming-currency-rate.service';
 
 @Component({
   selector: 'fury-gaming-currency-rates',
@@ -23,7 +23,7 @@ export class GamingCurrencyRatesComponent implements OnInit, AfterViewInit {
   columns: ListColumn[] = [
     {name: 'Date', property: 'date', visible: true, isModelProperty: true},
     {name: 'Time', property: 'time', visible: true, isModelProperty: true},
-    {name: 'Rate', property: 'rate', visible: true, isModelProperty: true},
+    {name: 'Gold', property: 'gold', visible: true, isModelProperty: true},
   ] as ListColumn[];
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
@@ -31,29 +31,36 @@ export class GamingCurrencyRatesComponent implements OnInit, AfterViewInit {
   pageSize = 10;
 
   constructor(
-    private dialog: MatDialog
-  ) { }
+    private dialog: MatDialog,
+    private gamingCurrencyRateService: GamingCurrencyRateService
+  ) {
+  }
 
   get visibleColumns() {
     return this.columns.filter(column => column.visible).map(column => column.property);
   }
 
-  getData() {
-    return of(GAMING_CURRENCY_RATES_DEMO_DATA.map(gcr => new GamingCurrencyRate(gcr)));
+  ngOnInit() {
+    this.getData();
   }
 
-  ngOnInit() {
-    this.getData().subscribe(gcr => {
-      this.subject$.next(gcr);
-    });
+  getData() {
+    this.subject$ = new ReplaySubject<GamingCurrencyRate[]>(1);
+    this.data$ = this.subject$.asObservable();
+    this.gamingCurrencyRates = [];
+    this.dataSource = null;
 
-    this.dataSource = new MatTableDataSource();
-
-    this.data$.pipe(
-      filter(Boolean)
-    ).subscribe((gcr) => {
-      this.gamingCurrencyRates = gcr;
-      this.dataSource.data = gcr;
+    this.gamingCurrencyRateService.getData().subscribe((page: any) => {
+      this.subject$.next(page.docs.map(data => new GamingCurrencyRate(data)));
+      this.dataSource = new MatTableDataSource();
+      this.data$.pipe(
+        filter(Boolean)
+      ).subscribe((data) => {
+        this.gamingCurrencyRates = data;
+        this.dataSource.data = data;
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+      });
     });
   }
 

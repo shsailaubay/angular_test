@@ -23,16 +23,10 @@ export class FinancialStatisticComponent implements OnInit {
 
   @Input()
   columns: ListColumn[] = [
-    {name: 'region', property: 'region', visible: true, isModelProperty: true},
-    {name: 'newPlayersCount', property: 'newPlayersCount', visible: true, isModelProperty: true},
-    {name: 'newChairsCount', property: 'newChairsCount', visible: true, isModelProperty: true},
-    {name: 'playedGamesCount', property: 'playedGamesCount', visible: true, isModelProperty: true},
-    {name: 'themeSoldCount', property: 'themeSoldCount', visible: true, isModelProperty: true},
-    {name: 'themeSoldSum', property: 'themeSoldSum', visible: true, isModelProperty: true},
-    {name: 'replenishmentCount', property: 'replenishmentCount', visible: true, isModelProperty: true},
-    {name: 'replenishmentSum', property: 'replenishmentSum', visible: true, isModelProperty: true},
-    {name: 'withdrawCount', property: 'withdrawCount', visible: true, isModelProperty: true},
-    {name: 'withdrawCountSum', property: 'withdrawCountSum', visible: true, isModelProperty: true},
+    {name: 'Страна', property: 'country', visible: true, isModelProperty: true},
+    {name: 'Дата', property: 'date', visible: true, isModelProperty: true},
+    {name: 'Сумма пополнений баланса', property: 'replenishmentSum', visible: true, isModelProperty: true},
+    {name: 'Сумма выводов денег', property: 'withdrawCountSum', visible: true, isModelProperty: true},
   ] as ListColumn[];
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;

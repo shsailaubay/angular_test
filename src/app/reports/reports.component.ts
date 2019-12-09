@@ -7,6 +7,7 @@ import {filter} from 'rxjs/operators';
 
 import {ReportsService} from './reports.service';
 import {Report} from './report.model';
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'fury-reports',
@@ -14,6 +15,8 @@ import {Report} from './report.model';
   styleUrls: ['./reports.component.scss']
 })
 export class ReportsComponent implements OnInit {
+
+  filterStartDate = new FormControl(new Date().toISOString());
 
   subject$: ReplaySubject<Report[]> = new ReplaySubject<Report[]>(1);
   data$: Observable<Report[]> = this.subject$.asObservable();
@@ -23,16 +26,16 @@ export class ReportsComponent implements OnInit {
 
   @Input()
   columns: ListColumn[] = [
-    {name: 'region', property: 'region', visible: true, isModelProperty: true},
-    {name: 'newPlayersCount', property: 'newPlayersCount', visible: true, isModelProperty: true},
-    {name: 'newChairsCount', property: 'newChairsCount', visible: true, isModelProperty: true},
-    {name: 'playedGamesCount', property: 'playedGamesCount', visible: true, isModelProperty: true},
-    {name: 'themeSoldCount', property: 'themeSoldCount', visible: true, isModelProperty: true},
-    {name: 'themeSoldSum', property: 'themeSoldSum', visible: true, isModelProperty: true},
-    {name: 'replenishmentCount', property: 'replenishmentCount', visible: true, isModelProperty: true},
-    {name: 'replenishmentSum', property: 'replenishmentSum', visible: true, isModelProperty: true},
-    {name: 'withdrawCount', property: 'withdrawCount', visible: true, isModelProperty: true},
-    {name: 'withdrawCountSum', property: 'withdrawCountSum', visible: true, isModelProperty: true},
+    {name: 'Регион', property: 'region', visible: true, isModelProperty: true},
+    {name: 'Новых пользователей', property: 'newPlayersCount', visible: true, isModelProperty: true},
+    {name: 'Созданных столов', property: 'newChairsCount', visible: true, isModelProperty: true},
+    {name: 'Сыгранных игр', property: 'playedGamesCount', visible: true, isModelProperty: true},
+    {name: 'Продано тем', property: 'themeSoldCount', visible: true, isModelProperty: true},
+    {name: 'Сумма проданных тем', property: 'themeSoldSum', visible: true, isModelProperty: true},
+    {name: 'Пополнений баланса', property: 'replenishmentCount', visible: true, isModelProperty: true},
+    {name: 'Сумма пополнений баланса', property: 'replenishmentSum', visible: true, isModelProperty: true},
+    {name: 'Выводов денег', property: 'withdrawCount', visible: true, isModelProperty: true},
+    {name: 'Сумма выводов денег', property: 'withdrawCountSum', visible: true, isModelProperty: true},
   ] as ListColumn[];
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
@@ -79,6 +82,11 @@ export class ReportsComponent implements OnInit {
     value = value.trim();
     value = value.toLowerCase();
     this.dataSource.filter = value;
+  }
+
+  setStartDate(e) {
+    console.log(e);
+    console.log(this.filterStartDate.value);
   }
 
 }

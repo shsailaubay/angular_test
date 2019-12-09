@@ -19,7 +19,7 @@ export class ReportsCountriesComponent implements OnInit {
 
   @Input()
   columns: ListColumn[] = [
-    {name: 'region', property: 'region', visible: true, isModelProperty: true},
+    {name: 'Регион', property: 'region', visible: true, isModelProperty: true},
     {name: 'newPlayersCount', property: 'newPlayersCount', visible: true, isModelProperty: true},
     {name: 'newChairsCount', property: 'newChairsCount', visible: true, isModelProperty: true},
     {name: 'playedGamesCount', property: 'playedGamesCount', visible: true, isModelProperty: true},

@@ -9,17 +9,19 @@ import {FuryCardModule} from '../../@fury/shared/card/card.module';
 import {ListModule} from '../../@fury/shared/list/list.module';
 import { ReportsCountriesComponent } from './reports-countries/reports-countries.component';
 import { FinancialStatisticComponent } from './financial-statistic/financial-statistic.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [ReportsComponent, ReportsCountriesComponent, FinancialStatisticComponent],
-  imports: [
-    CommonModule,
-    ReportsRoutingModule,
-    FurySharedModule,
-    MaterialModule,
-    FuryCardModule,
-    ListModule
-  ]
+    imports: [
+        CommonModule,
+        ReportsRoutingModule,
+        FurySharedModule,
+        MaterialModule,
+        FuryCardModule,
+        ListModule,
+        ReactiveFormsModule
+    ]
 })
 export class ReportsModule {
 }
