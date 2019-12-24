@@ -54,7 +54,21 @@ export class FinancialStatisticComponent implements OnInit {
 
     this.reportsService.getReports().subscribe((page: any) => {
 
-      this.subject$.next(page.map(data => new FinancialReport(data)));
+      const pageArray = [];
+
+      let i = 0;
+      for (const item in page) {
+        if (page.hasOwnProperty(item)) {
+          console.log(item, page[item]);
+          pageArray.push(page[item]);
+          pageArray[i].date = item;
+          i++;
+        }
+      }
+
+      console.log('pageArray', pageArray);
+
+      this.subject$.next(pageArray.map(data => new FinancialReport(data)));
       this.dataSource = new MatTableDataSource();
       this.data$.pipe(
         filter(Boolean)
