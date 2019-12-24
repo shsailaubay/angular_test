@@ -133,25 +133,32 @@ export class UserAddDialogComponent implements OnInit {
     const formData = JSON.parse(JSON.stringify(this.form.value));
 
     if (this.data) {
-      this.usersService.editData(this.data.id, formData).subscribe((response: any) => {
-        this.registerSuccess = true;
-      }, (response: any) => {
-        Object.keys(response.error).forEach(prop => {
-          this.serverErrors[prop] = response.error[prop][0];
-        });
-      });
+      this.usersService.editData(this.data.id, formData).subscribe(
+        (response: any) => {
+          this.registerSuccess = true;
+          this.form.reset();
+          this.dialogRef.close();
+        },
+        (response: any) => {
+          Object.keys(response.error).forEach(prop => {
+            this.serverErrors[prop] = response.error[prop][0];
+          });
+        }
+      );
     } else {
-      this.usersService.postData(formData).subscribe((response: any) => {
-        this.registerSuccess = true;
-      }, (response: any) => {
-        Object.keys(response.error).forEach(prop => {
-          this.serverErrors[prop] = response.error[prop][0];
-        });
-      });
+      this.usersService.postData(formData).subscribe(
+        (response: any) => {
+          this.registerSuccess = true;
+          this.form.reset();
+          this.dialogRef.close();
+        },
+        (response: any) => {
+          Object.keys(response.error).forEach(prop => {
+            this.serverErrors[prop] = response.error[prop][0];
+          });
+        }
+      );
     }
-
-    this.form.reset();
-    this.dialogRef.close();
   }
 
   close() {

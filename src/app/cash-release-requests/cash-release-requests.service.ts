@@ -5,7 +5,7 @@ import {HttpClient} from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class ReportsService extends BaseApi {
+export class CashReleaseRequestsService extends BaseApi {
 
   constructor(
     public http: HttpClient,
@@ -14,10 +14,10 @@ export class ReportsService extends BaseApi {
   }
 
   getData() {
-    return this.getWithParams(`/report/`, {start: '2019-05-05'});
+    return this.get(`/admin/financial`);
   }
 
-  getReports() {
-    return this.getWithParams(`/admin/financial/report`, {start: '2019-05-05'});
+  approveRequest(id, accept) {
+    return this.post(`/admin/financial/${id}`, {accept: accept});
   }
 }

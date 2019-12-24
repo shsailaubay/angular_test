@@ -1,13 +1,12 @@
-import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
-import {MatDialog, MatDialogRef, MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
-
-import {Observable, of, ReplaySubject} from 'rxjs';
-import {filter} from 'rxjs/operators';
-
+import {Component, Inject, Input, OnInit, ViewChild} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {ListColumn} from '../../@fury/shared/list/list-column.model';
 
+import {Observable, ReplaySubject} from 'rxjs';
+import {filter} from 'rxjs/operators';
+
 import {CashReleaseRequest} from './cash-release-request.model';
-import {CASH_RELEASE_REQUESTS_DEMO_DATA} from './cash-release-requests.demo';
+import {CashReleaseRequestsService} from './cash-release-requests.service';
 
 @Component({
   selector: 'fury-cash-release-requests',
@@ -15,11 +14,11 @@ import {CASH_RELEASE_REQUESTS_DEMO_DATA} from './cash-release-requests.demo';
   styleUrls: ['./cash-release-requests.component.scss']
 })
 
-export class CashReleaseRequestsComponent implements OnInit, AfterViewInit {
+export class CashReleaseRequestsComponent implements OnInit {
 
   subject$: ReplaySubject<CashReleaseRequest[]> = new ReplaySubject<CashReleaseRequest[]>(1);
   data$: Observable<CashReleaseRequest[]> = this.subject$.asObservable();
-  cashReleaseRequests: CashReleaseRequest[];
+  data: CashReleaseRequest[];
 
   dataSource: MatTableDataSource<CashReleaseRequest> | null;
 
@@ -39,35 +38,39 @@ export class CashReleaseRequestsComponent implements OnInit, AfterViewInit {
   pageSize = 10;
 
   constructor(
-    private dialog: MatDialog
-  ) { }
+    private dialog: MatDialog,
+    private cashReleaseRequestsService: CashReleaseRequestsService
+  ) {
+  }
 
   get visibleColumns() {
     return this.columns.filter(column => column.visible).map(column => column.property);
   }
 
-  getData() {
-    return of(CASH_RELEASE_REQUESTS_DEMO_DATA.map(crr => new CashReleaseRequest(crr)));
-  }
-
   ngOnInit() {
-    this.getData().subscribe(crr => {
-      this.subject$.next(crr);
-    });
-
-    this.dataSource = new MatTableDataSource();
-
-    this.data$.pipe(
-      filter(Boolean)
-    ).subscribe((crr) => {
-      this.cashReleaseRequests = crr;
-      this.dataSource.data = crr;
-    });
+    this.getData();
   }
 
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
+  getData() {
+    this.subject$ = new ReplaySubject<CashReleaseRequest[]>(1);
+    this.data$ = this.subject$.asObservable();
+    this.data = [];
+    this.dataSource = null;
+
+    this.cashReleaseRequestsService.getData().subscribe((page: any) => {
+
+      this.subject$.next(page.docs.map(data => new CashReleaseRequest(data)));
+      this.dataSource = new MatTableDataSource();
+      this.data$.pipe(
+        filter(Boolean)
+      ).subscribe((data) => {
+        console.log(data);
+        this.data = data;
+        this.dataSource.data = data;
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+      });
+    });
   }
 
   onFilterChange(value) {
@@ -79,10 +82,16 @@ export class CashReleaseRequestsComponent implements OnInit, AfterViewInit {
     this.dataSource.filter = value;
   }
 
-  openDialog() {
+  approveRequest(id) {
+    this.cashReleaseRequestsService.approveRequest(id, true).subscribe(res => console.log(res), error => console.log(error));
+  }
+
+  openDialog(id) {
+    console.log(id);
     this.dialog.open(CashReleaseRequestDeclineComponent, {
       disableClose: false,
-      width: '450px'
+      width: '450px',
+      data: id
     });
   }
 }
@@ -92,10 +101,28 @@ export class CashReleaseRequestsComponent implements OnInit, AfterViewInit {
   templateUrl: './cash-release-request-decline.component.html',
 })
 export class CashReleaseRequestDeclineComponent {
-  constructor(private dialogRef: MatDialogRef<CashReleaseRequestDeclineComponent>) {
+
+  constructor(
+    private dialogRef: MatDialogRef<CashReleaseRequestDeclineComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private cashReleaseRequestsService: CashReleaseRequestsService
+  ) {
+    console.log(this.data);
   }
 
-  close(answer: string) {
-    this.dialogRef.close(answer);
+  decline() {
+    this.cashReleaseRequestsService.approveRequest(this.data, false).subscribe(
+      () => {
+        this.dialogRef.close();
+      },
+      error => {
+        console.log(error);
+        this.dialogRef.close();
+      }
+    );
+  }
+
+  close() {
+    this.dialogRef.close();
   }
 }

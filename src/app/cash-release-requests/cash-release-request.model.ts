@@ -7,7 +7,7 @@ export class CashReleaseRequest {
 
   constructor(crr) {
     this.id = crr.id;
-    this.name = crr.name;
+    this.name = crr.user;
     this.gold = crr.gold;
     this.amount = crr.amount;
     this.status = crr.status;

@@ -1,6 +1,6 @@
 <div mat-dialog-title fxLayout="row" fxLayoutAlign="space-between center">
   <div>Отказать в выплате</div>
-  <button type="button" mat-icon-button (click)="close('No answer')" tabindex="-1">
+  <button type="button" mat-icon-button (click)="close()" tabindex="-1">
     <mat-icon>close</mat-icon>
   </button>
 </div>
@@ -21,5 +21,5 @@
 </mat-dialog-content>
 
 <mat-dialog-actions align="center">
-  <button mat-raised-button color="primary" (click)="close('Yes')">Отправить</button>
+  <button mat-raised-button color="primary" (click)="decline()">Отправить</button>
 </mat-dialog-actions>
