@@ -29,7 +29,7 @@
           <ng-container *ngIf="column.isModelProperty" [matColumnDef]="column.property">
             <th *matHeaderCellDef mat-header-cell mat-sort-header> {{ column.name }}</th>
             <td *matCellDef="let row" mat-cell>
-              <img *ngIf="column.name == 'image' || column.name == 'icon'" src="https://api.braimon.pre.luxystech.com{{ row[column.property] }}" style="display: block; max-height: 24px" alt="">
+              <img *ngIf="column.name == 'image' || column.name == 'icon'" src="{{baseUrl + row[column.property] }}" style="display: block; max-height: 24px" alt="">
               <span *ngIf="column.name == 'gaming_modes'">
                 <span *ngFor="let gaming_mode of row[column.property]; let i = index"><span *ngIf="i != 0">, </span>{{gaming_mode.name.ru}}</span>
               </span>

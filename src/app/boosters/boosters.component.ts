@@ -10,6 +10,7 @@ import {Booster} from './booster.model';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {GamesService} from '../games/games.service';
 import {Game} from '../games/game.model';
+import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'fury-boosters',
@@ -17,6 +18,8 @@ import {Game} from '../games/game.model';
   styleUrls: ['./boosters.component.scss']
 })
 export class BoostersComponent implements OnInit {
+
+  baseUrl = environment.backend;
 
   subject$: ReplaySubject<Booster[]> = new ReplaySubject<Booster[]>(1);
   data$: Observable<Booster[]> = this.subject$.asObservable();

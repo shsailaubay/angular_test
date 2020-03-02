@@ -10,6 +10,7 @@ import {GamesService} from './games.service';
 import {Game} from './game.model';
 import {GamingModesService} from '../gaming-modes/gaming-modes.service';
 import {GamingMode} from '../gaming-modes/gaming-mode.model';
+import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'fury-games',
@@ -17,6 +18,8 @@ import {GamingMode} from '../gaming-modes/gaming-mode.model';
   styleUrls: ['./games.component.scss']
 })
 export class GamesComponent implements OnInit {
+
+  baseUrl = environment.backend;
 
   subject$: ReplaySubject<Game[]> = new ReplaySubject<Game[]>(1);
   data$: Observable<Game[]> = this.subject$.asObservable();

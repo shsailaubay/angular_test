@@ -9,6 +9,7 @@ import {Action} from './action.model';
 import {ActionsService} from './actions.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CountriesService} from '../countries/countries.service';
+import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'fury-actions',
@@ -16,6 +17,8 @@ import {CountriesService} from '../countries/countries.service';
   styleUrls: ['./actions.component.scss']
 })
 export class ActionsComponent implements OnInit {
+
+  baseUrl = environment.backend;
 
   subject$: ReplaySubject<Action[]> = new ReplaySubject<Action[]>(1);
   data$: Observable<Action[]> = this.subject$.asObservable();

@@ -8,6 +8,7 @@ import {filter} from 'rxjs/operators';
 
 import {CountriesService} from './countries.service';
 import {Country} from './country.model';
+import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'fury-countries',
@@ -15,6 +16,8 @@ import {Country} from './country.model';
   styleUrls: ['./countries.component.scss']
 })
 export class CountriesComponent implements OnInit {
+
+  baseUrl = environment.backend;
 
   subject$: ReplaySubject<Country[]> = new ReplaySubject<Country[]>(1);
   data$: Observable<Country[]> = this.subject$.asObservable();

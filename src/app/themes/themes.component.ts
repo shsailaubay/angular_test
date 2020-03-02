@@ -8,6 +8,7 @@ import {filter} from 'rxjs/operators';
 
 import {ThemesService} from './themes.service';
 import {Theme} from './theme.model';
+import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'fury-themes',
@@ -15,6 +16,8 @@ import {Theme} from './theme.model';
   styleUrls: ['./themes.component.scss']
 })
 export class ThemesComponent implements OnInit {
+
+  baseUrl = environment.backend;
 
   subject$: ReplaySubject<Theme[]> = new ReplaySubject<Theme[]>(1);
   data$: Observable<Theme[]> = this.subject$.asObservable();
