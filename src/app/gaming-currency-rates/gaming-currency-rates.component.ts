@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {MatDialog, MatDialogRef, MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {ListColumn} from '../../@fury/shared/list/list-column.model';
 import {Observable, of, ReplaySubject} from 'rxjs';
@@ -11,7 +11,7 @@ import {GamingCurrencyRateService} from './gaming-currency-rate.service';
   templateUrl: './gaming-currency-rates.component.html',
   styleUrls: ['./gaming-currency-rates.component.scss']
 })
-export class GamingCurrencyRatesComponent implements OnInit, AfterViewInit {
+export class GamingCurrencyRatesComponent implements OnInit {
 
   subject$: ReplaySubject<GamingCurrencyRate[]> = new ReplaySubject<GamingCurrencyRate[]>(1);
   data$: Observable<GamingCurrencyRate[]> = this.subject$.asObservable();
@@ -62,11 +62,6 @@ export class GamingCurrencyRatesComponent implements OnInit, AfterViewInit {
         this.dataSource.paginator = this.paginator;
       });
     });
-  }
-
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
   }
 
   onFilterChange(value) {
