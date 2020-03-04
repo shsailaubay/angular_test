@@ -34,6 +34,7 @@ export class ForgotPasswordComponent implements OnInit {
     this.form.disable();
     this.loginError = false;
     this.subscription = this.loginService.resetPassword(this.form.value).subscribe(response => {
+      this.resetSuccess = true;
     }, error => {
       console.log(error);
       if (error.status === 201) {
