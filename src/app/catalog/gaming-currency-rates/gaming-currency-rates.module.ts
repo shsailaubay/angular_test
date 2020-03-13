@@ -1,11 +1,12 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
-import {GamingCurrencyRatesRoutingModule} from './gaming-currency-rates-routing.module';
-import {GamingCurrencyRateDialogComponent, GamingCurrencyRatesComponent} from './gaming-currency-rates.component';
-import {FurySharedModule} from '../../../@fury/fury-shared.module';
-import {MaterialModule} from '../../../@fury/shared/material-components.module';
-import {ListModule} from '../../../@fury/shared/list/list.module';
+import { GamingCurrencyRatesRoutingModule } from './gaming-currency-rates-routing.module';
+import { GamingCurrencyRatesComponent } from './gaming-currency-rates.component';
+import { FurySharedModule } from '../../../@fury/fury-shared.module';
+import { MaterialModule } from '../../../@fury/shared/material-components.module';
+import { ListModule } from '../../../@fury/shared/list/list.module';
+import { GamingCurrencyRateDialogComponent } from './gaming-currency-rate-dialog.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,9 @@ import {ListModule} from '../../../@fury/shared/list/list.module';
     MaterialModule,
     ListModule
   ],
-  entryComponents: [GamingCurrencyRateDialogComponent]
+  entryComponents: [
+    GamingCurrencyRateDialogComponent
+  ]
 })
 export class GamingCurrencyRatesModule {
 }

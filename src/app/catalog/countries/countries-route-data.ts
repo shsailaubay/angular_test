@@ -1,9 +1,11 @@
+import { Country } from './country.model';
 import { CountryDialogComponent } from './country-dialog.component';
 
 export const countriesRouteData = {
   heading: 'Страны',
   addCaption: 'страну',
   apiUrl: '/countries',
+  model: Country,
   dialog: CountryDialogComponent,
   furyListColumns: [
     {name: 'id', property: '_id', visible: false, isModelProperty: true},

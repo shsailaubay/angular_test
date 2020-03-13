@@ -7,7 +7,7 @@ import {MaterialModule} from '../../../@fury/shared/material-components.module';
 import {ListModule} from '../../../@fury/shared/list/list.module';
 
 import {GamesRoutingModule} from './games-routing.module';
-import {GameDialogComponent, GamesComponent} from './games.component';
+import {GamesComponent} from './games.component';
 
 @NgModule({
   imports: [
@@ -20,9 +20,7 @@ import {GameDialogComponent, GamesComponent} from './games.component';
   ],
   declarations: [
     GamesComponent,
-    GameDialogComponent
   ],
-  entryComponents: [GameDialogComponent]
 })
 export class GamesModule {
 }

@@ -5,6 +5,7 @@ import {Observable, of, ReplaySubject} from 'rxjs';
 import {filter} from 'rxjs/operators';
 import {GamingCurrencyRate} from './gaming-currency-rate.model';
 import {GamingCurrencyRateService} from './gaming-currency-rate.service';
+import { GamingCurrencyRateDialogComponent } from './gaming-currency-rate-dialog.component';
 
 @Component({
   selector: 'fury-gaming-currency-rates',
@@ -73,10 +74,10 @@ export class GamingCurrencyRatesComponent implements OnInit {
     this.dataSource.filter = value;
   }
 
-  // openDialog() {
-  //   this.dialog.open(GamingCurrencyRateDialogComponent, {
-  //     disableClose: false,
-  //     width: '450px'
-  //   });
-  // }
+  openDialog() {
+    this.dialog.open(GamingCurrencyRateDialogComponent, {
+      disableClose: false,
+      width: '450px'
+    });
+  }
 }

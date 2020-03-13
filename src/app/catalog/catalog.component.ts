@@ -2,7 +2,10 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, ReplaySubject } from 'rxjs';
+
 import { ListColumn } from '../../@fury/shared/list/list-column.model';
+import { fadeInRightAnimation } from '../../@fury/animations/fade-in-right.animation';
+import { fadeInUpAnimation } from '../../@fury/animations/fade-in-up.animation';
 
 import { environment } from '../../environments/environment';
 import { ApiService } from '../api.service';
@@ -11,9 +14,12 @@ import { filter } from 'rxjs/operators';
 @Component({
   selector: 'fury-catalog',
   templateUrl: './catalog.component.html',
-  styleUrls: ['./catalog.component.scss']
+  styleUrls: ['./catalog.component.scss'],
+  animations: [fadeInRightAnimation, fadeInUpAnimation]
 })
 export class CatalogComponent implements OnInit {
+
+  loading = true;
 
   routeUrl = this.route.snapshot.url[0].path;
   routeData = this.route.snapshot.data;
@@ -55,6 +61,8 @@ export class CatalogComponent implements OnInit {
 
   getData() {
 
+    this.loading = true;
+
     this.subject$ = new ReplaySubject<any[]>(1);
     this.data$ = this.subject$.asObservable();
     this.data = [];
@@ -72,6 +80,7 @@ export class CatalogComponent implements OnInit {
         this.dataSource.data = data;
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
+        this.loading = false;
       });
     });
   }

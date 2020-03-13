@@ -7,6 +7,9 @@ import { gamingAccountsRouteData } from './gaming-accounts/gaming-accounts-route
 import { cashReleaseRequestsRouteData } from './cash-release-requests/cash-release-requests-route-data';
 import { gamingCurrencyRatesRouteData } from './gaming-currency-rates/gaming-currency-rates-route-data';
 import { gamesRouteData } from './games/games-route-data';
+import { gamingModesRouteData } from './gaming-modes/gaming-modes-route-data';
+import { boostersRouteData } from './boosters/boosters-route-data';
+import { themesRouteData } from './themes/themes-route-data';
 
 const routes: Routes = [
   {
@@ -44,18 +47,21 @@ const routes: Routes = [
     component: CatalogComponent,
     data: gamesRouteData
   },
-  // {
-  //   path: 'gaming-modes',
-  //   component: CatalogComponent,
-  // },
-  // {
-  //   path: 'boosters',
-  //   component: CatalogComponent,
-  // },
-  // {
-  //   path: 'themes',
-  //   component: CatalogComponent,
-  // },
+  {
+    path: 'gaming-modes',
+    component: CatalogComponent,
+    data: gamingModesRouteData
+  },
+  {
+    path: 'boosters',
+    component: CatalogComponent,
+    data: boostersRouteData
+  },
+  {
+    path: 'themes',
+    component: CatalogComponent,
+    data: themesRouteData
+  },
   {
     path: 'countries',
     component: CatalogComponent,
