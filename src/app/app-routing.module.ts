@@ -19,57 +19,12 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: './reports/reports.module#ReportsModule',
-        pathMatch: 'full'
+        loadChildren: './catalog/catalog.module#CatalogModule',
       },
       {
-        path: 'gaming-accounts',
-        loadChildren: './gaming-accounts/gaming-accounts.module#GamingAccountsModule',
+        path: '**',
+        redirectTo: '',
       },
-      {
-        path: 'cash-release-requests',
-        loadChildren: './cash-release-requests/cash-release-requests.module#CashReleaseRequestsModule',
-      },
-      {
-        path: 'gaming-currency-rates',
-        loadChildren: './gaming-currency-rates/gaming-currency-rates.module#GamingCurrencyRatesModule',
-      },
-      {
-        path: 'games',
-        loadChildren: './games/games.module#GamesModule',
-      },
-      {
-        path: 'gaming-modes',
-        loadChildren: './gaming-modes/gaming-modes.module#GamingModesModule',
-      },
-      {
-        path: 'boosters',
-        loadChildren: './boosters/boosters.module#BoostersModule',
-      },
-      {
-        path: 'themes',
-        loadChildren: './themes/themes.module#ThemesModule',
-      },
-      {
-        path: 'countries',
-        loadChildren: './countries/countries.module#CountriesModule',
-      },
-      {
-        path: 'gamers-levels',
-        loadChildren: './gamers-levels/gamers-levels.module#GamersLevelsModule',
-      },
-      {
-        path: 'actions',
-        loadChildren: './actions/actions.module#ActionsModule',
-      },
-      {
-        path: 'push-notifications',
-        loadChildren: './push-notifications/push-notifications.module#PushNotificationsModule',
-      },
-      {
-        path: 'users',
-        loadChildren: './users/users.module#UsersModule',
-      }
     ]
   }
 ];
