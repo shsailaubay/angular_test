@@ -19,6 +19,8 @@ import { GamersLevelDialogComponent } from './gamers-levels/gamers-level-dialog.
 import { ActionDialogComponent } from './actions/action-dialog.component';
 import { PushNotificationAddDialogComponent } from './push-notifications/push-notification-dialog.component';
 import { UserAddDialogComponent } from './users/user-dialog.component';
+import { UsersModule } from './users/users.module';
+import { UserRolePipe } from './users/user-role.pipe';
 
 @NgModule({
   imports: [
@@ -28,6 +30,7 @@ import { UserAddDialogComponent } from './users/user-dialog.component';
     FurySharedModule,
     ListModule,
     CatalogRoutingModule,
+    UsersModule,
   ],
   declarations: [
     CatalogComponent,
@@ -42,6 +45,7 @@ import { UserAddDialogComponent } from './users/user-dialog.component';
     ActionDialogComponent,
     PushNotificationAddDialogComponent,
     UserAddDialogComponent,
+    UserRolePipe,
   ],
   entryComponents: [
     CashReleaseRequestDeclineComponent,
@@ -55,6 +59,9 @@ import { UserAddDialogComponent } from './users/user-dialog.component';
     ActionDialogComponent,
     PushNotificationAddDialogComponent,
     UserAddDialogComponent,
+  ],
+  exports: [
+    UserRolePipe,
   ],
 })
 export class CatalogModule {

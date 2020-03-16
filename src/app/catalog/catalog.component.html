@@ -24,7 +24,14 @@
       <table [dataSource]="dataSource" mat-table matSort>
 
         <tr *matHeaderRowDef="visibleColumns" mat-header-row></tr>
-        <tr *matRowDef="let row; columns: visibleColumns;" class="clickable route-animations-elements" mat-row></tr>
+
+        <ng-container *ngIf="routeUrl === 'gaming-accounts'">
+          <tr *matRowDef="let row; columns: visibleColumns;" class="clickable route-animations-elements" mat-row (click)="gotoGamingAccount(row.id)" style="cursor: pointer;"></tr>
+        </ng-container>
+
+        <ng-container *ngIf="routeUrl !== 'gaming-accounts'">
+          <tr *matRowDef="let row; columns: visibleColumns;" class="clickable route-animations-elements" mat-row></tr>
+        </ng-container>
 
         <!--        <ng-container matColumnDef="checkbox">-->
         <!--          <th *matHeaderCellDef class="actions-cell" mat-header-cell>-->
@@ -46,6 +53,18 @@
               <span *ngSwitchCase="'Time'">{{ row[column.property] | date:"dd.MM.yyyy HH:mm" }}</span>
               <span *ngSwitchCase="'Is buy'">{{ row[column.property] ? 'Да' : 'Нет' }}</span>
               <span *ngSwitchCase="'Status'">{{ statusCodes[row[column.property]] }}</span>
+              <span *ngSwitchCase="'startDate'">{{ row[column.property] | date:"dd.MM.yyyy" }}</span>
+              <span *ngSwitchCase="'endDate'">{{ row[column.property] | date:"dd.MM.yyyy" }}</span>
+              <span *ngSwitchCase="'active'">{{ row[column.property] ? 'Да' : 'Нет' }}</span>
+              <span *ngSwitchCase="'Role'">{{ row[column.property] | userRole }}</span>
+              <span *ngSwitchCase="'devices'">
+                <span [ngSwitch]="row[column.property]">
+                  <span *ngSwitchCase="1">All</span>
+                  <span *ngSwitchCase="2">Android</span>
+                  <span *ngSwitchCase="3">iOS</span>
+                  <span *ngSwitchDefault></span>
+                </span>
+              </span>
               <span *ngSwitchDefault>{{ row[column.property] }}</span>
             </td>
           </ng-container>

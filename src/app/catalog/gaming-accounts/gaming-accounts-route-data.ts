@@ -15,6 +15,5 @@ export const gamingAccountsRouteData = {
     {name: 'Gold', property: 'gold', visible: true, isModelProperty: true},
     {name: 'Player Status', property: 'playerStatus', visible: true, isModelProperty: true},
     {name: 'Last Visit', property: 'lastVisit', visible: true, isModelProperty: true},
-    {name: 'Actions', property: 'actions', visible: true},
   ]
 };

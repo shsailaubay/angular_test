@@ -53,7 +53,7 @@
         <ng-container *ngFor="let column of columns">
           <ng-container *ngIf="column.isModelProperty" [matColumnDef]="column.property">
             <th *matHeaderCellDef mat-header-cell mat-sort-header> {{ column.name }}</th>
-            <td *matCellDef="let row" mat-cell>{{ column.name == 'Role' ? (row[column.property] | userRole) : row[column.property] }}</td>
+            <td *matCellDef="let row" mat-cell>{{ column.name == 'Role' ? row[column.property] : row[column.property] }}</td>
           </ng-container>
         </ng-container>
 

@@ -1,6 +1,6 @@
 import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, ReplaySubject, Subscription } from 'rxjs';
 
 import { ListColumn } from '../../@fury/shared/list/list-column.model';
@@ -45,6 +45,7 @@ export class CatalogComponent implements OnInit, OnDestroy {
   pageSize = 10;
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private dialog: MatDialog,
     private apiService: ApiService,
@@ -113,6 +114,10 @@ export class CatalogComponent implements OnInit, OnDestroy {
       disableClose: false,
       data: data,
     });
+  }
+
+  gotoGamingAccount(id) {
+    this.router.navigate(['gaming-accounts/', id]);
   }
 
   approveRequest(id) {

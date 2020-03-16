@@ -29,12 +29,10 @@ const routes: Routes = [
     path: 'gaming-accounts',
     component: CatalogComponent,
     data: gamingAccountsRouteData,
-    children: [
-      {
-        path: ':id',
-        loadChildren: () => import('./gaming-accounts/gaming-accounts.module').then(m => m.GamingAccountsModule),
-      },
-    ],
+  },
+  {
+    path: 'gaming-accounts/:id',
+    loadChildren: () => import('./gaming-accounts/gaming-accounts.module').then(m => m.GamingAccountsModule),
   },
   {
     path: 'cash-release-requests',

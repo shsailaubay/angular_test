@@ -9,7 +9,6 @@ import {UsersRoutingModule} from './users-routing.module';
 import {UsersService} from './users.service';
 import {UsersComponent} from './users.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import {UserRolePipe} from './user-role.pipe';
 
 @NgModule({
   imports: [
@@ -18,17 +17,17 @@ import {UserRolePipe} from './user-role.pipe';
     MaterialModule,
     ListModule,
     UsersRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [
-    UsersService
+    UsersService,
   ],
   declarations: [
     UsersComponent,
-    UserRolePipe
   ],
-  entryComponents: [
-  ]
+  exports: [
+  ],
+  entryComponents: [],
 })
 export class UsersModule {
 }
