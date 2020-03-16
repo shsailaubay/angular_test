@@ -2,7 +2,7 @@
 
   <fury-page-layout-header>
     <div class="display-1" [@fadeInRight]>{{routeData.heading}}</div>
-<!--    <fury-breadcrumbs [@fadeInRight] current="{{routeData.heading}}"></fury-breadcrumbs>-->
+    <!--    <fury-breadcrumbs [@fadeInRight] current="{{routeData.heading}}"></fury-breadcrumbs>-->
   </fury-page-layout-header>
   <!--  <fury-page-layout-header>-->
   <!--    <fury-breadcrumbs current="{{routeData.heading}}"></fury-breadcrumbs>-->
@@ -10,7 +10,7 @@
 
   <fury-page-layout-content [@fadeInUp]>
 
-<!--    <button *ngIf="routeData.addCaption" style="margin-bottom: 24px;" mat-raised-button color="accent" (click)="openDialog()">Добавить {{routeData.addCaption}}</button>-->
+    <!--    <button *ngIf="routeData.addCaption" style="margin-bottom: 24px;" mat-raised-button color="accent" (click)="openDialog()">Добавить {{routeData.addCaption}}</button>-->
 
     <fury-list [columns]="columns" (filterChange)="onFilterChange($event)">
 
@@ -45,12 +45,13 @@
               <span *ngSwitchCase="'Last Visit'">{{ row[column.property] | date:"dd.MM.yyyy" }}</span>
               <span *ngSwitchCase="'Time'">{{ row[column.property] | date:"dd.MM.yyyy HH:mm" }}</span>
               <span *ngSwitchCase="'Is buy'">{{ row[column.property] ? 'Да' : 'Нет' }}</span>
+              <span *ngSwitchCase="'Status'">{{ statusCodes[row[column.property]] }}</span>
               <span *ngSwitchDefault>{{ row[column.property] }}</span>
             </td>
           </ng-container>
         </ng-container>
 
-        <ng-container matColumnDef="actions">
+        <ng-container *ngIf="routeUrl !== 'cash-release-requests'" matColumnDef="actions">
           <th *matHeaderCellDef class="actions-cell" mat-header-cell></th>
           <td *matCellDef="let row" class="actions-cell" mat-cell>
             <button type="button" mat-icon-button [matMenuTriggerFor]="actionsMenu" (click)="$event.stopPropagation()">
@@ -64,6 +65,14 @@
                 <span>Удалить</span>
               </button>
             </mat-menu>
+          </td>
+        </ng-container>
+
+        <ng-container *ngIf="routeUrl === 'cash-release-requests'" matColumnDef="actions">
+          <th *matHeaderCellDef class="actions-cell" mat-header-cell mat-sort-header></th>
+          <td *matCellDef="let row" class="actions-cell" mat-cell>
+            <button mat-raised-button color="accent" style="margin-right: 8px; color: #ffffff;" (click)="approveRequest(row.id)">Approve</button>
+            <button mat-raised-button color="warn" style="color: #ffffff;" (click)="openDialog(row.id)">Decline</button>
           </td>
         </ng-container>
 

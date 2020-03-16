@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, ReplaySubject } from 'rxjs';
+import { Observable, ReplaySubject, Subscription } from 'rxjs';
 
 import { ListColumn } from '../../@fury/shared/list/list-column.model';
 import { fadeInRightAnimation } from '../../@fury/animations/fade-in-right.animation';
@@ -10,12 +10,14 @@ import { fadeInUpAnimation } from '../../@fury/animations/fade-in-up.animation';
 import { environment } from '../../environments/environment';
 import { ApiService } from '../api.service';
 import { filter } from 'rxjs/operators';
+import { STATUS_CODES } from './cash-release-requests/statusCodes';
+import { CashReleaseRequestsService } from './cash-release-requests/cash-release-requests.service';
 
 @Component({
   selector: 'fury-catalog',
   templateUrl: './catalog.component.html',
   styleUrls: ['./catalog.component.scss'],
-  animations: [fadeInRightAnimation, fadeInUpAnimation]
+  animations: [fadeInRightAnimation, fadeInUpAnimation],
 })
 export class CatalogComponent implements OnInit, OnDestroy {
 
@@ -32,6 +34,9 @@ export class CatalogComponent implements OnInit, OnDestroy {
 
   dataSource: MatTableDataSource<any> | null;
 
+  subscriptions: Subscription = new Subscription();
+  statusCodes = STATUS_CODES;
+
   @Input()
   columns: ListColumn[] = this.routeData.furyListColumns as ListColumn[];
 
@@ -43,10 +48,13 @@ export class CatalogComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private dialog: MatDialog,
     private apiService: ApiService,
+    private cashReleaseRequestsService: CashReleaseRequestsService,
   ) {
-    dialog.afterAllClosed.subscribe(() => {
-      this.getData();
-    });
+    this.subscriptions.add(
+      dialog.afterAllClosed.subscribe(() => {
+        this.getData();
+      }),
+    );
   }
 
   get visibleColumns() {
@@ -58,6 +66,9 @@ export class CatalogComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    if (this.subscriptions) {
+      this.subscriptions.unsubscribe();
+    }
   }
 
   getData() {
@@ -70,20 +81,22 @@ export class CatalogComponent implements OnInit, OnDestroy {
 
     this.dataSource = null;
 
-    this.apiService.get(this.routeData.apiUrl).subscribe((page: any) => {
-      console.log(123, page);
-      this.subject$.next((page.docs ? page.docs : page).map(data => new this.routeData.model(data)));
-      this.dataSource = new MatTableDataSource();
-      this.data$.pipe(
-        filter(Boolean)
-      ).subscribe((data) => {
-        this.data = data;
-        this.dataSource.data = data;
-        this.dataSource.sort = this.sort;
-        this.dataSource.paginator = this.paginator;
-        this.loading = false;
-      });
-    });
+    this.subscriptions.add(
+      this.apiService.get(this.routeData.apiUrl).subscribe((page: any) => {
+        console.log(123, page);
+        this.subject$.next((page.docs ? page.docs : page).map(data => new this.routeData.model(data)));
+        this.dataSource = new MatTableDataSource();
+        this.data$.pipe(
+          filter(Boolean),
+        ).subscribe((data) => {
+          this.data = data;
+          this.dataSource.data = data;
+          this.dataSource.sort = this.sort;
+          this.dataSource.paginator = this.paginator;
+          this.loading = false;
+        });
+      }),
+    );
   }
 
   onFilterChange(value) {
@@ -98,16 +111,26 @@ export class CatalogComponent implements OnInit, OnDestroy {
   openDialog(data = null) {
     this.dialog.open(this.routeData.dialog, {
       disableClose: false,
-      data: data
+      data: data,
     });
   }
 
+  approveRequest(id) {
+    this.subscriptions.add(
+      this.cashReleaseRequestsService.approveRequest(id, true).subscribe(
+        res => this.getData(), error => console.log(error),
+      ),
+    );
+  }
+
   delete(id) {
-    this.apiService.delete(this.routeData.apiUrl + '/' + id).subscribe((response: any) => {
-      this.getData();
-    }, (response: any) => {
-      console.log(response);
-    });
+    this.subscriptions.add(
+      this.apiService.delete(this.routeData.apiUrl + '/' + id).subscribe((response: any) => {
+        this.getData();
+      }, (response: any) => {
+        console.log(response);
+      }),
+    );
   }
 
 }

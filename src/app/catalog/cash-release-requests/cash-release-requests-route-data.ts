@@ -1,9 +1,11 @@
 import { CashReleaseRequest } from './cash-release-request.model';
+import { CashReleaseRequestDeclineComponent } from './cash-release-request-decline.component';
 
 export const cashReleaseRequestsRouteData = {
   heading: 'Заявки на вывод денежных средств',
   apiUrl: '/admin/financial',
   model: CashReleaseRequest,
+  dialog: CashReleaseRequestDeclineComponent,
   furyListColumns: [
     // {name: 'Checkbox', property: 'checkbox', visible: true},
     {name: 'Id', property: 'id', visible: true, isModelProperty: true},

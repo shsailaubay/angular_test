@@ -27,7 +27,6 @@ export class CashReleaseRequestsComponent implements OnInit, OnDestroy {
 
   @Input()
   columns: ListColumn[] = [
-    {name: 'Checkbox', property: 'checkbox', visible: true},
     {name: 'Id', property: 'id', visible: true, isModelProperty: true},
     {name: 'Name', property: 'name', visible: true, isModelProperty: true},
     {name: 'Gold', property: 'gold', visible: true, isModelProperty: true},
@@ -99,49 +98,11 @@ export class CashReleaseRequestsComponent implements OnInit, OnDestroy {
     );
   }
 
-  openDialog(id) {
-    this.dialog.open(CashReleaseRequestDeclineComponent, {
-      disableClose: false,
-      width: '450px',
-      data: id
-    });
-  }
-}
-
-@Component({
-  selector: 'fury-cash-release-request-decline-component',
-  templateUrl: './cash-release-request-decline.component.html',
-})
-export class CashReleaseRequestDeclineComponent implements OnDestroy {
-  subscription: Subscription;
-
-  constructor(
-    private dialogRef: MatDialogRef<CashReleaseRequestDeclineComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    private cashReleaseRequestsService: CashReleaseRequestsService
-  ) {
-    console.log(this.data);
-  }
-
-  decline() {
-    this.subscription = this.cashReleaseRequestsService.approveRequest(this.data, false).subscribe(
-      () => {
-        this.dialogRef.close();
-      },
-      error => {
-        console.log(error);
-        this.dialogRef.close();
-      }
-    );
-  }
-
-  close() {
-    this.dialogRef.close();
-  }
-
-  ngOnDestroy(): void {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
-  }
+  // openDialog(id) {
+  //   this.dialog.open(CashReleaseRequestDeclineComponent, {
+  //     disableClose: false,
+  //     width: '450px',
+  //     data: id
+  //   });
+  // }
 }
