@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import {BaseApi} from '../../base-api';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { ApiService } from '../../api.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService extends BaseApi {
+export class LoginService extends ApiService {
 
   constructor(
     public http: HttpClient,
