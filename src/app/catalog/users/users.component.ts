@@ -85,14 +85,6 @@ export class UsersComponent implements OnInit {
     this.dataSource.filter = value;
   }
 
-  openDialog(data = null) {
-    this.dialog.open(UserAddDialogComponent, {
-      disableClose: false,
-      width: '640px',
-      data: data
-    });
-  }
-
   deleteData(id) {
     this.usersService.deleteData(id).subscribe((response: any) => {
       this.getData();

@@ -117,9 +117,7 @@ export class CatalogComponent implements OnInit, OnDestroy {
 
   approveRequest(id) {
     this.subscriptions.add(
-      this.cashReleaseRequestsService.approveRequest(id, true).subscribe(
-        res => this.getData(), error => console.log(error),
-      ),
+      this.cashReleaseRequestsService.approveRequest(id, true).subscribe(res => this.getData(), error => console.log(error)),
     );
   }
 
