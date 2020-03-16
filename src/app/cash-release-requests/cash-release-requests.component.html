@@ -60,7 +60,13 @@
         <ng-container *ngFor="let column of columns">
           <ng-container *ngIf="column.isModelProperty" [matColumnDef]="column.property">
             <th *matHeaderCellDef mat-header-cell mat-sort-header> {{ column.name }}</th>
-            <td *matCellDef="let row" mat-cell>{{ row[column.property] }}</td>
+            <ng-container *ngIf="column.name !== 'Status'">
+              <td *matCellDef="let row"  mat-cell>{{ row[column.property] }}</td>
+            </ng-container>
+            <ng-container *ngIf="column.name === 'Status'">
+              <td *matCellDef="let row" mat-cell>{{ statusCodes[row[column.property]] }}</td>
+            </ng-container>
+
           </ng-container>
         </ng-container>
 
