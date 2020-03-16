@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
 import {ActionsRoutingModule} from './actions-routing.module';
-import {ActionDialogComponent, ActionsComponent} from './actions.component';
+import {ActionsComponent} from './actions.component';
 import {FurySharedModule} from '../../../@fury/fury-shared.module';
 import {FuryCardModule} from '../../../@fury/shared/card/card.module';
 import {MaterialModule} from '../../../@fury/shared/material-components.module';
@@ -10,7 +10,7 @@ import {ListModule} from '../../../@fury/shared/list/list.module';
 import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
-  declarations: [ActionsComponent, ActionDialogComponent],
+  declarations: [ActionsComponent],
   imports: [
     CommonModule,
     ActionsRoutingModule,
@@ -20,7 +20,6 @@ import {ReactiveFormsModule} from '@angular/forms';
     FuryCardModule,
     ReactiveFormsModule
   ],
-  entryComponents: [ActionDialogComponent]
 })
 export class ActionsModule {
 }

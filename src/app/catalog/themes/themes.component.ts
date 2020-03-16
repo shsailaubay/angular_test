@@ -1,20 +1,19 @@
-import {Component, Inject, Input, OnInit, ViewChild} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
-import {ListColumn} from '../../../@fury/shared/list/list-column.model';
+import { Component, Inject, Input, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { ListColumn } from '../../../@fury/shared/list/list-column.model';
 
-import {Observable, ReplaySubject} from 'rxjs';
-import {filter} from 'rxjs/operators';
+import { Observable, ReplaySubject } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
-import {ThemesService} from './themes.service';
-import {Theme} from './theme.model';
-import {environment} from '../../../environments/environment';
-import { ThemeDialogComponent } from './theme-dialog.component';
+import { ThemesService } from './themes.service';
+import { Theme } from './theme.model';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'fury-themes',
   templateUrl: './themes.component.html',
-  styleUrls: ['./themes.component.scss']
+  styleUrls: ['./themes.component.scss'],
 })
 export class ThemesComponent implements OnInit {
 
@@ -43,7 +42,7 @@ export class ThemesComponent implements OnInit {
 
   constructor(
     private themesService: ThemesService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
   ) {
     dialog.afterAllClosed.subscribe(() => {
       this.ngOnInit();
@@ -70,7 +69,7 @@ export class ThemesComponent implements OnInit {
       this.subject$.next(page.map(data => new Theme(data)));
       this.dataSource = new MatTableDataSource();
       this.data$.pipe(
-        filter(Boolean)
+        filter(Boolean),
       ).subscribe((data) => {
         this.data = data;
         this.dataSource.data = data;
@@ -97,12 +96,12 @@ export class ThemesComponent implements OnInit {
     });
   }
 
-  openDialog(data = null) {
-    this.dialog.open(ThemeDialogComponent, {
-      disableClose: false,
-      width: '450px',
-      data: data
-    });
-  }
+  // openDialog(data = null) {
+  //   this.dialog.open(ThemeDialogComponent, {
+  //     disableClose: false,
+  //     width: '450px',
+  //     data: data,
+  //   });
+  // }
 
 }

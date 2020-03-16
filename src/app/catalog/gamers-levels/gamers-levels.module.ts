@@ -1,13 +1,14 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {ReactiveFormsModule} from '@angular/forms';
-import {MatDialogModule, MatPaginatorModule, MatTableModule} from '@angular/material';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule, MatPaginatorModule, MatTableModule } from '@angular/material';
 
-import {FurySharedModule} from '../../../@fury/fury-shared.module';
-import {ListModule} from '../../../@fury/shared/list/list.module';
+import { FurySharedModule } from '../../../@fury/fury-shared.module';
+import { ListModule } from '../../../@fury/shared/list/list.module';
 
-import {GamersLevelsRoutingModule} from './gamers-levels-routing.module';
-import {GamersLevelDialogComponent, GamersLevelsComponent} from './gamers-levels.component';
+import { GamersLevelsRoutingModule } from './gamers-levels-routing.module';
+import { GamersLevelsComponent } from './gamers-levels.component';
+import { GamersLevelDialogComponent } from './gamers-level-dialog.component';
 
 @NgModule({
   imports: [
@@ -18,13 +19,13 @@ import {GamersLevelDialogComponent, GamersLevelsComponent} from './gamers-levels
     MatTableModule,
     MatPaginatorModule,
     MatDialogModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   declarations: [
     GamersLevelsComponent,
-    GamersLevelDialogComponent
+    GamersLevelDialogComponent,
   ],
-  entryComponents: [GamersLevelDialogComponent]
+  entryComponents: [GamersLevelDialogComponent],
 })
 export class GamersLevelsModule {
 }

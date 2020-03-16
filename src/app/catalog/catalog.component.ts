@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, ReplaySubject } from 'rxjs';
@@ -17,14 +17,12 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./catalog.component.scss'],
   animations: [fadeInRightAnimation, fadeInUpAnimation]
 })
-export class CatalogComponent implements OnInit {
+export class CatalogComponent implements OnInit, OnDestroy {
 
   loading = true;
 
   routeUrl = this.route.snapshot.url[0].path;
   routeData = this.route.snapshot.data;
-
-  Model = this.routeData.model;
 
   baseUrl = environment.backend;
 
@@ -57,6 +55,9 @@ export class CatalogComponent implements OnInit {
 
   ngOnInit() {
     this.getData();
+  }
+
+  ngOnDestroy() {
   }
 
   getData() {
@@ -97,7 +98,6 @@ export class CatalogComponent implements OnInit {
   openDialog(data = null) {
     this.dialog.open(this.routeData.dialog, {
       disableClose: false,
-      width: '450px',
       data: data
     });
   }
@@ -109,4 +109,5 @@ export class CatalogComponent implements OnInit {
       console.log(response);
     });
   }
+
 }

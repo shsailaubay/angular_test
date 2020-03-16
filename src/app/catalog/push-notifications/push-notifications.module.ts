@@ -7,7 +7,7 @@ import {MaterialModule} from '../../../@fury/shared/material-components.module';
 import {ListModule} from '../../../@fury/shared/list/list.module';
 
 import {PushNotificationsRoutingModule} from './push-notifications-routing.module';
-import {PushNotificationAddDialogComponent, PushNotificationsComponent} from './push-notifications.component';
+import {PushNotificationsComponent} from './push-notifications.component';
 
 @NgModule({
   imports: [
@@ -20,9 +20,7 @@ import {PushNotificationAddDialogComponent, PushNotificationsComponent} from './
   ],
   declarations: [
     PushNotificationsComponent,
-    PushNotificationAddDialogComponent
   ],
-  entryComponents: [PushNotificationAddDialogComponent]
 })
 export class PushNotificationsModule {
 }

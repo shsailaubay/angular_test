@@ -7,7 +7,7 @@ import {ListModule} from '../../../@fury/shared/list/list.module';
 
 import {UsersRoutingModule} from './users-routing.module';
 import {UsersService} from './users.service';
-import {UsersComponent, UserAddDialogComponent} from './users.component';
+import {UsersComponent} from './users.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {UserRolePipe} from './user-role.pipe';
 
@@ -25,11 +25,9 @@ import {UserRolePipe} from './user-role.pipe';
   ],
   declarations: [
     UsersComponent,
-    UserAddDialogComponent,
     UserRolePipe
   ],
   entryComponents: [
-    UserAddDialogComponent
   ]
 })
 export class UsersModule {

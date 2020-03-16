@@ -14,6 +14,10 @@ import { GameDialogComponent } from './games/game-dialog.component';
 import { GamingModeDialogComponent } from './gaming-modes/gaming-mode-dialog.component';
 import { BoosterDialogComponent } from './boosters/booster-dialog.component';
 import { ThemeDialogComponent } from './themes/theme-dialog.component';
+import { GamersLevelDialogComponent } from './gamers-levels/gamers-level-dialog.component';
+import { ActionDialogComponent } from './actions/action-dialog.component';
+import { PushNotificationAddDialogComponent } from './push-notifications/push-notification-dialog.component';
+import { UserAddDialogComponent } from './users/user-dialog.component';
 
 @NgModule({
   imports: [
@@ -32,6 +36,10 @@ import { ThemeDialogComponent } from './themes/theme-dialog.component';
     BoosterDialogComponent,
     ThemeDialogComponent,
     CountryDialogComponent,
+    GamersLevelDialogComponent,
+    ActionDialogComponent,
+    PushNotificationAddDialogComponent,
+    UserAddDialogComponent,
   ],
   entryComponents: [
     GamingCurrencyRateDialogComponent,
@@ -40,7 +48,11 @@ import { ThemeDialogComponent } from './themes/theme-dialog.component';
     BoosterDialogComponent,
     ThemeDialogComponent,
     CountryDialogComponent,
-  ]
+    GamersLevelDialogComponent,
+    ActionDialogComponent,
+    PushNotificationAddDialogComponent,
+    UserAddDialogComponent,
+  ],
 })
 export class CatalogModule {
 }

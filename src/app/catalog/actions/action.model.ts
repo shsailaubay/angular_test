@@ -20,7 +20,7 @@ export class Action {
   constructor(gameHistory) {
     this._id = gameHistory._id;
     // this.region = gameHistory.region;
-    this.country = gameHistory.country;
+    this.country = gameHistory.country.name.ru;
     // this.game = gameHistory.game;
     this.name_ru = gameHistory.title.ru;
     this.name_en = gameHistory.title.en;

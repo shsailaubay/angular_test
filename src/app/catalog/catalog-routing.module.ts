@@ -10,6 +10,10 @@ import { gamesRouteData } from './games/games-route-data';
 import { gamingModesRouteData } from './gaming-modes/gaming-modes-route-data';
 import { boostersRouteData } from './boosters/boosters-route-data';
 import { themesRouteData } from './themes/themes-route-data';
+import { gamersLevelsRouteData } from './gamers-levels/gamers-levels-route-data';
+import { actionsRouteData } from './actions/actions-route-data';
+import { pushNotificationsRouteData } from './push-notifications/push-notifications-route-data';
+import { usersRouteData } from './users/users-route-data';
 
 const routes: Routes = [
   {
@@ -29,8 +33,8 @@ const routes: Routes = [
       {
         path: ':id',
         loadChildren: () => import('./gaming-accounts/gaming-accounts.module').then(m => m.GamingAccountsModule),
-      }
-    ]
+      },
+    ],
   },
   {
     path: 'cash-release-requests',
@@ -40,54 +44,58 @@ const routes: Routes = [
   {
     path: 'gaming-currency-rates',
     component: CatalogComponent,
-    data: gamingCurrencyRatesRouteData
+    data: gamingCurrencyRatesRouteData,
   },
   {
     path: 'games',
     component: CatalogComponent,
-    data: gamesRouteData
+    data: gamesRouteData,
   },
   {
     path: 'gaming-modes',
     component: CatalogComponent,
-    data: gamingModesRouteData
+    data: gamingModesRouteData,
   },
   {
     path: 'boosters',
     component: CatalogComponent,
-    data: boostersRouteData
+    data: boostersRouteData,
   },
   {
     path: 'themes',
     component: CatalogComponent,
-    data: themesRouteData
+    data: themesRouteData,
   },
   {
     path: 'countries',
     component: CatalogComponent,
     data: countriesRouteData,
   },
-  // {
-  //   path: 'gamers-levels',
-  //   component: CatalogComponent,
-  // },
-  // {
-  //   path: 'actions',
-  //   component: CatalogComponent,
-  // },
-  // {
-  //   path: 'push-notifications',
-  //   component: CatalogComponent,
-  // },
-  // {
-  //   path: 'users',
-  //   component: CatalogComponent,
-  // },
+  {
+    path: 'gamers-levels',
+    component: CatalogComponent,
+    data: gamersLevelsRouteData,
+  },
+  {
+    path: 'actions',
+    component: CatalogComponent,
+    data: actionsRouteData,
+  },
+  {
+    path: 'push-notifications',
+    component: CatalogComponent,
+    data: pushNotificationsRouteData,
+  },
+  {
+    path: 'users',
+    component: CatalogComponent,
+    data: usersRouteData,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class CatalogRoutingModule {
 }
