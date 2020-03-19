@@ -36,6 +36,7 @@ export class ActionDialogComponent implements OnInit {
       'endDate': [this.data ? this.data.endDate : '', Validators.required],
       'freeGold': [this.data ? this.data.freeGold : ''],
       'active': [this.data ? this.data.active : ''],
+      'repeatEveryDay': [this.data ? this.data.repeatEveryDay : ''],
       'title': this.formBuilder.group({
         'ru': [this.data ? this.data.name_ru : '', Validators.required],
         'en': [this.data ? this.data.name_en : '', Validators.required]

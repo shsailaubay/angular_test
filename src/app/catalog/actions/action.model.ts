@@ -16,6 +16,7 @@ export class Action {
   freeGold: number;
   actionPrice: number;
   active: boolean;
+  repeatEveryDay: boolean;
 
   constructor(gameHistory) {
     this._id = gameHistory._id;
@@ -35,5 +36,6 @@ export class Action {
     this.freeGold = gameHistory.freeGold;
     this.actionPrice = gameHistory.actionPrice;
     this.active = gameHistory.active;
+    this.repeatEveryDay = gameHistory.repeatEveryDay;
   }
 }
