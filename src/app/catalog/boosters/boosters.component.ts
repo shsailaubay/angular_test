@@ -11,7 +11,6 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {GamesService} from '../games/games.service';
 import {Game} from '../games/game.model';
 import {environment} from '../../../environments/environment';
-import { BoosterDialogComponent } from './booster-dialog.component';
 
 @Component({
   selector: 'fury-boosters',
@@ -99,10 +98,10 @@ export class BoostersComponent implements OnInit {
     });
   }
 
-  openDialog(data = null) {
-    this.dialog.open(BoosterDialogComponent, {
-      disableClose: false,
-      data: data
-    });
-  }
+  // openDialog(data = null) {
+  //   this.dialog.open(BoosterDialogComponent, {
+  //     disableClose: false,
+  //     data: data
+  //   });
+  // }
 }

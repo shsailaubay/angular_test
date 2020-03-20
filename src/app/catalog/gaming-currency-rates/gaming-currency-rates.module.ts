@@ -6,12 +6,10 @@ import { GamingCurrencyRatesComponent } from './gaming-currency-rates.component'
 import { FurySharedModule } from '../../../@fury/fury-shared.module';
 import { MaterialModule } from '../../../@fury/shared/material-components.module';
 import { ListModule } from '../../../@fury/shared/list/list.module';
-import { GamingCurrencyRateDialogComponent } from './gaming-currency-rate-dialog.component';
 
 @NgModule({
   declarations: [
     GamingCurrencyRatesComponent,
-    GamingCurrencyRateDialogComponent
   ],
   imports: [
     CommonModule,
@@ -20,9 +18,6 @@ import { GamingCurrencyRateDialogComponent } from './gaming-currency-rate-dialog
     MaterialModule,
     ListModule
   ],
-  entryComponents: [
-    GamingCurrencyRateDialogComponent
-  ]
 })
 export class GamingCurrencyRatesModule {
 }

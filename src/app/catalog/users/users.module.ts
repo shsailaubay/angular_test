@@ -6,7 +6,6 @@ import {MaterialModule} from '../../../@fury/shared/material-components.module';
 import {ListModule} from '../../../@fury/shared/list/list.module';
 
 import {UsersRoutingModule} from './users-routing.module';
-import {UsersService} from './users.service';
 import {UsersComponent} from './users.component';
 import {ReactiveFormsModule} from '@angular/forms';
 
@@ -19,15 +18,9 @@ import {ReactiveFormsModule} from '@angular/forms';
     UsersRoutingModule,
     ReactiveFormsModule,
   ],
-  providers: [
-    UsersService,
-  ],
   declarations: [
     UsersComponent,
   ],
-  exports: [
-  ],
-  entryComponents: [],
 })
 export class UsersModule {
 }

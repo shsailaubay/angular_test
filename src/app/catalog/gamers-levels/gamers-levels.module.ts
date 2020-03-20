@@ -8,7 +8,6 @@ import { ListModule } from '../../../@fury/shared/list/list.module';
 
 import { GamersLevelsRoutingModule } from './gamers-levels-routing.module';
 import { GamersLevelsComponent } from './gamers-levels.component';
-import { GamersLevelDialogComponent } from './gamers-level-dialog.component';
 
 @NgModule({
   imports: [
@@ -23,9 +22,7 @@ import { GamersLevelDialogComponent } from './gamers-level-dialog.component';
   ],
   declarations: [
     GamersLevelsComponent,
-    GamersLevelDialogComponent,
   ],
-  entryComponents: [GamersLevelDialogComponent],
 })
 export class GamersLevelsModule {
 }

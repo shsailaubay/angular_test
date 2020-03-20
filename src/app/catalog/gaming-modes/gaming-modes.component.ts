@@ -8,7 +8,6 @@ import {filter} from 'rxjs/operators';
 
 import {GamingModesService} from './gaming-modes.service';
 import {GamingMode} from './gaming-mode.model';
-import { GamingModeDialogComponent } from './gaming-mode-dialog.component';
 
 @Component({
   selector: 'fury-gaming-modes',
@@ -90,14 +89,14 @@ export class GamingModesComponent implements OnInit {
     this.dataSource.filter = value;
   }
 
-  openDialog(data = null) {
-    this.dialog.open(GamingModeDialogComponent, {
-      disableClose: false,
-      width: '450px',
-      data: data
-    });
-    this.isWasOpened = true;
-  }
+  // openDialog(data = null) {
+  //   this.dialog.open(GamingModeDialogComponent, {
+  //     disableClose: false,
+  //     width: '450px',
+  //     data: data
+  //   });
+  //   this.isWasOpened = true;
+  // }
 
   deleteData(id) {
     this.gamingModesService.deleteData(id).subscribe((response: any) => {

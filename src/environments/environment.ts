@@ -7,4 +7,5 @@ export const environment = {
   production: false,
   googleMapsApiKey: '',
   backend: 'http://localhost:8085' // Put your backend here
+  // backend: 'https://api.braimon.pre.luxystech.com' // Put your backend here
 };

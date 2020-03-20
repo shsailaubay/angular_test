@@ -7,7 +7,6 @@ import { MaterialModule } from '../../../@fury/shared/material-components.module
 import { ListModule } from '../../../@fury/shared/list/list.module';
 
 import { CountriesRoutingModule } from './countries-routing.module';
-import { CountriesService } from './countries.service';
 import { CountriesComponent } from './countries.component';
 
 @NgModule({
@@ -18,9 +17,6 @@ import { CountriesComponent } from './countries.component';
     MaterialModule,
     ListModule,
     CountriesRoutingModule
-  ],
-  providers: [
-    CountriesService
   ],
   declarations: [
     CountriesComponent,

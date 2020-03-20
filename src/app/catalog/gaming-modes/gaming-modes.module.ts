@@ -8,7 +8,6 @@ import { ListModule } from '../../../@fury/shared/list/list.module';
 
 import { GamingModesRoutingModule } from './gaming-modes-routing.module';
 import { GamingModesComponent } from './gaming-modes.component';
-import { GamingModeDialogComponent } from './gaming-mode-dialog.component';
 
 @NgModule({
   imports: [
@@ -21,9 +20,7 @@ import { GamingModeDialogComponent } from './gaming-mode-dialog.component';
   ],
   declarations: [
     GamingModesComponent,
-    GamingModeDialogComponent
   ],
-  entryComponents: [GamingModeDialogComponent]
 })
 export class GamingModesModule {
 }

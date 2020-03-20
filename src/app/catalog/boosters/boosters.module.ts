@@ -8,7 +8,6 @@ import { ListModule } from '../../../@fury/shared/list/list.module';
 import { BoostersRoutingModule } from './boosters-routing.module';
 import { BoostersComponent } from './boosters.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { BoosterDialogComponent } from './booster-dialog.component';
 
 @NgModule({
   imports: [
@@ -21,9 +20,7 @@ import { BoosterDialogComponent } from './booster-dialog.component';
   ],
   declarations: [
     BoostersComponent,
-    BoosterDialogComponent
   ],
-  entryComponents: [BoosterDialogComponent]
 })
 export class BoostersModule {
 }

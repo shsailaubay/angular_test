@@ -11,7 +11,6 @@ import {Game} from './game.model';
 import {GamingModesService} from '../gaming-modes/gaming-modes.service';
 import {GamingMode} from '../gaming-modes/gaming-mode.model';
 import {environment} from '../../../environments/environment';
-import { GameDialogComponent } from './game-dialog.component';
 
 @Component({
   selector: 'fury-games',
@@ -96,14 +95,14 @@ export class GamesComponent implements OnInit {
     this.dataSource.filter = value;
   }
 
-  openDialog(data = null) {
-    this.dialog.open(GameDialogComponent, {
-      disableClose: false,
-      width: '465px',
-      data: data
-    });
-    this.isWasOpened = true;
-  }
+  // openDialog(data = null) {
+  //   //   this.dialog.open(GameDialogComponent, {
+  //   //     disableClose: false,
+  //   //     width: '465px',
+  //   //     data: data
+  //   //   });
+  //   //   this.isWasOpened = true;
+  //   // }
 
   deleteData(id) {
     this.gamesService.deleteData(id).subscribe((response: any) => {

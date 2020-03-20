@@ -9,7 +9,6 @@ import {filter} from 'rxjs/operators';
 import {CountriesService} from './countries.service';
 import {Country} from './country.model';
 import {environment} from '../../../environments/environment';
-import { CountryDialogComponent } from './country-dialog.component';
 
 @Component({
   selector: 'fury-countries',
@@ -89,13 +88,13 @@ export class CountriesComponent implements OnInit {
     this.dataSource.filter = value;
   }
 
-  openDialog(data = null) {
-    this.dialog.open(CountryDialogComponent, {
-      disableClose: false,
-      width: '450px',
-      data: data
-    });
-  }
+  // openDialog(data = null) {
+  //   this.dialog.open(CountryDialogComponent, {
+  //     disableClose: false,
+  //     width: '450px',
+  //     data: data
+  //   });
+  // }
 
   deleteCountry(id) {
     this.countriesService.deleteCountry(id).subscribe((response: any) => {

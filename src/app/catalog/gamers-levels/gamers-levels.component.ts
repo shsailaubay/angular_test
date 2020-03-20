@@ -8,7 +8,6 @@ import {filter} from 'rxjs/operators';
 
 import {GamersLevelsService} from './gamers-levels.service';
 import {GamersLevel} from './gamers-level.model';
-import { GamersLevelDialogComponent } from './gamers-level-dialog.component';
 
 @Component({
   selector: 'fury-gamers-levels',
@@ -85,13 +84,13 @@ export class GamersLevelsComponent implements OnInit {
     this.dataSource.filter = value;
   }
 
-  openDialog(data = null) {
-    this.dialog.open(GamersLevelDialogComponent, {
-      disableClose: false,
-      width: '450px',
-      data: data
-    });
-  }
+  // openDialog(data = null) {
+  //   this.dialog.open(GamersLevelDialogComponent, {
+  //     disableClose: false,
+  //     width: '450px',
+  //     data: data
+  //   });
+  // }
 
   deleteData(id) {
     this.gamersLevelsService.deleteData(id).subscribe((response: any) => {
