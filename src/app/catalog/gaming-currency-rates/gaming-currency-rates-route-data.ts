@@ -9,7 +9,7 @@ export const gamingCurrencyRatesRouteData = {
   dialog: GamingCurrencyRateDialogComponent,
   furyListColumns: [
     {name: 'Time', property: 'date', visible: true, isModelProperty: true},
-    {name: 'Silver', property: 'silver', visible: true, isModelProperty: true},
+    // {name: 'Silver', property: 'silver', visible: true, isModelProperty: true},
     {name: 'Gold', property: 'gold', visible: true, isModelProperty: true},
   ]
 };

@@ -12,12 +12,16 @@
 
     <!--    <button *ngIf="routeData.addCaption" style="margin-bottom: 24px;" mat-raised-button color="accent" (click)="openDialog()">Добавить {{routeData.addCaption}}</button>-->
 
-    <fury-list [columns]="columns" (filterChange)="onFilterChange($event)">
+    <fury-list
+      [columns]="columns"
+      (filterChange)="onFilterChange($event)"
+      [style.maxWidth]="routeUrl === 'gaming-currency-rates' && '640px'"
+    >
 
       <div *ngIf="routeData.addCaption" class="actions">
         <button class="create" (click)="openDialog()" type="button" mat-raised-button color="accent">
           <mat-icon>add</mat-icon>
-          Добавить {{routeData.addCaption}}
+          {{routeUrl === 'gaming-currency-rates' ? 'Изменить' : 'Добавить'}} {{routeData.addCaption}}
         </button>
       </div>
 

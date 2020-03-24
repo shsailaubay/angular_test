@@ -1,17 +1,19 @@
 <div mat-dialog-title fxLayout="row" fxLayoutAlign="space-between center">
   <div>Изменить курс игровой валюты</div>
-  <button type="button" mat-icon-button (click)="close('No answer')" tabindex="-1">
+  <button type="button" mat-icon-button (click)="close()" tabindex="-1">
     <mat-icon>close</mat-icon>
   </button>
 </div>
 
 <mat-dialog-content>
-  <mat-form-field appearance="standard" style="width: 100%">
-    <mat-label>Укажите новое значение::</mat-label>
-    <input type="number" matInput>
-  </mat-form-field>
+  <form [formGroup]="form">
+    <mat-form-field appearance="standard" style="width: 100%">
+      <mat-label>Укажите новое значение::</mat-label>
+      <input formControlName="gold" type="number" matInput>
+    </mat-form-field>
+  </form>
 </mat-dialog-content>
 
 <mat-dialog-actions align="center">
-  <button mat-raised-button color="primary" (click)="close('Yes')">Сохранить</button>
+  <button mat-raised-button color="primary" (click)="submit()" [disabled]="form.invalid">Сохранить</button>
 </mat-dialog-actions>
