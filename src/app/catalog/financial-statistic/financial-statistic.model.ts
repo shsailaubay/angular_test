@@ -1,4 +1,4 @@
-export class FinancialReport {
+export class FinancialStatistic {
   country: string;
   date: string;
   replenishmentSum: string;

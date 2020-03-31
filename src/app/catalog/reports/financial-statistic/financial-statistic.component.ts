@@ -5,7 +5,7 @@ import {ListColumn} from '../../../../@fury/shared/list/list-column.model';
 import {Observable, ReplaySubject} from 'rxjs';
 import {filter} from 'rxjs/operators';
 
-import {FinancialReport} from '../financial-report.model';
+import {FinancialStatistic} from '../../financial-statistic/financial-statistic.model';
 import {ReportsService} from '../reports.service';
 
 @Component({
@@ -15,11 +15,11 @@ import {ReportsService} from '../reports.service';
 })
 export class FinancialStatisticComponent implements OnInit {
 
-  subject$: ReplaySubject<FinancialReport[]> = new ReplaySubject<FinancialReport[]>(1);
-  data$: Observable<FinancialReport[]> = this.subject$.asObservable();
-  data: FinancialReport[];
+  subject$: ReplaySubject<FinancialStatistic[]> = new ReplaySubject<FinancialStatistic[]>(1);
+  data$: Observable<FinancialStatistic[]> = this.subject$.asObservable();
+  data: FinancialStatistic[];
 
-  dataSource: MatTableDataSource<FinancialReport> | null;
+  dataSource: MatTableDataSource<FinancialStatistic> | null;
 
   @Input()
   columns: ListColumn[] = [
@@ -47,7 +47,7 @@ export class FinancialStatisticComponent implements OnInit {
   }
 
   getData() {
-    this.subject$ = new ReplaySubject<FinancialReport[]>(1);
+    this.subject$ = new ReplaySubject<FinancialStatistic[]>(1);
     this.data$ = this.subject$.asObservable();
     this.data = [];
     this.dataSource = null;
@@ -66,9 +66,8 @@ export class FinancialStatisticComponent implements OnInit {
         }
       }
 
-      console.log('pageArray', pageArray);
+      this.subject$.next(pageArray.map(data => new FinancialStatistic(data)));
 
-      this.subject$.next(pageArray.map(data => new FinancialReport(data)));
       this.dataSource = new MatTableDataSource();
       this.data$.pipe(
         filter(Boolean)

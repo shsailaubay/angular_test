@@ -73,7 +73,6 @@ export class CatalogComponent implements OnInit, OnDestroy {
   }
 
   getData() {
-
     this.loading = true;
 
     this.subject$ = new ReplaySubject<any[]>(1);
@@ -83,9 +82,36 @@ export class CatalogComponent implements OnInit, OnDestroy {
     this.dataSource = null;
 
     this.subscriptions.add(
-      this.apiService.get(this.routeData.apiUrl).subscribe((page: any) => {
-        console.log(123, page);
-        this.subject$.next((page.docs ? page.docs : page).map(data => new this.routeData.model(data)));
+      this.apiService.get(
+        this.routeData.apiUrl + (
+          (this.routeData.apiUrl === '/report' || this.routeData.apiUrl === '/admin/financial/report') ? '?start=2019-05-05' : ''
+        )
+      ).subscribe((page: any) => {
+        if (this.routeData.apiUrl === '/admin/financial/report') {
+          const pageArray = [];
+          let i = 0;
+          for (const item in page) {
+            if (page.hasOwnProperty(item)) {
+              pageArray.push(page[item]);
+              pageArray[i].date = item;
+              i++;
+            }
+          }
+          this.subject$.next(pageArray.map(data => new this.routeData.model(data)));
+        } else {
+          if (this.routeUrl === 'gaming-accounts') {
+            this.subject$.next((page.docs ? page.docs : page)
+              .filter(data => data.role === 'player')
+              .map(data => new this.routeData.model(data)));
+          } else if (this.routeUrl === 'users') {
+            this.subject$.next((page.docs ? page.docs : page)
+              .filter(data => data.role !== 'player')
+              .map(data => new this.routeData.model(data)));
+          } else {
+            this.subject$.next((page.docs ? page.docs : page).map(data => new this.routeData.model(data)));
+          }
+        }
+
         this.dataSource = new MatTableDataSource();
         this.data$.pipe(
           filter(Boolean),
@@ -135,5 +161,4 @@ export class CatalogComponent implements OnInit, OnDestroy {
       }),
     );
   }
-
 }

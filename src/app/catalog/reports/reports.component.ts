@@ -6,7 +6,7 @@ import {Observable, ReplaySubject} from 'rxjs';
 import {filter} from 'rxjs/operators';
 
 import {ReportsService} from './reports.service';
-import {Report} from './report.model';
+import {Report} from '../report/report.model';
 import {FormControl} from '@angular/forms';
 
 @Component({

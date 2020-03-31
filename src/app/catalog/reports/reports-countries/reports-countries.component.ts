@@ -1,6 +1,6 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {Observable, ReplaySubject} from 'rxjs';
-import {Report} from '../report.model';
+import {Report} from '../../report/report.model';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {ListColumn} from '../../../../@fury/shared/list/list-column.model';
 

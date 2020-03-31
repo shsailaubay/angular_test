@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CatalogComponent } from './catalog.component';
 
+import { reportRouteData } from './report/report-route-data';
+import { financialStatisticRouteData } from './financial-statistic/financial-statistic-route-data';
 import { countriesRouteData } from './countries/countries-route-data';
 import { gamingAccountsRouteData } from './gaming-accounts/gaming-accounts-route-data';
 import { cashReleaseRequestsRouteData } from './cash-release-requests/cash-release-requests-route-data';
@@ -18,12 +20,22 @@ import { usersRouteData } from './users/users-route-data';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'reports',
+    redirectTo: 'report',
     pathMatch: 'full',
   },
+  // {
+  //   path: 'reports',
+  //   loadChildren: () => import('./reports/reports.module').then(m => m.ReportsModule),
+  // },
   {
-    path: 'reports',
-    loadChildren: () => import('./reports/reports.module').then(m => m.ReportsModule),
+    path: 'report',
+    component: CatalogComponent,
+    data: reportRouteData,
+  },
+  {
+    path: 'financial-statistic',
+    component: CatalogComponent,
+    data: financialStatisticRouteData,
   },
   {
     path: 'gaming-accounts',

@@ -39,10 +39,15 @@ export class AppComponent {
 
     this.sidenavService.addItems([
       {
-        name: 'Отчеты',
+        name: 'Отчет',
         routeOrFunction: '/',
         icon: 'assignment',
         pathMatchExact: true
+      },
+      {
+        name: 'Финансовая статистика',
+        routeOrFunction: '/financial-statistic',
+        icon: 'assignment'
       },
       {
         name: 'Игровые аккаунты',
