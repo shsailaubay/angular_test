@@ -21,12 +21,12 @@ export class Action {
   constructor(gameHistory) {
     this._id = gameHistory._id;
     // this.region = gameHistory.region;
-    this.country = gameHistory.country.name.ru;
+    this.country = gameHistory.country &&  gameHistory.country.name && gameHistory.country.name.ru || '';
     // this.game = gameHistory.game;
-    this.name_ru = gameHistory.title.ru;
-    this.name_en = gameHistory.title.en;
-    this.message_ru = gameHistory.successMessage.ru;
-    this.message_en = gameHistory.successMessage.en;
+    this.name_ru = gameHistory.title && gameHistory.title.ru;
+    this.name_en = gameHistory.title && gameHistory.title.en;
+    this.message_ru = gameHistory.successMessage && gameHistory.successMessage.ru;
+    this.message_en = gameHistory.successMessage && gameHistory.successMessage.en;
     this.startDate = gameHistory.startDate;
     this.endDate = gameHistory.endDate;
     // this.type = gameHistory.type;
