@@ -1,49 +1,49 @@
-<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="24px" style="margin-bottom: 24px;">
-  <div>
-    <mat-form-field appearance="standard">
-      <mat-label>Период отбора от</mat-label>
-      <input (click)="formDatepickerRef.open()" (focus)="formDatepickerRef.open()" [matDatepicker]="formDatepickerRef" matInput readonly>
-      <mat-datepicker-toggle [for]="formDatepickerRef" matSuffix></mat-datepicker-toggle>
-    </mat-form-field>
-    <mat-datepicker #formDatepickerRef></mat-datepicker>
-  </div>
-  <div>
-    <mat-form-field appearance="standard">
-      <mat-label>Период отбора до</mat-label>
-      <input (click)="formDatepickerRefb.open()" (focus)="formDatepickerRefb.open()" [matDatepicker]="formDatepickerRefb" matInput readonly>
-      <mat-datepicker-toggle [for]="formDatepickerRefb" matSuffix></mat-datepicker-toggle>
-    </mat-form-field>
-    <mat-datepicker #formDatepickerRefb></mat-datepicker>
-  </div>
-  <div>
-    <mat-form-field appearance="standard">
-      <mat-label>Выберите игру:</mat-label>
-      <mat-select>
-        <mat-option value="Legend">Морской бой</mat-option>
-        <mat-option value="Legend">Морской бой</mat-option>
-        <mat-option value="Legend">Морской бой</mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-  <div>
-    <mat-form-field appearance="standard">
-      <mat-label>Итог игры:</mat-label>
-      <mat-select>
-        <mat-option value="Legend">Победа</mat-option>
-        <mat-option value="Legend">Победа</mat-option>
-        <mat-option value="Legend">Победа</mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-  <div>
-    <button mat-raised-button color="primary">Применить</button>
-  </div>
-  <div>
-    <button mat-raised-button>Сбросить</button>
-  </div>
-</div>
+<!--<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="24px" style="margin-bottom: 24px;">-->
+<!--  <div>-->
+<!--    <mat-form-field appearance="standard">-->
+<!--      <mat-label>Период отбора от</mat-label>-->
+<!--      <input (click)="formDatepickerRef.open()" (focus)="formDatepickerRef.open()" [matDatepicker]="formDatepickerRef" matInput readonly>-->
+<!--      <mat-datepicker-toggle [for]="formDatepickerRef" matSuffix></mat-datepicker-toggle>-->
+<!--    </mat-form-field>-->
+<!--    <mat-datepicker #formDatepickerRef></mat-datepicker>-->
+<!--  </div>-->
+<!--  <div>-->
+<!--    <mat-form-field appearance="standard">-->
+<!--      <mat-label>Период отбора до</mat-label>-->
+<!--      <input (click)="formDatepickerRefb.open()" (focus)="formDatepickerRefb.open()" [matDatepicker]="formDatepickerRefb" matInput readonly>-->
+<!--      <mat-datepicker-toggle [for]="formDatepickerRefb" matSuffix></mat-datepicker-toggle>-->
+<!--    </mat-form-field>-->
+<!--    <mat-datepicker #formDatepickerRefb></mat-datepicker>-->
+<!--  </div>-->
+<!--  <div>-->
+<!--    <mat-form-field appearance="standard">-->
+<!--      <mat-label>Выберите игру:</mat-label>-->
+<!--      <mat-select>-->
+<!--        <mat-option value="Legend">Морской бой</mat-option>-->
+<!--        <mat-option value="Legend">Морской бой</mat-option>-->
+<!--        <mat-option value="Legend">Морской бой</mat-option>-->
+<!--      </mat-select>-->
+<!--    </mat-form-field>-->
+<!--  </div>-->
+<!--  <div>-->
+<!--    <mat-form-field appearance="standard">-->
+<!--      <mat-label>Итог игры:</mat-label>-->
+<!--      <mat-select>-->
+<!--        <mat-option value="Legend">Победа</mat-option>-->
+<!--        <mat-option value="Legend">Победа</mat-option>-->
+<!--        <mat-option value="Legend">Победа</mat-option>-->
+<!--      </mat-select>-->
+<!--    </mat-form-field>-->
+<!--  </div>-->
+<!--  <div>-->
+<!--    <button mat-raised-button color="primary">Применить</button>-->
+<!--  </div>-->
+<!--  <div>-->
+<!--    <button mat-raised-button>Сбросить</button>-->
+<!--  </div>-->
+<!--</div>-->
 
-<fury-list hideHeader="true" [columns]="columns" (filterChange)="onFilterChange($event)">
+<fury-list [columns]="columns" (filterChange)="onFilterChange($event)">
 
   <table [dataSource]="dataSource" mat-table matSort>
 

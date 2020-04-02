@@ -1,5 +1,5 @@
-import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { MatDialog, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { Component, Inject, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, ReplaySubject, Subscription } from 'rxjs';
 
@@ -40,8 +40,8 @@ export class CatalogComponent implements OnInit, OnDestroy {
   @Input()
   columns: ListColumn[] = this.routeData.furyListColumns as ListColumn[];
 
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   pageSize = 10;
 
   constructor(
@@ -85,7 +85,7 @@ export class CatalogComponent implements OnInit, OnDestroy {
       this.apiService.get(
         this.routeData.apiUrl + (
           (this.routeData.apiUrl === '/report' || this.routeData.apiUrl === '/admin/financial/report') ? '?start=2019-05-05' : ''
-        )
+        ),
       ).subscribe((page: any) => {
         if (this.routeData.apiUrl === '/admin/financial/report') {
           const pageArray = [];
@@ -147,9 +147,10 @@ export class CatalogComponent implements OnInit, OnDestroy {
   }
 
   approveRequest(id) {
-    this.subscriptions.add(
-      this.cashReleaseRequestsService.approveRequest(id, true).subscribe(res => this.getData(), error => console.log(error)),
-    );
+    this.dialog.open(CashReleaseRequestAcceptDialogComponent, {
+      disableClose: false,
+      data: id,
+    });
   }
 
   delete(id) {
@@ -161,4 +162,47 @@ export class CatalogComponent implements OnInit, OnDestroy {
       }),
     );
   }
+}
+
+@Component({
+  selector: 'fury-cash-release-request-decline-component',
+  template: `
+    <div mat-dialog-title fxLayout="row" fxLayoutAlign="space-between center">
+      <div>Одобрить выплату</div>
+      <button type="button" mat-icon-button (click)="close()" tabindex="-1">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+
+    <mat-dialog-content>
+      <p>Вы уверенны что хотите одобрить данную заявку?</p>
+    </mat-dialog-content>
+
+    <mat-dialog-actions>
+      <button mat-raised-button color="primary" (click)="accept()">Одобрить</button>
+      <button mat-raised-button color="basic" (click)="close()">Отклонить</button>
+    </mat-dialog-actions>
+  `,
+})
+export class CashReleaseRequestAcceptDialogComponent {
+
+  constructor(
+    public dialogRef: MatDialogRef<CashReleaseRequestAcceptDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data,
+    private cashReleaseRequestsService: CashReleaseRequestsService,
+  ) {
+  }
+
+  accept(): void {
+    this.cashReleaseRequestsService.approveRequest(this.data, true).subscribe(res => {
+      this.dialogRef.close();
+    }, error => {
+      console.log(error);
+    });
+  }
+
+  close() {
+    this.dialogRef.close();
+  }
+
 }

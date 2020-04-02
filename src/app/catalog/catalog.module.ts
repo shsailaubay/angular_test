@@ -6,7 +6,7 @@ import { FurySharedModule } from '../../@fury/fury-shared.module';
 import { ListModule } from '../../@fury/shared/list/list.module';
 
 import { CatalogRoutingModule } from './catalog-routing.module';
-import { CatalogComponent } from './catalog.component';
+import { CashReleaseRequestAcceptDialogComponent, CatalogComponent } from './catalog.component';
 
 import { CashReleaseRequestDeclineComponent } from './cash-release-requests/cash-release-request-decline.component';
 import { GamingCurrencyRateDialogComponent } from './gaming-currency-rates/gaming-currency-rate-dialog.component';
@@ -32,6 +32,7 @@ import { UserRolePipe } from './users/user-role.pipe';
   ],
   declarations: [
     CatalogComponent,
+    CashReleaseRequestAcceptDialogComponent,
     CashReleaseRequestDeclineComponent,
     GamingCurrencyRateDialogComponent,
     GameDialogComponent,
@@ -46,6 +47,7 @@ import { UserRolePipe } from './users/user-role.pipe';
     UserRolePipe,
   ],
   entryComponents: [
+    CashReleaseRequestAcceptDialogComponent,
     CashReleaseRequestDeclineComponent,
     GamingCurrencyRateDialogComponent,
     GameDialogComponent,

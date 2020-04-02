@@ -49,6 +49,7 @@
         <ng-container *ngFor="let column of columns">
           <ng-container *ngIf="column.isModelProperty" [matColumnDef]="column.property">
             <th *matHeaderCellDef mat-header-cell mat-sort-header> {{ column.name }}</th>
+
             <td *matCellDef="let row" mat-cell [ngSwitch]="column.name">
               <img *ngSwitchCase="'image'" src="{{ baseUrl + row[column.property] }}" style="display: block; max-height: 24px" alt="">
               <img *ngSwitchCase="'icon'" src="{{ baseUrl + row[column.property] }}" style="display: block; max-height: 24px" alt="">
@@ -71,6 +72,7 @@
               </span>
               <span *ngSwitchDefault>{{ row[column.property] }}</span>
             </td>
+
           </ng-container>
         </ng-container>
 

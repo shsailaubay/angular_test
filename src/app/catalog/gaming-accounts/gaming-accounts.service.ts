@@ -24,4 +24,8 @@ export class GamingAccountsService extends ApiService {
   getGamingAccountGamesHistory(id) {
     return this.get(`/chairs/${id}/history`);
   }
+
+  getGamingAccountFinancialHistory(id) {
+    return this.get(`/admin/financial/user/${id}`);
+  }
 }

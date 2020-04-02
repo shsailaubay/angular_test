@@ -1,50 +1,49 @@
+<!--<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="24px" style="margin-bottom: 24px;">-->
+<!--  <div>-->
+<!--    <mat-form-field appearance="standard">-->
+<!--      <mat-label>Период отбора от</mat-label>-->
+<!--      <input (click)="formDatepickerRef.open()" (focus)="formDatepickerRef.open()" [matDatepicker]="formDatepickerRef" matInput readonly>-->
+<!--      <mat-datepicker-toggle [for]="formDatepickerRef" matSuffix></mat-datepicker-toggle>-->
+<!--    </mat-form-field>-->
+<!--    <mat-datepicker #formDatepickerRef></mat-datepicker>-->
+<!--  </div>-->
+<!--  <div>-->
+<!--    <mat-form-field appearance="standard">-->
+<!--      <mat-label>Период отбора до</mat-label>-->
+<!--      <input (click)="formDatepickerRefb.open()" (focus)="formDatepickerRefb.open()" [matDatepicker]="formDatepickerRefb" matInput readonly>-->
+<!--      <mat-datepicker-toggle [for]="formDatepickerRefb" matSuffix></mat-datepicker-toggle>-->
+<!--    </mat-form-field>-->
+<!--    <mat-datepicker #formDatepickerRefb></mat-datepicker>-->
+<!--  </div>-->
+<!--  <div>-->
+<!--    <mat-form-field appearance="standard">-->
+<!--      <mat-label>Выберите операцию:</mat-label>-->
+<!--      <mat-select>-->
+<!--        <mat-option value="Legend">Пополнение</mat-option>-->
+<!--        <mat-option value="Legend">Пополнение</mat-option>-->
+<!--        <mat-option value="Legend">Пополнение</mat-option>-->
+<!--      </mat-select>-->
+<!--    </mat-form-field>-->
+<!--  </div>-->
+<!--  <div>-->
+<!--    <mat-form-field appearance="standard">-->
+<!--      <mat-label>Статус</mat-label>-->
+<!--      <mat-select>-->
+<!--        <mat-option value="Legend">Успешно</mat-option>-->
+<!--        <mat-option value="Legend">Успешно</mat-option>-->
+<!--        <mat-option value="Legend">Успешно</mat-option>-->
+<!--      </mat-select>-->
+<!--    </mat-form-field>-->
+<!--  </div>-->
+<!--  <div>-->
+<!--    <button mat-raised-button color="primary">Применить</button>-->
+<!--  </div>-->
+<!--  <div>-->
+<!--    <button mat-raised-button>Сбросить</button>-->
+<!--  </div>-->
+<!--</div>-->
 
-<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="24px" style="margin-bottom: 24px;">
-  <div>
-    <mat-form-field appearance="standard">
-      <mat-label>Период отбора от</mat-label>
-      <input (click)="formDatepickerRef.open()" (focus)="formDatepickerRef.open()" [matDatepicker]="formDatepickerRef" matInput readonly>
-      <mat-datepicker-toggle [for]="formDatepickerRef" matSuffix></mat-datepicker-toggle>
-    </mat-form-field>
-    <mat-datepicker #formDatepickerRef></mat-datepicker>
-  </div>
-  <div>
-    <mat-form-field appearance="standard">
-      <mat-label>Период отбора до</mat-label>
-      <input (click)="formDatepickerRefb.open()" (focus)="formDatepickerRefb.open()" [matDatepicker]="formDatepickerRefb" matInput readonly>
-      <mat-datepicker-toggle [for]="formDatepickerRefb" matSuffix></mat-datepicker-toggle>
-    </mat-form-field>
-    <mat-datepicker #formDatepickerRefb></mat-datepicker>
-  </div>
-  <div>
-    <mat-form-field appearance="standard">
-      <mat-label>Выберите операцию:</mat-label>
-      <mat-select>
-        <mat-option value="Legend">Пополнение</mat-option>
-        <mat-option value="Legend">Пополнение</mat-option>
-        <mat-option value="Legend">Пополнение</mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-  <div>
-    <mat-form-field appearance="standard">
-      <mat-label>Статус</mat-label>
-      <mat-select>
-        <mat-option value="Legend">Успешно</mat-option>
-        <mat-option value="Legend">Успешно</mat-option>
-        <mat-option value="Legend">Успешно</mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-  <div>
-    <button mat-raised-button color="primary">Применить</button>
-  </div>
-  <div>
-    <button mat-raised-button>Сбросить</button>
-  </div>
-</div>
-
-<fury-list hideHeader="true" [columns]="columns" (filterChange)="onFilterChange($event)">
+<fury-list [columns]="columns" (filterChange)="onFilterChange($event)">
 
   <table [dataSource]="dataSource" mat-table matSort>
 
@@ -53,8 +52,29 @@
 
     <ng-container *ngFor="let column of columns">
       <ng-container *ngIf="column.isModelProperty" [matColumnDef]="column.property">
+
         <th *matHeaderCellDef mat-header-cell mat-sort-header> {{ column.name }}</th>
-        <td *matCellDef="let row" mat-cell>{{ row[column.property] }}</td>
+
+        <td *matCellDef="let row" mat-cell [ngSwitch]="column.property">
+          <span *ngSwitchCase="'date'">{{ row[column.property] | date:"dd.MM.yyyy" }}</span>
+          <span *ngSwitchCase="'type'">
+            <span [ngSwitch]="row[column.property]">
+              <span *ngSwitchCase="'in'">Пополнение</span>
+              <span *ngSwitchCase="'out'">Вывод</span>
+              <span *ngSwitchDefault></span>
+            </span>
+          </span>
+          <span *ngSwitchCase="'status'">
+            <span [ngSwitch]="+row[column.property]">
+              <span *ngSwitchCase="0">Создано</span>
+              <span *ngSwitchCase="1">Одобрена</span>
+              <span *ngSwitchCase="2">Отклонена</span>
+              <span *ngSwitchDefault></span>
+            </span>
+          </span>
+          <span *ngSwitchDefault>{{ row[column.property] }}</span>
+        </td>
+
       </ng-container>
     </ng-container>
 
