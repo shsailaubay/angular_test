@@ -26,8 +26,9 @@ export class ActionDialogComponent implements OnInit {
 
   ngOnInit() {
 
+    console.log(this.data);
+
     this.countriesService.getCountries().subscribe((page: any) => {
-      console.log(page);
       this.countries = page;
     });
 
@@ -43,7 +44,7 @@ export class ActionDialogComponent implements OnInit {
       }),
       'actionPrice': [this.data ? this.data.actionPrice : ''],
       'freeSilvers': [this.data ? this.data.freeSilvers : ''],
-      'country': [this.data ? this.data.country : ''],
+      'country': [this.data ? this.data.country_id : ''],
       'successMessage': this.formBuilder.group({
         'ru': [this.data ? this.data.name_ru : '', Validators.required],
         'en': [this.data ? this.data.name_en : '', Validators.required]

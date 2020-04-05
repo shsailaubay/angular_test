@@ -9,6 +9,7 @@ export const actionsRouteData = {
   dialog: ActionDialogComponent,
   furyListColumns: [
     {name: 'id', property: '_id', visible: false, isModelProperty: true},
+    {name: 'country_id', property: 'country_id', visible: false, isModelProperty: true},
     {name: 'country', property: 'country', visible: true, isModelProperty: true},
     {name: 'image', property: 'image', visible: true, isModelProperty: true},
     // {name: 'Region', property: 'region', visible: true, isModelProperty: true},
@@ -25,6 +26,7 @@ export const actionsRouteData = {
     {name: 'active', property: 'active', visible: true, isModelProperty: true},
     {name: 'startDate', property: 'startDate', visible: true, isModelProperty: true},
     {name: 'endDate', property: 'endDate', visible: true, isModelProperty: true},
+    {name: 'repeatEveryDay', property: 'repeatEveryDay', visible: true, isModelProperty: true},
     {name: 'Actions', property: 'actions', visible: true},
   ]
 };

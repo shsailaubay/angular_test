@@ -1,6 +1,7 @@
 export class Action {
   _id: string;
   // region: number;
+  country_id: string;
   country: string;
   image: string;
   name_ru: string;
@@ -21,6 +22,7 @@ export class Action {
   constructor(gameHistory) {
     this._id = gameHistory._id;
     // this.region = gameHistory.region;
+    this.country_id = gameHistory.country && gameHistory.country._id || '';
     this.country = gameHistory.country &&  gameHistory.country.name && gameHistory.country.name.ru || '';
     // this.game = gameHistory.game;
     this.name_ru = gameHistory.title && gameHistory.title.ru;
