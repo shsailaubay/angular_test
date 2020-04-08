@@ -17,6 +17,10 @@ export class GamingCurrencyRateService extends ApiService {
     return this.get(`/admin/exchange`);
   }
 
+  getAmountCurrencies() {
+    return this.get(`/users/exchange/rates`);
+  }
+
   postData(data) {
     return this.post(`/admin/exchange`, data);
   }

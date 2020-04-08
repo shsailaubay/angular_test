@@ -5,12 +5,15 @@
 
   <div fxLayout="row" fxLayoutGap="24px">
     <div fxLayout="row" fxLayoutAlign="flex-end center" fxLayoutGap="24px">
-<!--      <div>-->
-<!--        Gold: 120 839 330-->
-<!--      </div>-->
-<!--      <div>-->
-<!--        $: 251 254 450-->
-<!--      </div>-->
+      <div *ngIf="amountCurrencySilver">
+        Silver: {{amountCurrencySilver}}
+      </div>
+      <div *ngIf="amountCurrencyGold">
+        Gold: {{amountCurrencyGold}}
+      </div>
+      <div *ngIf="amountCurrencyAmount">
+        $: {{amountCurrencyAmount}}
+      </div>
       <div *ngIf="curentCurrencyRate">
         1 gold = {{curentCurrencyRate}}$
       </div>

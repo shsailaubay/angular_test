@@ -11,6 +11,9 @@ import { GamingCurrencyRateService } from '../../catalog/gaming-currency-rates/g
 export class ToolbarComponent implements OnInit {
 
   curentCurrencyRate;
+  amountCurrencyGold;
+  amountCurrencySilver;
+  amountCurrencyAmount;
 
   @Input()
   @HostBinding('class.no-box-shadow')
@@ -28,8 +31,16 @@ export class ToolbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.gamingCurrencyRateService.getData().subscribe(data => {
-      this.curentCurrencyRate = data && data.docs && data.docs[0] && data.docs[0].gold;
+    this.gamingCurrencyRateService.getAmountCurrencies().subscribe(data => {
+      this.amountCurrencyGold = data && data.gold;
+      this.amountCurrencySilver = data && data.silver;
+
+      this.gamingCurrencyRateService.getData().subscribe(cur => {
+        this.curentCurrencyRate = cur && cur.docs && cur.docs[0] && cur.docs[0].gold;
+
+        this.amountCurrencyAmount = this.curentCurrencyRate * this.amountCurrencyGold;
+      });
+
     });
   }
 
