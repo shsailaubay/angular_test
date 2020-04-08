@@ -96,8 +96,10 @@
         <ng-container *ngIf="routeUrl === 'cash-release-requests'" matColumnDef="actions">
           <th *matHeaderCellDef class="actions-cell" mat-header-cell mat-sort-header></th>
           <td *matCellDef="let row" class="actions-cell" mat-cell>
-            <button mat-raised-button color="accent" style="margin-right: 8px; color: #ffffff;" (click)="approveRequest(row.id)">Approve</button>
-            <button mat-raised-button color="warn" style="color: #ffffff;" (click)="openDialog(row.id)">Decline</button>
+            <ng-template *ngIf="row.status === 0">
+              <button mat-raised-button color="accent" style="margin-right: 8px; color: #ffffff;" (click)="approveRequest(row.id)">Approve</button>
+              <button mat-raised-button color="warn" style="color: #ffffff;" (click)="openDialog(row.id)">Decline</button>
+            </ng-template>
           </td>
         </ng-container>
 

@@ -9,6 +9,7 @@ import {ListColumn} from '../../../../../@fury/shared/list/list-column.model';
 
 import {GameHistory} from './game-history.model';
 import {GamingAccountsService} from '../../gaming-accounts.service';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'fury-gaming-account-games-history',
@@ -32,8 +33,8 @@ export class GamingAccountGamesHistoryComponent implements OnInit {
     {name: 'Game', property: 'game', visible: true, isModelProperty: true},
     {name: 'Type', property: 'type', visible: true, isModelProperty: true},
     {name: 'Opponent', property: 'opponent', visible: true, isModelProperty: true},
-    {name: 'Score', property: 'score', visible: true, isModelProperty: true},
-    {name: 'Duration', property: 'duration', visible: true, isModelProperty: true},
+    // {name: 'Score', property: 'score', visible: true, isModelProperty: true},
+    // {name: 'Duration', property: 'duration', visible: true, isModelProperty: true},
     {name: 'Bids', property: 'bids', visible: true, isModelProperty: true},
   ] as ListColumn[];
 
@@ -51,8 +52,11 @@ export class GamingAccountGamesHistoryComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.gamingAccountsService.getGamingAccountGamesHistory(this.gamingAccountId).subscribe((page: any) => {
-      this.subject$.next(page.docs.map(gamesHistory => new GameHistory(gamesHistory)));
+    this.gamingAccountsService.getGamingAccountGamesHistory(this.gamingAccountId).subscribe((res: any) => {
+      if (!environment.production) {
+        console.log(res);
+      }
+      this.subject$.next(res.docs.map(gamesHistory => new GameHistory(gamesHistory, this.gamingAccountId)));
       this.dataSource = new MatTableDataSource();
       this.data$.pipe(
         filter(Boolean)

@@ -29,7 +29,6 @@ export class ToolbarComponent implements OnInit {
 
   ngOnInit() {
     this.gamingCurrencyRateService.getData().subscribe(data => {
-      console.log(data);
       this.curentCurrencyRate = data && data.docs && data.docs[0] && data.docs[0].gold;
     });
   }

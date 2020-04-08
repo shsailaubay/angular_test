@@ -55,7 +55,6 @@ export class GamingAccountFinancialsOperationsComponent implements OnInit {
 
   getData() {
     this.gamingAccountsService.getGamingAccountFinancialHistory(this.gamingAccountId).subscribe((page: any) => {
-      console.log(page);
       this.subject$.next(page.map(item => new FinancialOperation(item)));
       this.dataSource = new MatTableDataSource();
       this.data$.pipe(

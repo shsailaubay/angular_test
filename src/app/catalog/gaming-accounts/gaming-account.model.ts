@@ -1,5 +1,6 @@
 export class GamingAccount {
   id: string;
+  ident: string;
   name: string;
   socialLink: string;
   email: string;
@@ -11,6 +12,7 @@ export class GamingAccount {
 
   constructor(customer) {
     this.id = customer.id;
+    this.ident = customer.ident;
     this.name = customer.name;
     this.socialLink = customer.socialLink;
     this.email = customer.email;

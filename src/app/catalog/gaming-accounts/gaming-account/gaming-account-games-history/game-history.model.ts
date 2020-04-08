@@ -1,21 +1,28 @@
+import * as moment from 'moment';
+
 export class GameHistory {
   date: string;
   time: string;
   game: number;
-  type: number;
-  opponent: number;
+  type: string;
+  opponent: string;
   score: string;
-  duration: number;
+  // duration: string;
   bids: string;
 
-  constructor(gameHistory) {
-    this.date = gameHistory.date;
-    this.time = gameHistory.time;
-    this.game = gameHistory.game;
-    this.type = gameHistory.type;
-    this.opponent = gameHistory.opponent;
+  constructor(gameHistory, playerId) {
+    this.date = gameHistory.startedAt && (new Date(gameHistory.startedAt)).getDate() + '.' + ((new Date(gameHistory.startedAt)).getMonth() + 1) + '.' + (new Date(gameHistory.startedAt)).getFullYear();
+    this.time = gameHistory.startedAt && (new Date(gameHistory.startedAt)).getHours() + ':' + (new Date(gameHistory.startedAt)).getMinutes() + ':' + (new Date(gameHistory.startedAt)).getSeconds();
+    this.game = gameHistory.game && gameHistory.game.name && (gameHistory.game.name.ru || gameHistory.game.name.en);
+    this.type = GAME_TYPES[gameHistory.gameType];
+    this.opponent = gameHistory.playerCreated && gameHistory.playerConnected ?
+      (gameHistory.playerCreated._id === playerId ? gameHistory.playerConnected._id : gameHistory.playerCreated._id) : '';
     this.score = gameHistory.score;
-    this.duration = gameHistory.duration;
-    this.bids = gameHistory.bids;
+    this.bids = gameHistory.bet;
   }
 }
+
+const GAME_TYPES = {
+  1: 'With friend',
+  2: 'Random',
+};

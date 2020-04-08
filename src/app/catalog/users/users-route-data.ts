@@ -9,6 +9,7 @@ export const usersRouteData = {
   dialog: UserAddDialogComponent,
   furyListColumns: [
     {name: 'Id', property: 'id', visible: true, isModelProperty: true},
+    {name: 'Ident', property: 'ident', visible: true, isModelProperty: true},
     {name: 'Name', property: 'name', visible: true, isModelProperty: true},
     {name: 'Email', property: 'email', visible: true, isModelProperty: true},
     {name: 'Phone', property: 'phone', visible: true, isModelProperty: true},

@@ -51,11 +51,6 @@ export class CatalogComponent implements OnInit, OnDestroy {
     private apiService: ApiService,
     private cashReleaseRequestsService: CashReleaseRequestsService,
   ) {
-    this.subscriptions.add(
-      dialog.afterAllClosed.subscribe(() => {
-        this.getData();
-      }),
-    );
   }
 
   get visibleColumns() {
@@ -86,13 +81,16 @@ export class CatalogComponent implements OnInit, OnDestroy {
         this.routeData.apiUrl + (
           (this.routeData.apiUrl === '/report' || this.routeData.apiUrl === '/admin/financial/report') ? '?start=2019-05-05' : ''
         ),
-      ).subscribe((page: any) => {
+      ).subscribe((res: any) => {
+        if (!environment.production) {
+          console.log(res);
+        }
         if (this.routeData.apiUrl === '/admin/financial/report') {
           const pageArray = [];
           let i = 0;
-          for (const item in page) {
-            if (page.hasOwnProperty(item)) {
-              pageArray.push(page[item]);
+          for (const item in res) {
+            if (res.hasOwnProperty(item)) {
+              pageArray.push(res[item]);
               pageArray[i].date = item;
               i++;
             }
@@ -100,15 +98,15 @@ export class CatalogComponent implements OnInit, OnDestroy {
           this.subject$.next(pageArray.map(data => new this.routeData.model(data)));
         } else {
           if (this.routeUrl === 'gaming-accounts') {
-            this.subject$.next((page.docs ? page.docs : page)
+            this.subject$.next((res.docs ? res.docs : res)
               .filter(data => data.role === 'player')
               .map(data => new this.routeData.model(data)));
           } else if (this.routeUrl === 'users') {
-            this.subject$.next((page.docs ? page.docs : page)
+            this.subject$.next((res.docs ? res.docs : res)
               .filter(data => data.role !== 'player')
               .map(data => new this.routeData.model(data)));
           } else {
-            this.subject$.next((page.docs ? page.docs : page).map(data => new this.routeData.model(data)));
+            this.subject$.next((res.docs ? res.docs : res).map(data => new this.routeData.model(data)));
           }
         }
 

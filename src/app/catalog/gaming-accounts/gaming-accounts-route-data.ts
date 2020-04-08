@@ -7,6 +7,7 @@ export const gamingAccountsRouteData = {
   furyListColumns: [
     // {name: 'Checkbox', property: 'checkbox', visible: true},
     {name: 'Id', property: 'id', visible: true, isModelProperty: true},
+    {name: 'Ident', property: 'ident', visible: true, isModelProperty: true},
     {name: 'Name', property: 'name', visible: true, isModelProperty: true},
     {name: 'Social link', property: 'socialLink', visible: true, isModelProperty: true},
     {name: 'Email', property: 'email', visible: true, isModelProperty: true},
