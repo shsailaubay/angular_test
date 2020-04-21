@@ -86,7 +86,7 @@
               <button mat-menu-item (click)="openDialog(row)">
                 <span>Изменить</span>
               </button>
-              <button mat-menu-item (click)="delete(row._id)">
+              <button *ngIf="routeUrl !== 'users'" mat-menu-item (click)="delete(row.id)">
                 <span>Удалить</span>
               </button>
             </mat-menu>

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { FurySharedModule } from '../../../@fury/fury-shared.module';
 import { MaterialModule } from '../../../@fury/shared/material-components.module';
@@ -14,6 +14,7 @@ import { GamingAccountFinancialsOperationsComponent } from './gaming-account/gam
 import { GamingAccountRatingsComponent } from './gaming-account/gaming-account-ratings/gaming-account-ratings.component';
 import { GamingAccountGamesHistoryComponent } from './gaming-account/gaming-account-games-history/gaming-account-games-history.component';
 import { GamingAccountsComponent } from './gaming-accounts.component';
+import { ChangeGoldDialogComponent } from './gaming-account/change-gold-dialog/change-gold-dialog.component';
 
 @NgModule({
   imports: [
@@ -25,6 +26,7 @@ import { GamingAccountsComponent } from './gaming-accounts.component';
     FuryCardModule,
     ListModule,
     GamingAccountsRoutingModule,
+    ReactiveFormsModule,
   ],
   declarations: [
     GamingAccountsComponent,
@@ -32,7 +34,11 @@ import { GamingAccountsComponent } from './gaming-accounts.component';
     GamingAccountFinancialsOperationsComponent,
     GamingAccountRatingsComponent,
     GamingAccountGamesHistoryComponent,
+    ChangeGoldDialogComponent,
   ],
+  entryComponents: [
+    ChangeGoldDialogComponent
+  ]
 })
 export class GamingAccountsModule {
 }

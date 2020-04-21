@@ -1,8 +1,7 @@
-
 <div class="sidenav" fxLayout="column">
   <div class="sidenav-toolbar" fxLayout="row" fxLayoutAlign="start center">
     <div [routerLink]="['/']" class="sidenav-toolbar-logo">
-      <svg width="320" height="80" viewBox="0 0 320 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 320 80" xmlns="http://www.w3.org/2000/svg">
         <g clip-path="url(#clip0)">
           <path d="M147.23 47.9156C147.23 51.6095 146.227 54.4064 144.222 56.3589C142.269 58.3114 139.525 59.314 135.989 59.314H130.712C126.385 59.314 123.272 58.5752 121.425 57.0449C119.631 55.5145 118.734 52.876 118.734 49.1293V19.7362H135.356C139.103 19.7362 141.953 20.686 143.799 22.5858C145.699 24.4855 146.649 27.124 146.649 30.6069C146.649 32.6122 146.121 34.3008 145.119 35.7256C144.116 37.1504 143.008 38.1531 141.794 38.7335C145.435 40.4222 147.23 43.4829 147.23 47.9156ZM134.776 35.1979C137.625 35.1979 139.05 33.7731 139.05 30.9235C139.05 28.0739 137.625 26.6491 134.776 26.6491H126.438V35.1979H134.776ZM139.578 47.5462C139.578 45.752 139.261 44.4327 138.628 43.5356C137.995 42.5858 136.887 42.1636 135.251 42.1636H126.438V48.3905C126.438 49.9209 126.807 50.9763 127.546 51.5567C128.338 52.1372 129.551 52.4538 131.293 52.4538H135.251C138.1 52.4538 139.578 50.818 139.578 47.5462Z" fill="#F0F0F0"/>
           <path d="M171.293 27.7045L169.288 34.8285C168.76 34.6174 168.127 34.5119 167.388 34.5119C165.541 34.5119 163.272 35.3034 160.58 36.8865V59.3668H153.404V27.5989H158.786L160.422 30.3958L168.021 27.2296C168.39 27.1768 168.865 27.1768 169.499 27.1768C170.185 27.124 170.765 27.3351 171.293 27.7045Z" fill="#F0F0F0"/>
@@ -30,20 +29,8 @@
     </div>
   </div>
 
-  <fury-scrollbar>
-      <div *ngIf="sidenavUserVisible$ | async" class="sidenav-user">
-        <h4 class="sidenav-user-name">{{userName}}</h4>
-        <h5 class="sidenav-user-email">{{userEmail}}</h5>
-
-        <div class="sidenav-user-icons" fxLayout="row">
-          <a [routerLink]="['/login']" (click)="logout()" mat-icon-button>
-            <mat-icon>exit_to_app</mat-icon>
-          </a>
-        </div>
-      </div>
-
-      <fury-sidenav-item *ngFor="let item of items$ | async" [item]="item" [level]="0"></fury-sidenav-item>
-
+  <fury-scrollbar class="sidenav-items" fxFlex="auto">
+    <fury-sidenav-item *ngFor="let item of items$ | async" [item]="item" [level]="0"></fury-sidenav-item>
   </fury-scrollbar>
 
 </div>

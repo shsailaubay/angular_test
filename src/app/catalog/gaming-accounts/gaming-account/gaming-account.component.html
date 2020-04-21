@@ -68,6 +68,11 @@
                 </div>
               </div>
             </fury-card-content>
+
+            <fury-card-actions>
+              <button mat-raised-button color="accent" (click)="openGoldDialog(true)">Добавить золото</button>
+              <button mat-raised-button color="warn" (click)="openGoldDialog(false)">Отнять золото</button>
+            </fury-card-actions>
           </fury-card>
         </div>
       </mat-tab>

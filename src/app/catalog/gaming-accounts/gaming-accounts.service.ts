@@ -28,4 +28,8 @@ export class GamingAccountsService extends ApiService {
   getGamingAccountFinancialHistory(id) {
     return this.get(`/admin/financial/user/${id}`);
   }
+
+  setGold(body) {
+    return this.post(`/admin/users/set_gold`, body);
+  }
 }

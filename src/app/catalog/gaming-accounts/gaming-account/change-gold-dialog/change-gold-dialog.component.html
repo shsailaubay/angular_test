@@ -1,0 +1,20 @@
+<div mat-dialog-title fxLayout="row" fxLayoutAlign="space-between center">
+  <div>{{ data.isAdd ? 'Добавить' : 'Отнять'}} золото</div>
+  <button type="button" mat-icon-button (click)="close()" tabindex="-1">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<mat-dialog-content>
+  <mat-form-field appearance="standard" style="width: 100%">
+    <mat-label>Кол-во золота</mat-label>
+    <input matInput type="number" [formControl]="gold">
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-raised-button color="primary" (click)="setGold()" [disabled]="gold.invalid || gold.disabled">
+    {{ data.isAdd ? 'Добавить' : 'Отнять'}} золото
+  </button>
+  <button mat-button (click)="close()">Отмена</button>
+</mat-dialog-actions>

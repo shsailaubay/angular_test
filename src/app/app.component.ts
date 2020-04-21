@@ -40,7 +40,7 @@ export class AppComponent {
     this.sidenavService.addItems([
       {
         name: 'Отчет',
-        routeOrFunction: '/',
+        routeOrFunction: '/report',
         icon: 'assignment',
         pathMatchExact: true
       },
