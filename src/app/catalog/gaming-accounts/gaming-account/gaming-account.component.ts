@@ -36,6 +36,6 @@ export class GamingAccountComponent implements OnInit {
     this.dialog.open(ChangeGoldDialogComponent, {
       disableClose: false,
       data: { isAdd, userId: this.gamingAccountId },
-    });
+    }).afterClosed().subscribe(() => this.getGamingAccountData());
   }
 }

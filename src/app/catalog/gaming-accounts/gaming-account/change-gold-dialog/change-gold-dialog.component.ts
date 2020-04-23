@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef, MatSnackBar } from '@angular/material';
 import { GamingAccountsService } from '../../gaming-accounts.service';
 
 @Component({
@@ -15,6 +15,7 @@ export class ChangeGoldDialogComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<ChangeGoldDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data,
+    private snackBar: MatSnackBar,
     private gamingAccountService: GamingAccountsService,
   ) {
   }
@@ -23,6 +24,8 @@ export class ChangeGoldDialogComponent implements OnInit {
   }
 
   setGold() {
+    console.log(this.data);
+    console.log(this.gold);
     this.gold.disable();
     this.gamingAccountService.setGold({
       gold: this.data.isAdd ? this.gold.value : -this.gold.value,
@@ -30,8 +33,10 @@ export class ChangeGoldDialogComponent implements OnInit {
     }).subscribe(() => {
       this.gold.reset();
       this.dialogRef.close();
-    }, () => {
+      this.snackBar.open('', 'Золото изменено');
+    }, error => {
       this.gold.enable();
+      this.snackBar.open(error.message, error.name);
     });
   }
 

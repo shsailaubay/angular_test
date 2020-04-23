@@ -54,6 +54,10 @@ export class GameDialogComponent implements OnInit {
         'ru': [this.data ? this.data.name_ru : '', Validators.required],
         'en': [this.data ? this.data.name_en : '', Validators.required]
       }),
+      'description': this.formBuilder.group({
+        'ru': [this.data ? this.data.description_ru : '', Validators.required],
+        'en': [this.data ? this.data.description_en : '', Validators.required]
+      }),
       'link': [this.data ? this.data['link'] : ''],
       'icon': [this.data ? this.data.icon : ''],
       'image': [this.data ? this.data.image : ''],
