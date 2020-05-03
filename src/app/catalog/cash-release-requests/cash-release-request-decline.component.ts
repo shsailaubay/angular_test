@@ -1,6 +1,6 @@
 import { Component, Inject, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef, MatSnackBar } from '@angular/material';
 import { CashReleaseRequestsService } from './cash-release-requests.service';
 
 @Component({
@@ -13,19 +13,19 @@ export class CashReleaseRequestDeclineComponent implements OnDestroy {
   constructor(
     private dialogRef: MatDialogRef<CashReleaseRequestDeclineComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
+    private snackBar: MatSnackBar,
     private cashReleaseRequestsService: CashReleaseRequestsService
   ) {
-    console.log(this.data);
   }
 
   decline() {
     this.subscription = this.cashReleaseRequestsService.approveRequest(this.data, false).subscribe(
       () => {
-        this.dialogRef.close();
+        this.snackBar.open('Запрос отклонен');
+        this.dialogRef.close('reload');
       },
       error => {
-        console.log(error);
-        this.dialogRef.close();
+        this.snackBar.open(error.message);
       }
     );
   }

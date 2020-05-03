@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef, MatSnackBar } from '@angular/material';
 import { PushNotificationsService } from './push-notifications.service';
 
 @Component({
@@ -14,6 +14,7 @@ export class PushNotificationAddDialogComponent implements OnInit {
 
   constructor(
     private dialogRef: MatDialogRef<PushNotificationAddDialogComponent>,
+    private snackBar: MatSnackBar,
     private formBuilder: FormBuilder,
     private pushNotificationsService: PushNotificationsService
   ) {
@@ -39,14 +40,15 @@ export class PushNotificationAddDialogComponent implements OnInit {
 
     this.pushNotificationsService.postData(formData).subscribe((response: any) => {
       this.registerSuccess = true;
+      this.form.reset();
+      this.snackBar.open('Создано');
+      this.dialogRef.close('reload');
     }, (response: any) => {
+      this.snackBar.open(response.message, response.name);
       Object.keys(response.error).forEach(prop => {
         this.serverErrors[prop] = response.error[prop][0];
       });
     });
-
-    this.form.reset();
-    this.dialogRef.close();
   }
 
   close() {

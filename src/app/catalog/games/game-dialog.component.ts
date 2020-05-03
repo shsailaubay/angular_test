@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, ReplaySubject } from 'rxjs';
 import { GamingMode } from '../gaming-modes/gaming-mode.model';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef, MatSnackBar } from '@angular/material';
 import { GamesService } from './games.service';
 import { GamingModesService } from '../gaming-modes/gaming-modes.service';
 import { filter } from 'rxjs/operators';
@@ -26,6 +26,7 @@ export class GameDialogComponent implements OnInit {
   constructor(
     private dialogRef: MatDialogRef<GameDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
+    private snackBar: MatSnackBar,
     private gamesService: GamesService,
     private gamingModesService: GamingModesService,
     private formBuilder: FormBuilder
@@ -93,9 +94,13 @@ export class GameDialogComponent implements OnInit {
           this.gamesService.postIcon(response._id, this.icon).subscribe(res => {
           });
         }
-      }, (response: any) => {
-        Object.keys(response.error).forEach(prop => {
-          this.serverErrors[prop] = response.error[prop][0];
+        this.form.reset();
+        this.snackBar.open('Изменено');
+        this.dialogRef.close('reload');
+      }, (error: any) => {
+        this.snackBar.open(error.message);
+        Object.keys(error.error).forEach(prop => {
+          this.serverErrors[prop] = error.error[prop][0];
         });
       });
     } else {
@@ -109,14 +114,16 @@ export class GameDialogComponent implements OnInit {
           this.gamesService.postIcon(response._id, this.icon).subscribe(res => {
           });
         }
-      }, (response: any) => {
-        Object.keys(response.error).forEach(prop => {
-          this.serverErrors[prop] = response.error[prop][0];
+        this.form.reset();
+        this.snackBar.open('Создано');
+        this.dialogRef.close('reload');
+      }, (error: any) => {
+        this.snackBar.open(error.message);
+        Object.keys(error.error).forEach(prop => {
+          this.serverErrors[prop] = error.error[prop][0];
         });
       });
     }
 
-    this.form.reset();
-    this.dialogRef.close();
   }
 }

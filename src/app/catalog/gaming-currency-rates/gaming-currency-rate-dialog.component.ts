@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef, MatSnackBar } from '@angular/material';
 import { GamingCurrencyRateService } from './gaming-currency-rate.service';
 
 @Component({
@@ -16,6 +16,7 @@ export class GamingCurrencyRateDialogComponent {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<GamingCurrencyRateDialogComponent>,
+    private snackBar: MatSnackBar,
     private fb: FormBuilder,
     private gamingCurrencyRateService: GamingCurrencyRateService,
   ) {
@@ -28,8 +29,12 @@ export class GamingCurrencyRateDialogComponent {
 
   submit() {
     const formData = JSON.parse(JSON.stringify(this.form.value));
-    this.gamingCurrencyRateService.postData(formData).subscribe();
-    this.form.reset();
-    this.dialogRef.close();
+    this.gamingCurrencyRateService.postData(formData).subscribe(() => {
+      this.form.reset();
+      this.snackBar.open('Изменено');
+      this.dialogRef.close('reload');
+    }, error => {
+      this.snackBar.open(error.message, error.name);
+    });
   }
 }

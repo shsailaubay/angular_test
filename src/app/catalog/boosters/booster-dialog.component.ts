@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, ReplaySubject } from 'rxjs';
 import { Game } from '../games/game.model';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef, MatSnackBar } from '@angular/material';
 import { BoostersService } from './boosters.service';
 import { GamesService } from '../games/games.service';
 import { filter } from 'rxjs/operators';
@@ -24,6 +24,7 @@ export class BoosterDialogComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<BoosterDialogComponent>,
+    private snackBar: MatSnackBar,
     private formBuilder: FormBuilder,
     private boostersService: BoostersService,
     private gamesService: GamesService
@@ -69,7 +70,11 @@ export class BoosterDialogComponent implements OnInit {
           this.boostersService.postImg(response._id, this.image).subscribe(res => {
           });
         }
+        this.form.reset();
+        this.snackBar.open('Изменено');
+        this.dialogRef.close('reload');
       }, (response: any) => {
+        this.snackBar.open(response.message);
         Object.keys(response.error).forEach(prop => {
           this.serverErrors[prop] = response.error[prop][0];
         });
@@ -81,15 +86,16 @@ export class BoosterDialogComponent implements OnInit {
           this.boostersService.postImg(response._id, this.image).subscribe(res => {
           });
         }
+        this.form.reset();
+        this.snackBar.open('Создано');
+        this.dialogRef.close('reload');
       }, (response: any) => {
+        this.snackBar.open(response.message);
         Object.keys(response.error).forEach(prop => {
           this.serverErrors[prop] = response.error[prop][0];
         });
       });
     }
-
-    this.form.reset();
-    this.dialogRef.close();
   }
 
   close() {

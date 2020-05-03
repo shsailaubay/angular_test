@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef, MatSnackBar } from '@angular/material';
 import { ThemesService } from './themes.service';
 
 @Component({
@@ -16,6 +16,7 @@ export class ThemeDialogComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<ThemeDialogComponent>,
+    private snackBar: MatSnackBar,
     private themesService: ThemesService,
     private formBuilder: FormBuilder
   ) {
@@ -53,7 +54,11 @@ export class ThemeDialogComponent implements OnInit {
           this.themesService.postImg(response._id, this.image).subscribe(res => {
           });
         }
+        this.form.reset();
+        this.snackBar.open('Изменено');
+        this.dialogRef.close('reload');
       }, (response: any) => {
+        this.snackBar.open(response.message, response.name);
         Object.keys(response.error).forEach(prop => {
           this.serverErrors[prop] = response.error[prop][0];
         });
@@ -65,7 +70,11 @@ export class ThemeDialogComponent implements OnInit {
           this.themesService.postImg(response._id, this.image).subscribe(res => {
           });
         }
+        this.form.reset();
+        this.snackBar.open('Создано');
+        this.dialogRef.close('reload');
       }, (response: any) => {
+        this.snackBar.open(response.message, response.name);
         Object.keys(response.error).forEach(prop => {
           this.serverErrors[prop] = response.error[prop][0];
         });

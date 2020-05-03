@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef, MatSnackBar } from '@angular/material';
 import { ActionsService } from './actions.service';
 import { CountriesService } from '../countries/countries.service';
 
@@ -18,6 +18,7 @@ export class ActionDialogComponent implements OnInit {
   constructor(
     private dialogRef: MatDialogRef<ActionDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
+    private snackBar: MatSnackBar,
     private actionsService: ActionsService,
     private countriesService: CountriesService,
     private formBuilder: FormBuilder
@@ -76,9 +77,13 @@ export class ActionDialogComponent implements OnInit {
           this.actionsService.postActionImage(response._id, this.image).subscribe(res => {
           });
         }
-      }, (response: any) => {
-        Object.keys(response.error).forEach(prop => {
-          this.serverErrors[prop] = response.error[prop][0];
+        this.form.reset();
+        this.snackBar.open('Изменено');
+        this.dialogRef.close('reload');
+      }, (error: any) => {
+        this.snackBar.open(error.message);
+        Object.keys(error.error).forEach(prop => {
+          this.serverErrors[prop] = error.error[prop][0];
         });
       });
     } else {
@@ -88,14 +93,15 @@ export class ActionDialogComponent implements OnInit {
           this.actionsService.postActionImage(response._id, this.image).subscribe(res => {
           });
         }
-      }, (response: any) => {
-        Object.keys(response.error).forEach(prop => {
-          this.serverErrors[prop] = response.error[prop][0];
+        this.form.reset();
+        this.snackBar.open('Создано');
+        this.dialogRef.close('reload');
+      }, (error: any) => {
+        this.snackBar.open(error.message);
+        Object.keys(error.error).forEach(prop => {
+          this.serverErrors[prop] = error.error[prop][0];
         });
       });
     }
-
-    this.form.reset();
-    this.dialogRef.close();
   }
 }

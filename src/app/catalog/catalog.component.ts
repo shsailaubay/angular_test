@@ -1,5 +1,13 @@
 import { Component, Inject, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import {
+  MAT_DIALOG_DATA,
+  MatDialog,
+  MatDialogRef,
+  MatPaginator,
+  MatSnackBar,
+  MatSort,
+  MatTableDataSource,
+} from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, ReplaySubject, Subscription } from 'rxjs';
 
@@ -48,6 +56,7 @@ export class CatalogComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private dialog: MatDialog,
+    private snackBar: MatSnackBar,
     private apiService: ApiService,
     private cashReleaseRequestsService: CashReleaseRequestsService,
   ) {
@@ -137,6 +146,10 @@ export class CatalogComponent implements OnInit, OnDestroy {
     this.dialog.open(this.routeData.dialog, {
       disableClose: false,
       data: data,
+    }).afterClosed().subscribe(result => {
+      if (result === 'reload') {
+        this.getData();
+      }
     });
   }
 
@@ -148,6 +161,10 @@ export class CatalogComponent implements OnInit, OnDestroy {
     this.dialog.open(CashReleaseRequestAcceptDialogComponent, {
       disableClose: false,
       data: id,
+    }).afterClosed().subscribe(result => {
+      if (result === 'reload') {
+        this.getData();
+      }
     });
   }
 
@@ -155,8 +172,9 @@ export class CatalogComponent implements OnInit, OnDestroy {
     this.subscriptions.add(
       this.apiService.delete(this.routeData.apiUrl + '/' + id).subscribe((response: any) => {
         this.getData();
-      }, (response: any) => {
-        console.log(response);
+        this.snackBar.open('Удалено');
+      }, (error: any) => {
+        this.snackBar.open(error.message);
       }),
     );
   }
@@ -187,15 +205,17 @@ export class CashReleaseRequestAcceptDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<CashReleaseRequestAcceptDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data,
+    private snackBar: MatSnackBar,
     private cashReleaseRequestsService: CashReleaseRequestsService,
   ) {
   }
 
   accept(): void {
     this.cashReleaseRequestsService.approveRequest(this.data, true).subscribe(res => {
-      this.dialogRef.close();
+      this.dialogRef.close('reload');
+      this.snackBar.open('Запрос одобрен');
     }, error => {
-      console.log(error);
+      this.snackBar.open(error.message);
     });
   }
 

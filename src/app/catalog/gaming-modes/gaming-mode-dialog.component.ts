@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef, MatSnackBar } from '@angular/material';
 import { GamingModesService } from './gaming-modes.service';
 
 @Component({
@@ -15,6 +15,7 @@ export class GamingModeDialogComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<GamingModeDialogComponent>,
+    private snackBar: MatSnackBar,
     private gamingModesService: GamingModesService,
     private formBuilder: FormBuilder
   ) {
@@ -46,7 +47,11 @@ export class GamingModeDialogComponent implements OnInit {
     if (this.data) {
       this.gamingModesService.editData(this.data._id, formData).subscribe((response: any) => {
         this.registerSuccess = true;
+        this.form.reset();
+        this.snackBar.open('Изменено');
+        this.dialogRef.close('reload');
       }, (response: any) => {
+        this.snackBar.open(response.message, response.name);
         Object.keys(response.error).forEach(prop => {
           this.serverErrors[prop] = response.error[prop][0];
         });
@@ -54,14 +59,15 @@ export class GamingModeDialogComponent implements OnInit {
     } else {
       this.gamingModesService.postData(formData).subscribe((response: any) => {
         this.registerSuccess = true;
+        this.form.reset();
+        this.snackBar.open('Создано');
+        this.dialogRef.close('reload');
       }, (response: any) => {
+        this.snackBar.open(response.message, response.name);
         Object.keys(response.error).forEach(prop => {
           this.serverErrors[prop] = response.error[prop][0];
         });
       });
     }
-
-    this.form.reset();
-    this.dialogRef.close();
   }
 }
