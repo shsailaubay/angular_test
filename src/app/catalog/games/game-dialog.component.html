@@ -18,6 +18,7 @@
         <input type="text" matInput formControlName="en">
       </mat-form-field>
     </div>
+
     <div formGroupName="description" fxLayout="row" fxLayoutGap="24px" fxLayoutAlign="start center">
       <mat-form-field appearance="standard" style="width: 100%">
         <mat-label>Введите описание на русском языке</mat-label>
@@ -28,10 +29,19 @@
         <input type="text" matInput formControlName="en">
       </mat-form-field>
     </div>
-    <mat-form-field appearance="standard" style="width: 100%">
-      <mat-label>Ссылка</mat-label>
-      <input type="text" matInput formControlName="link">
-    </mat-form-field>
+
+    <div fxLayout="row" fxLayoutGap="24px" fxLayoutAlign="start center">
+      <mat-form-field appearance="standard" style="width: 100%">
+        <mat-label>Ссылка</mat-label>
+        <input type="text" matInput formControlName="link">
+      </mat-form-field>
+
+      <mat-form-field appearance="standard" style="width: 100%">
+        <mat-label>Сортировка</mat-label>
+        <input type="number" matInput formControlName="sort">
+      </mat-form-field>
+    </div>
+
     <div fxLayout="row" fxLayoutGap="24px" fxLayoutAlign="start center">
       <div>
         <button mat-raised-button color="primary" (click)="fileInput.click()">
@@ -55,6 +65,7 @@
         <mat-option *ngFor="let game of gamingModes" value="{{game._id}}">{{game.name_ru}}</mat-option>
       </mat-select>
     </mat-form-field>
+
   </form>
 </mat-dialog-content>
 

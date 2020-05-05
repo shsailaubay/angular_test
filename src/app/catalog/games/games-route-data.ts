@@ -16,6 +16,7 @@ export const gamesRouteData = {
     {name: 'Description', property: 'description_ru', visible: true, isModelProperty: true},
     {name: 'Description', property: 'description_en', visible: true, isModelProperty: true},
     {name: 'link', property: 'link', visible: true, isModelProperty: true},
+    {name: 'sort', property: 'sort', visible: true, isModelProperty: true},
     {name: 'gaming_modes', property: 'allowedOptions', visible: true, isModelProperty: true},
     {name: 'Actions', property: 'actions', visible: true},
   ]

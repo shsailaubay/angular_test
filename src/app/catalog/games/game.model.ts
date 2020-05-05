@@ -5,6 +5,7 @@ export class Game {
   description_ru: string;
   description_en: string;
   link: string;
+  sort: number;
   image: string;
   icon: string;
   allowedOptions: [];
@@ -16,6 +17,7 @@ export class Game {
     this.description_ru = c.description.ru;
     this.description_en = c.description.en;
     this.link = c['link'];
+    this.sort = c.sort;
     this.image = c.image;
     this.icon = c.icon;
     this.allowedOptions = c.allowedOptions.map(e => ' ' + e.name.ru);

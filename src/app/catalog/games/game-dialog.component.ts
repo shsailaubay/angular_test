@@ -60,6 +60,7 @@ export class GameDialogComponent implements OnInit {
         'en': [this.data ? this.data.description_en : '', Validators.required]
       }),
       'link': [this.data ? this.data['link'] : ''],
+      'sort': [this.data ? this.data['sort'] : ''],
       'icon': [this.data ? this.data.icon : ''],
       'image': [this.data ? this.data.image : ''],
       'allowedOptions': [this.data ? this.selectedOptions : '']
