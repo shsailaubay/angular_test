@@ -1,0 +1,31 @@
+<fury-page-layout mode="card">
+
+  <fury-page-layout-header>
+    <div class="display-1" [@fadeInRight]>Финансовая история</div>
+  </fury-page-layout-header>
+
+  <fury-page-layout-content [@fadeInUp]>
+
+    <fury-card>
+
+      <mat-tab-group dynamicHeight>
+
+        <mat-tab label="Переводы">
+          <ng-template matTabContent>
+            <fury-financial-history-transfers></fury-financial-history-transfers>
+          </ng-template>
+        </mat-tab>
+
+        <mat-tab label="Покупки">
+          <ng-template matTabContent>
+            <fury-financial-history-purchases></fury-financial-history-purchases>
+          </ng-template>
+        </mat-tab>
+
+      </mat-tab-group>
+
+    </fury-card>
+
+  </fury-page-layout-content>
+
+</fury-page-layout>
