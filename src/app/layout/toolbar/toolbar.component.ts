@@ -38,7 +38,7 @@ export class ToolbarComponent implements OnInit {
       this.gamingCurrencyRateService.getData().subscribe(cur => {
         this.curentCurrencyRate = cur && cur.docs && cur.docs[0] && cur.docs[0].gold;
 
-        this.amountCurrencyAmount = this.curentCurrencyRate * this.amountCurrencyGold;
+        this.amountCurrencyAmount = (this.curentCurrencyRate * this.amountCurrencyGold).toFixed(2);
       });
 
     });

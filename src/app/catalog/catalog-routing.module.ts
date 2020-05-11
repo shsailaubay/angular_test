@@ -16,6 +16,7 @@ import { gamersLevelsRouteData } from './gamers-levels/gamers-levels-route-data'
 import { actionsRouteData } from './actions/actions-route-data';
 import { pushNotificationsRouteData } from './push-notifications/push-notifications-route-data';
 import { usersRouteData } from './users/users-route-data';
+import { FinancialHistoryComponent } from './financial-history/financial-history.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,10 @@ const routes: Routes = [
     path: 'financial-statistic',
     component: CatalogComponent,
     data: financialStatisticRouteData,
+  },
+  {
+    path: 'financial-history',
+    component: FinancialHistoryComponent
   },
   {
     path: 'gaming-accounts',

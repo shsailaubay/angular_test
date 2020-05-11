@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../../@fury/shared/material-components.module';
 import { FurySharedModule } from '../../@fury/fury-shared.module';
+import { FuryCardModule } from '../../@fury/shared/card/card.module';
 import { ListModule } from '../../@fury/shared/list/list.module';
 
 import { CatalogRoutingModule } from './catalog-routing.module';
@@ -20,6 +21,9 @@ import { ActionDialogComponent } from './actions/action-dialog.component';
 import { PushNotificationAddDialogComponent } from './push-notifications/push-notification-dialog.component';
 import { UserAddDialogComponent } from './users/user-dialog.component';
 import { UserRolePipe } from './users/user-role.pipe';
+import { FinancialHistoryComponent } from './financial-history/financial-history.component';
+import { FinancialHistoryTransfersComponent } from './financial-history/financial-history-transfers/financial-history-transfers.component';
+import { FinancialHistoryPurchasesComponent } from './financial-history/financial-history-purchases/financial-history-purchases.component';
 
 @NgModule({
   imports: [
@@ -29,6 +33,7 @@ import { UserRolePipe } from './users/user-role.pipe';
     FurySharedModule,
     ListModule,
     CatalogRoutingModule,
+    FuryCardModule,
   ],
   declarations: [
     CatalogComponent,
@@ -45,6 +50,9 @@ import { UserRolePipe } from './users/user-role.pipe';
     PushNotificationAddDialogComponent,
     UserAddDialogComponent,
     UserRolePipe,
+    FinancialHistoryComponent,
+    FinancialHistoryTransfersComponent,
+    FinancialHistoryPurchasesComponent,
   ],
   entryComponents: [
     CashReleaseRequestAcceptDialogComponent,

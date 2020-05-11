@@ -50,6 +50,11 @@ export class AppComponent {
         icon: 'assignment'
       },
       {
+        name: 'Финансовая история',
+        routeOrFunction: '/financial-history',
+        icon: 'assignment'
+      },
+      {
         name: 'Игровые аккаунты',
         routeOrFunction: '/gaming-accounts',
         icon: 'people'
