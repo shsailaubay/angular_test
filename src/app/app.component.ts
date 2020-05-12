@@ -1,5 +1,5 @@
-import {Component, Inject, Renderer2} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import { Component, Inject, OnInit, Renderer2 } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import {DOCUMENT} from '@angular/common';
 import {Platform} from '@angular/cdk/platform';
 import {MatIconRegistry} from '@angular/material/icon';
@@ -11,7 +11,7 @@ import {SidenavService} from './layout/sidenav/sidenav.service';
   selector: 'fury-root',
   templateUrl: './app.component.html'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   constructor(private sidenavService: SidenavService,
               private iconRegistry: MatIconRegistry,
@@ -19,7 +19,9 @@ export class AppComponent {
               private themeService: ThemeService,
               @Inject(DOCUMENT) private document: Document,
               private platform: Platform,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private router: Router
+  ) {
     this.route.queryParamMap.pipe(
       filter(queryParamMap => queryParamMap.has('style'))
     ).subscribe(queryParamMap => this.themeService.setStyle(queryParamMap.get('style')));
@@ -116,4 +118,22 @@ export class AppComponent {
       }
     ]);
   }
+
+  ngOnInit() {
+    let idleTimer = 0;
+    setInterval(() => {
+      idleTimer++;
+      if (idleTimer > 15) {
+        window.sessionStorage.clear();
+        window.location.href = '/';
+      }
+    }, 60000);
+    window.onmousemove = function () {
+      idleTimer = 0;
+    };
+    window.onkeypress = function () {
+      idleTimer = 0;
+    };
+  }
+
 }
