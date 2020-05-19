@@ -4,12 +4,14 @@
 
     <tr *matHeaderRowDef="visibleColumns" mat-header-row></tr>
 
+    <tr *matRowDef="let row; columns: visibleColumns;" class="clickable route-animations-elements" mat-row></tr>
+
     <ng-container *ngFor="let column of columns">
       <ng-container *ngIf="column.isModelProperty" [matColumnDef]="column.property">
 
         <th *matHeaderCellDef mat-header-cell mat-sort-header> {{ column.name }}</th>
 
-        <td *matCellDef="let row" mat-cell [ngSwitch]="column.name">{{ row[column.property] }}</td>
+        <td *matCellDef="let row" mat-cell>{{ column.property == "time" ? (row[column.property] | date:"dd.MM.yyyy HH:MM") : row[column.property] }}</td>
 
       </ng-container>
     </ng-container>

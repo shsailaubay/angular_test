@@ -14,7 +14,6 @@ export class FinancialHistoryService extends ApiService {
   }
 
   getData() {
-    return this.getWithParams(`/report/`, {start: '2019-05-05'});
+    return this.get(`/admin/financial/operations`);
   }
-
 }

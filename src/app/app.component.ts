@@ -1,29 +1,30 @@
 import { Component, Inject, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import {DOCUMENT} from '@angular/common';
-import {Platform} from '@angular/cdk/platform';
-import {MatIconRegistry} from '@angular/material/icon';
-import {filter} from 'rxjs/operators';
-import {ThemeService} from '../@fury/services/theme.service';
-import {SidenavService} from './layout/sidenav/sidenav.service';
+import { DOCUMENT } from '@angular/common';
+import { Platform } from '@angular/cdk/platform';
+import { MatIconRegistry } from '@angular/material/icon';
+import { filter } from 'rxjs/operators';
+import { ThemeService } from '../@fury/services/theme.service';
+import { SidenavService } from './layout/sidenav/sidenav.service';
 
 @Component({
   selector: 'fury-root',
-  templateUrl: './app.component.html'
+  templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit {
 
-  constructor(private sidenavService: SidenavService,
-              private iconRegistry: MatIconRegistry,
-              private renderer: Renderer2,
-              private themeService: ThemeService,
-              @Inject(DOCUMENT) private document: Document,
-              private platform: Platform,
-              private route: ActivatedRoute,
-              private router: Router
+  constructor(
+    private sidenavService: SidenavService,
+    private iconRegistry: MatIconRegistry,
+    private renderer: Renderer2,
+    private themeService: ThemeService,
+    @Inject(DOCUMENT) private document: Document,
+    private platform: Platform,
+    private route: ActivatedRoute,
+    private router: Router,
   ) {
     this.route.queryParamMap.pipe(
-      filter(queryParamMap => queryParamMap.has('style'))
+      filter(queryParamMap => queryParamMap.has('style')),
     ).subscribe(queryParamMap => this.themeService.setStyle(queryParamMap.get('style')));
 
     this.iconRegistry.setDefaultFontSetClass('material-icons');
@@ -44,78 +45,78 @@ export class AppComponent implements OnInit {
         name: 'Отчет',
         routeOrFunction: '/report',
         icon: 'assignment',
-        pathMatchExact: true
+        pathMatchExact: true,
       },
       {
         name: 'Финансовая статистика',
         routeOrFunction: '/financial-statistic',
-        icon: 'assignment'
+        icon: 'assignment',
       },
       {
         name: 'Финансовая история',
         routeOrFunction: '/financial-history',
-        icon: 'assignment'
+        icon: 'assignment',
       },
       {
         name: 'Игровые аккаунты',
         routeOrFunction: '/gaming-accounts',
-        icon: 'people'
+        icon: 'people',
       },
       {
         name: 'Заявки на вывод денег',
         routeOrFunction: '/cash-release-requests',
-        icon: 'local_atm'
+        icon: 'local_atm',
       },
       {
         name: 'Курсы игровых валют',
         routeOrFunction: '/gaming-currency-rates',
-        icon: 'attach_money'
+        icon: 'attach_money',
       },
       {
         name: 'Игры',
         routeOrFunction: '/games',
-        icon: 'videogame_asset'
+        icon: 'videogame_asset',
       },
       {
         name: 'Игровые режимы',
         routeOrFunction: '/gaming-modes',
-        icon: 'games'
+        icon: 'games',
       },
       {
         name: 'Бустеры',
         routeOrFunction: '/boosters',
-        icon: 'flash_on'
+        icon: 'flash_on',
       },
       {
         name: 'Темы',
         routeOrFunction: '/themes',
-        icon: 'color_lens'
+        icon: 'color_lens',
       },
       {
         name: 'Страны',
         routeOrFunction: '/countries',
-        icon: 'flag'
+        icon: 'flag',
       },
       {
         name: 'Уровни игроков',
         routeOrFunction: '/gamers-levels',
-        icon: 'star'
+        icon: 'star',
       },
       {
         name: 'Акции',
         routeOrFunction: '/actions',
-        icon: 'brightness_auto'
+        icon: 'brightness_auto',
       },
       {
         name: 'push уведомления',
         routeOrFunction: '/push-notifications',
-        icon: 'wb_iridescent'
+        icon: 'wb_iridescent',
       },
       {
         name: 'Пользователи',
         routeOrFunction: '/users',
-        icon: 'people'
-      }
+        icon: 'people',
+      },
     ]);
   }
 

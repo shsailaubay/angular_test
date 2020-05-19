@@ -3,7 +3,7 @@ export class FinancialHistoryPurchases {
   time: string;
 
   constructor(c) {
-    this.userId = c.userId;
-    this.time = c.time;
+    this.userId = c.user.ident;
+    this.time = c.date;
   }
 }

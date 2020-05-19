@@ -1,13 +1,13 @@
 export class FinancialHistoryTransfers {
-  type: number;
+  type: string;
   userId: string;
   time: string;
   userIdRecipient: string;
 
   constructor(c) {
-    this.type = c.type;
-    this.userId = c.userId;
-    this.time = c.time;
-    this.userIdRecipient = c.userIdRecipient;
+    this.type = c.operationType;
+    this.userId = c.user.ident;
+    this.time = c.date;
+    this.userIdRecipient = c.replenishing.ident;
   }
 }

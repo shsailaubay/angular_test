@@ -62,8 +62,9 @@ export class FinancialHistoryTransfersComponent implements OnInit, OnDestroy {
     this.dataSource = null;
 
     this.subscriptions.add(
-      this.financialHistoryService.get().subscribe((res: any) => {
-        this.subject$.next((res.docs ? res.docs : res).map(data => new FinancialHistoryTransfers(data)));
+      this.financialHistoryService.getData().subscribe((res: any) => {
+        console.log(res);
+        this.subject$.next(res.map(data => new FinancialHistoryTransfers(data)));
 
         this.dataSource = new MatTableDataSource();
         this.data$.pipe(

@@ -17,16 +17,18 @@ export class FinancialHistoryPurchasesComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription = new Subscription();
 
+  subject$: ReplaySubject<any[]> = new ReplaySubject<any[]>(1);
+  data$: Observable<any[]> = this.subject$.asObservable();
+  data: any[];
+
+  dataSource: MatTableDataSource<any> | null;
+
   @Input()
   columns: ListColumn[] = [
     { name: 'User ID', property: 'userId', visible: true, isModelProperty: true },
     { name: 'Время', property: 'time', visible: true, isModelProperty: true },
   ] as ListColumn[];
 
-  subject$: ReplaySubject<any[]> = new ReplaySubject<any[]>(1);
-  data$: Observable<any[]> = this.subject$.asObservable();
-  data: any[];
-  dataSource: MatTableDataSource<any> | null;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   pageSize = 10;
@@ -60,8 +62,9 @@ export class FinancialHistoryPurchasesComponent implements OnInit, OnDestroy {
     this.dataSource = null;
 
     this.subscriptions.add(
-      this.financialHistoryService.get().subscribe((res: any) => {
-        this.subject$.next((res.docs ? res.docs : res).map(data => new FinancialHistoryPurchases(data)));
+      this.financialHistoryService.getData().subscribe((res: any) => {
+        console.log(res);
+        this.subject$.next(res.map(data => new FinancialHistoryPurchases(data)));
 
         this.dataSource = new MatTableDataSource();
         this.data$.pipe(
